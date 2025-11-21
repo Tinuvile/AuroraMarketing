@@ -1,0 +1,12 @@
+25-11-21.20:43:45.941 [main            ] INFO  Application            - Starting Application using Java 1.8.0_391 on LAPTOP-7PVP3HH3 with PID 29684 (F:\AuroraMarketing\AuroraMarketing-app\target\classes started by ASUS in F:\AuroraMarketing)
+25-11-21.20:43:45.942 [main            ] INFO  Application            - The following 1 profile is active: "dev"
+25-11-21.20:43:46.457 [main            ] WARN  ClassPathMapperScanner - No MyBatis mapper was found in '[com.tinuvile]' package. Please check your configuration.
+25-11-21.20:43:46.751 [main            ] INFO  TomcatWebServer        - Tomcat initialized with port(s): 8091 (http)
+25-11-21.20:43:46.758 [main            ] INFO  Http11NioProtocol      - Initializing ProtocolHandler ["http-nio-8091"]
+25-11-21.20:43:46.759 [main            ] INFO  StandardService        - Starting service [Tomcat]
+25-11-21.20:43:46.759 [main            ] INFO  StandardEngine         - Starting Servlet engine: [Apache Tomcat/9.0.75]
+25-11-21.20:43:46.878 [main            ] INFO  [/]                    - Initializing Spring embedded WebApplicationContext
+25-11-21.20:43:46.878 [main            ] INFO  ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 902 ms
+25-11-21.20:43:47.290 [main            ] INFO  Http11NioProtocol      - Starting ProtocolHandler ["http-nio-8091"]
+25-11-21.20:43:47.303 [main            ] INFO  TomcatWebServer        - Tomcat started on port(s): 8091 (http) with context path ''
+25-11-21.20:43:47.310 [main            ] INFO  Application            - Started Application in 1.742 seconds (JVM running for 2.596)

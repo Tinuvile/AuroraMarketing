@@ -1,0 +1,5 @@
+25-11-21.20:44:16.513 [main            ] INFO  ApiTest                - Starting ApiTest using Java 1.8.0_391 on LAPTOP-7PVP3HH3 with PID 12468 (started by ASUS in F:\AuroraMarketing\AuroraMarketing-app)
+25-11-21.20:44:16.513 [main            ] INFO  ApiTest                - The following 1 profile is active: "dev"
+25-11-21.20:44:16.989 [main            ] WARN  ClassPathMapperScanner - No MyBatis mapper was found in '[com.tinuvile]' package. Please check your configuration.
+25-11-21.20:44:18.050 [main            ] INFO  ApiTest                - Started ApiTest in 1.958 seconds (JVM running for 2.787)
+25-11-21.20:44:18.251 [main            ] INFO  ApiTest                - 测试完成
