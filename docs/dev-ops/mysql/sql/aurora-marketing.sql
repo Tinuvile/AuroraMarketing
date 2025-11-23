@@ -15,10 +15,33 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 
-CREATE DATABASE IF NOT EXISTS `aurora-markting` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `aurora-markting`;
+-- 导出 aurora-marketing 的数据库结构
+CREATE DATABASE IF NOT EXISTS `aurora-marketing` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+USE `aurora-marketing`;
 
+-- 导出  表 aurora-marketing.award 结构
+CREATE TABLE IF NOT EXISTS `award` (
+  `id` int unsigned NOT NULL AUTO_INCREMENT COMMENT '自增ID',
+  `award_id` int NOT NULL COMMENT '抽奖奖品ID',
+  `award_key` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '奖品对接标识',
+  `award_config` varchar(32) NOT NULL COMMENT '奖品配置信息',
+  `award_desc` varchar(128) NOT NULL COMMENT '奖品内容描述',
+  `create_time` datetime NOT NULL DEFAULT (now()) COMMENT '创建时间',
+  `update_time` datetime NOT NULL DEFAULT (now()) ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='奖品详情表';
 
+-- 正在导出表  aurora-marketing.award 的数据：~6 rows (大约)
+INSERT INTO `award` (`id`, `award_id`, `award_key`, `award_config`, `award_desc`, `create_time`, `update_time`) VALUES
+	(1, 101, 'user_token', '200,1000', '赠送用户token', '2025-11-23 14:12:32', '2025-11-23 14:16:40'),
+	(2, 102, 'user_upload_image', '5', '允许用户上传图像对话', '2025-11-23 14:14:26', '2025-11-23 14:16:18'),
+	(3, 103, 'user_access_high_model', '5', '允许用户使用高级模型', '2025-11-23 14:15:29', '2025-11-23 14:16:14'),
+	(4, 104, 'user_access_high_model', '10', '允许用户使用高级模型', '2025-11-23 14:16:10', '2025-11-23 14:16:10'),
+	(5, 105, 'user_access_draw_model', '5', '允许用户使用AI绘图模型', '2025-11-23 14:17:42', '2025-11-23 14:17:42'),
+	(6, 106, 'user_pro_vip', '1', '赠送用户会员【月为单位】', '2025-11-23 14:18:29', '2025-11-23 14:18:48'),
+	(7, 107, 'user_pro_vip', '12', '赠送用户会员【月为单位】', '2025-11-23 14:19:11', '2025-11-23 14:19:11');
+
+-- 导出  表 aurora-marketing.strategy 结构
 CREATE TABLE IF NOT EXISTS `strategy` (
   `id` int unsigned NOT NULL AUTO_INCREMENT COMMENT '自增ID',
   `strategy_id` int NOT NULL COMMENT '抽奖策略ID',
@@ -29,10 +52,11 @@ CREATE TABLE IF NOT EXISTS `strategy` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='策略总表';
 
+-- 正在导出表  aurora-marketing.strategy 的数据：~1 rows (大约)
 INSERT INTO `strategy` (`id`, `strategy_id`, `strategy_desc`, `rule_models`, `create_time`, `update_time`) VALUES
 	(1, 10001, '抽奖策略1', NULL, '2025-11-22 20:53:07', '2025-11-22 20:53:07');
 
-
+-- 导出  表 aurora-marketing.strategy_award 结构
 CREATE TABLE IF NOT EXISTS `strategy_award` (
   `id` int unsigned NOT NULL AUTO_INCREMENT COMMENT '自增ID',
   `strategy_id` int NOT NULL COMMENT '抽奖策略ID',
@@ -49,16 +73,17 @@ CREATE TABLE IF NOT EXISTS `strategy_award` (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='抽奖策略详情表';
 
+-- 正在导出表  aurora-marketing.strategy_award 的数据：~7 rows (大约)
 INSERT INTO `strategy_award` (`id`, `strategy_id`, `award_id`, `award_title`, `award_subtitle`, `award_count`, `award_count_surplus`, `award_rate`, `rule_models`, `sort`, `create_time`, `update_time`) VALUES
 	(1, 10001, 101, '随机token数', NULL, 8000, 8000, 80.0000, 'rule_random', 1, '2025-11-22 20:54:25', '2025-11-22 21:06:58'),
-	(2, 10001, 102, '5次上传图像', NULL, 1000, 1000, 10.0000, NULL, 2, '2025-11-22 20:55:09', '2025-11-22 20:57:00'),
+	(2, 10001, 102, '5次上传图像对话', NULL, 1000, 1000, 10.0000, NULL, 2, '2025-11-22 20:55:09', '2025-11-23 14:14:35'),
 	(3, 10001, 103, '5次高级模型对话【Claude4.5sonnet/Gemini3】', NULL, 500, 500, 5.0000, NULL, 3, '2025-11-22 20:55:44', '2025-11-22 20:58:11'),
 	(4, 10001, 104, '10次高级模型对话【Claude4.5sonnet/Gemini3】', '抽奖3次后解锁', 400, 400, 3.0000, 'rule_lock', 4, '2025-11-22 20:56:25', '2025-11-22 21:12:13'),
 	(5, 10001, 105, '5次使用AI绘图模型', '抽奖3次后解锁', 60, 60, 1.0000, 'rule_lock', 5, '2025-11-22 21:00:02', '2025-11-22 21:12:14'),
 	(6, 10001, 106, '解锁一个月pro会员', '抽奖10次后解锁', 30, 30, 0.9990, 'rule_lock,rule_luck_award', 6, '2025-11-22 21:02:44', '2025-11-22 21:14:24'),
 	(7, 10001, 107, '全年pro会员', '抽奖30次后解锁', 5, 5, 0.0010, 'rule_lock', 7, '2025-11-22 21:03:10', '2025-11-22 21:12:16');
 
-
+-- 导出  表 aurora-marketing.strategy_rule 结构
 CREATE TABLE IF NOT EXISTS `strategy_rule` (
   `id` int unsigned NOT NULL AUTO_INCREMENT COMMENT '自增ID',
   `strategy_id` int NOT NULL COMMENT '关联策略ID',
@@ -72,6 +97,7 @@ CREATE TABLE IF NOT EXISTS `strategy_rule` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='策略规则表';
 
+-- 正在导出表  aurora-marketing.strategy_rule 的数据：~8 rows (大约)
 INSERT INTO `strategy_rule` (`id`, `strategy_id`, `award_id`, `rule_type`, `rule_model`, `rule_value`, `rule_desc`, `create_time`, `update_time`) VALUES
 	(1, 10001, 101, 2, 'rule_random', '200,1000', '随机token数', '2025-11-22 21:05:25', '2025-11-22 21:14:10'),
 	(2, 10001, 104, 2, 'rule_lock', '3', '抽奖3次后解锁', '2025-11-22 21:09:49', '2025-11-22 21:10:14'),
