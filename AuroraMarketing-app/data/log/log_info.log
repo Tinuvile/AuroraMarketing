@@ -57,3 +57,20 @@
 25-11-24.00:26:49.360 [main            ] INFO  EndpointLinksResolver  - Exposing 1 endpoint(s) beneath base path '/actuator'
 25-11-24.00:26:49.410 [main            ] INFO  StrategyTest           - Started StrategyTest in 4.045 seconds (JVM running for 4.709)
 25-11-24.00:26:49.612 [main            ] INFO  StrategyTest           - 测试结果：101
+25-11-24.17:40:24.287 [main            ] INFO  StrategyTest           - Starting StrategyTest using Java 1.8.0_391 on LAPTOP-7PVP3HH3 with PID 28356 (started by ASUS in F:\AuroraMarketing\AuroraMarketing-app)
+25-11-24.17:40:24.288 [main            ] INFO  StrategyTest           - The following 1 profile is active: "dev"
+25-11-24.17:40:25.065 [main            ] INFO  RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+25-11-24.17:40:25.069 [main            ] INFO  RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+25-11-24.17:40:25.107 [main            ] INFO  RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 21 ms. Found 0 Redis repository interfaces.
+25-11-24.17:40:26.324 [main            ] INFO  Version                - Redisson 3.23.4
+25-11-24.17:40:27.334 [redisson-netty-2-4] INFO  MasterPubSubConnectionPool - 1 connections initialized for 127.0.0.1/127.0.0.1:16379
+25-11-24.17:40:27.348 [redisson-netty-2-13] INFO  MasterConnectionPool   - 5 connections initialized for 127.0.0.1/127.0.0.1:16379
+25-11-24.17:40:28.826 [main            ] INFO  EndpointLinksResolver  - Exposing 1 endpoint(s) beneath base path '/actuator'
+25-11-24.17:40:28.873 [main            ] INFO  StrategyTest           - Started StrategyTest in 4.976 seconds (JVM running for 5.832)
+25-11-24.17:40:59.715 [main            ] INFO  HikariDataSource       - HikariPool-1 - Starting...
+25-11-24.17:41:00.409 [main            ] INFO  HikariDataSource       - HikariPool-1 - Start completed.
+25-11-24.17:41:00.465 [main            ] INFO  StrategyTest           - success = true
+25-11-24.17:41:00.474 [main            ] INFO  StrategyTest           - 测试结果：101 - 奖品ID值
+25-11-24.17:41:00.475 [main            ] INFO  StrategyTest           - 测试结果：106 - 30次抽奖策略配置
+25-11-24.17:41:00.494 [SpringApplicationShutdownHook] INFO  HikariDataSource       - HikariPool-1 - Shutdown initiated...
+25-11-24.17:41:00.498 [SpringApplicationShutdownHook] INFO  HikariDataSource       - HikariPool-1 - Shutdown completed.

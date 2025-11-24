@@ -44,6 +44,7 @@ public class StrategyTest {
     @Test
     public void b_test_getAssembleRandomVal() {
         log.info("测试结果：{} - 奖品ID值", strategyDispatch.getRandomAwardId(10001L));
+        log.info("测试结果：{} - 30次抽奖策略配置", strategyDispatch.getRandomAwardId(10001L, "30:103,104,105,106"));
     }
 
 }
