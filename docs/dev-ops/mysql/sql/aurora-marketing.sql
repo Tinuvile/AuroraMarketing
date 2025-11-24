@@ -29,7 +29,7 @@ CREATE TABLE IF NOT EXISTS `award` (
   `create_time` datetime NOT NULL DEFAULT (now()) COMMENT '创建时间',
   `update_time` datetime NOT NULL DEFAULT (now()) ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='奖品详情表';
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='奖品详情表';
 
 -- 正在导出表  aurora-marketing.award 的数据：~8 rows (大约)
 INSERT INTO `award` (`id`, `award_id`, `award_key`, `award_config`, `award_desc`, `create_time`, `update_time`) VALUES
@@ -72,7 +72,7 @@ CREATE TABLE IF NOT EXISTS `strategy_award` (
   `create_time` datetime NOT NULL DEFAULT (now()) COMMENT '创建时间',
   `update_time` datetime NOT NULL DEFAULT (now()) ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='抽奖策略详情表';
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='抽奖策略详情表';
 
 -- 正在导出表  aurora-marketing.strategy_award 的数据：~8 rows (大约)
 INSERT INTO `strategy_award` (`id`, `strategy_id`, `award_id`, `award_title`, `award_subtitle`, `award_count`, `award_count_surplus`, `award_rate`, `rule_models`, `sort`, `create_time`, `update_time`) VALUES
@@ -97,7 +97,7 @@ CREATE TABLE IF NOT EXISTS `strategy_rule` (
   `create_time` datetime NOT NULL DEFAULT (now()) COMMENT '创建时间',
   `update_time` datetime NOT NULL DEFAULT (now()) ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='策略规则表';
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='策略规则表';
 
 -- 正在导出表  aurora-marketing.strategy_rule 的数据：~9 rows (大约)
 INSERT INTO `strategy_rule` (`id`, `strategy_id`, `award_id`, `rule_type`, `rule_model`, `rule_value`, `rule_desc`, `create_time`, `update_time`) VALUES
@@ -108,7 +108,7 @@ INSERT INTO `strategy_rule` (`id`, `strategy_id`, `award_id`, `rule_type`, `rule
 	(5, 10001, 107, 2, 'rule_lock', '10', '抽奖10次后解锁', '2025-11-22 21:11:34', '2025-11-23 17:18:57'),
 	(6, 10001, 108, 2, 'rule_lock', '30', '抽奖30次后解锁', '2025-11-22 21:12:01', '2025-11-23 17:19:00'),
 	(7, 10001, 107, 2, 'rule_luck_award', '200,10000', '随机token兜底', '2025-11-22 21:13:56', '2025-11-23 17:19:02'),
-	(8, 10001, NULL, 1, 'rule_weight', '30:101,102,103,104,105,106', '抽奖次数满30自动出', '2025-11-22 21:18:16', '2025-11-23 17:18:00'),
+	(8, 10001, NULL, 1, 'rule_weight', '30:103,104,105,106', '抽奖次数满30自动出', '2025-11-22 21:18:16', '2025-11-24 15:15:40'),
 	(9, 10001, NULL, 1, 'rule_blacklist', '100', '黑名单用户100 token', '2025-11-22 21:23:46', '2025-11-23 17:17:59');
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;

@@ -2,6 +2,7 @@ package com.tinuvile.test.domain;
 
 
 import com.tinuvile.domain.strategy.service.armory.IStrategyArmory;
+import com.tinuvile.domain.strategy.service.armory.IStrategyDispatch;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
@@ -25,6 +26,8 @@ public class StrategyTest {
 
     @Resource
     private IStrategyArmory strategyArmory;
+    @Resource
+    private IStrategyDispatch strategyDispatch;
 
     /**
      * 策略ID；10001L 装配的时候创建策略表写入到 Redis Map 中
@@ -40,7 +43,7 @@ public class StrategyTest {
      */
     @Test
     public void b_test_getAssembleRandomVal() {
-        log.info("测试结果：{} - 奖品ID值", strategyArmory.getRandomAwardId(10001L));
+        log.info("测试结果：{} - 奖品ID值", strategyDispatch.getRandomAwardId(10001L));
     }
 
 }
