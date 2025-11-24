@@ -9,12 +9,16 @@ public class ThreadPoolConfigProperties {
 
     /** 核心线程数 */
     private Integer corePoolSize = 20;
+
     /** 最大线程数 */
     private Integer maxPoolSize = 200;
+
     /** 最大等待时间 */
     private Long keepAliveTime = 10L;
+
     /** 最大队列数 */
     private Integer blockQueueSize = 5000;
+
     /*
      * AbortPolicy：丢弃任务并抛出RejectedExecutionException异常。
      * DiscardPolicy：直接丢弃任务，但是不会抛出异常
