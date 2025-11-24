@@ -29,11 +29,21 @@ public class StrategyArmory implements IStrategyArmory {
         // 查询策略配置
         List<StrategyAwardEntity> strategyAwardEntities = repository.queryStrategyAwardList(strategyId);
 
+        if (null == strategyAwardEntities || strategyAwardEntities.isEmpty()) {
+            log.error("策略装配器-装配策略奖品配置失败，strategyId: {}的奖品配置为空", strategyId);
+            return false;
+        }
+
         // 获取最小概率值
         BigDecimal minAwardRate = strategyAwardEntities.stream()
                 .map(StrategyAwardEntity::getAwardRate)
                 .min(BigDecimal::compareTo)
                 .orElse(BigDecimal.ZERO);
+
+        if (BigDecimal.ZERO.compareTo(minAwardRate) == 0) {
+            log.error("策略装配器-装配策略奖品配置失败，strategyId: {}的奖品配置中存在概率值为0的奖品", strategyId);
+            return false;
+        }
 
         // 计算概率值总和
         BigDecimal totalAwardRate = strategyAwardEntities.stream()

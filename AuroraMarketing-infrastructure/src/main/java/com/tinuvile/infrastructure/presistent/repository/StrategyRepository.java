@@ -35,6 +35,7 @@ public class StrategyRepository implements IStrategyRepository {
 
         // 从库中获取数据
         List<StrategyAward> strategyAwards = strategyAwardDao.queryStrategyAwardListByStrategyId(strategyId);
+        if (null == strategyAwards || strategyAwards.isEmpty()) return Collections.emptyList();
         strategyAwardEntities = new ArrayList<>(strategyAwards.size());
         for (StrategyAward strategyAward : strategyAwards) {
             StrategyAwardEntity strategyAwardEntity = StrategyAwardEntity.builder()
@@ -60,6 +61,7 @@ public class StrategyRepository implements IStrategyRepository {
 
         // 存储概率查找表 - 先获取 Redis 中已存在的 Map 集合，然后将新数据批量合并进去
         Map<Integer, Integer> cacheRateTable = redisService.getMap(Constants.RedisKey.STRATEGY_RATE_TABLE_KEY + strategyId);
+        // cacheRateTable.putAll(strategyAwardSearchRateTable);
         // 分批处理，每批1000条
         int batchSize = 1000;
         List<Map.Entry<Integer, Integer>> entries = new ArrayList<>(strategyAwardSearchRateTable.entrySet());
