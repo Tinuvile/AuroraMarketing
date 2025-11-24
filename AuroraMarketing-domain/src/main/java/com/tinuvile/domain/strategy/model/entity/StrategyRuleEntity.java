@@ -35,10 +35,10 @@ public class StrategyRuleEntity {
     /** 抽奖规则类型 */
     private String ruleModel;
 
-    /** 时间 */
+    /** 抽奖规则比值 */
     private String ruleValue;
 
-    /** 时间 */
+    /** 抽奖规则描述 */
     private String ruleDesc;
 
     /**
