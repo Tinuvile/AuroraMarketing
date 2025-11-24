@@ -10,6 +10,7 @@ import javax.annotation.Resource;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.*;
+import java.util.concurrent.ThreadLocalRandom;
 
 /**
  * @author Tinuvile
@@ -81,7 +82,7 @@ public class StrategyArmory implements IStrategyArmory {
     @Override
     public Integer getRandomAwardId(Long strategyId) {
         int rateRange = repository.getRateRange(strategyId);
-        return repository.getStrategyAwardAssemble(strategyId, new Random().nextInt(rateRange));
+        return repository.getStrategyAwardAssemble(strategyId, ThreadLocalRandom.current().nextInt(rateRange));
     }
 
 }
