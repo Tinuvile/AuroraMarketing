@@ -55,7 +55,7 @@ CREATE TABLE IF NOT EXISTS `strategy` (
 
 -- 正在导出表  aurora-marketing.strategy 的数据：~1 rows (大约)
 INSERT INTO `strategy` (`id`, `strategy_id`, `strategy_desc`, `rule_models`, `create_time`, `update_time`) VALUES
-	(1, 10001, '抽奖策略1', NULL, '2025-11-22 20:53:07', '2025-11-22 20:53:07');
+	(1, 10001, '抽奖策略1', 'rule_weight', '2025-11-22 20:53:07', '2025-11-24 16:29:08');
 
 -- 导出  表 aurora-marketing.strategy_award 结构
 CREATE TABLE IF NOT EXISTS `strategy_award` (
