@@ -40,16 +40,16 @@ public class StrategyRule {
      */
     private String ruleModel;
 
-    /** 时间 */
+    /** 抽奖规则比值 */
     private String ruleValue;
 
-    /** 时间 */
+    /** 抽奖规则描述 */
     private String ruleDesc;
 
-    /** 时间 */
+    /** 创建时间 */
     private Date createTime;
 
-    /** 时间 */
+    /** 更新时间 */
     private Date updateTime;
 
 }
