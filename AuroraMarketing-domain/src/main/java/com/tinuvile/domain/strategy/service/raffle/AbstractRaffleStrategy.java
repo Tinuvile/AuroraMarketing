@@ -60,7 +60,13 @@ public abstract class AbstractRaffleStrategy implements IRaffleStrategy {
                 // 权重根据返回信息抽奖
                 RuleActionEntity.RaffleBeforeEntity raffleBeforeEntity = ruleActionEntity.getData();
                 String ruleWeightValueKey = raffleBeforeEntity.getRuleWeightValueKey();
-                Integer awardId = strategyDispatch.getRandomAwardId(strategyId, ruleWeightValueKey);
+
+                Integer awardId;
+                if (null != ruleWeightValueKey) {
+                    awardId = strategyDispatch.getRandomAwardId(strategyId, ruleWeightValueKey);
+                } else {
+                    awardId = strategyDispatch.getRandomAwardId(strategyId);
+                }
                 return RaffleAwardEntity.builder()
                         .awardId(awardId)
                         .build();
