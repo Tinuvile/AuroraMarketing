@@ -29,9 +29,9 @@ CREATE TABLE IF NOT EXISTS `award` (
   `create_time` datetime NOT NULL DEFAULT (now()) COMMENT '创建时间',
   `update_time` datetime NOT NULL DEFAULT (now()) ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='奖品详情表';
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='奖品详情表';
 
--- 正在导出表  aurora-marketing.award 的数据：~8 rows (大约)
+-- 正在导出表  aurora-marketing.award 的数据：~9 rows (大约)
 INSERT INTO `award` (`id`, `award_id`, `award_key`, `award_config`, `award_desc`, `create_time`, `update_time`) VALUES
 	(1, 101, 'user_token_random', '200,1000', '赠送用户token', '2025-11-23 14:12:32', '2025-11-23 17:16:46'),
 	(2, 102, 'user_credit_random', '1,1000', '赠送用户积分', '2025-11-23 17:16:41', '2025-11-23 17:16:41'),
@@ -40,7 +40,8 @@ INSERT INTO `award` (`id`, `award_id`, `award_key`, `award_config`, `award_desc`
 	(5, 105, 'user_access_high_model', '10', '允许用户使用高级模型', '2025-11-23 14:16:10', '2025-11-23 17:15:34'),
 	(6, 106, 'user_access_draw_model', '5', '允许用户使用AI绘图模型', '2025-11-23 14:17:42', '2025-11-23 17:15:33'),
 	(7, 107, 'user_pro_vip', '1', '赠送用户会员【月为单位】', '2025-11-23 14:18:29', '2025-11-23 17:15:31'),
-	(8, 108, 'user_pro_vip', '12', '赠送用户会员【月为单位】', '2025-11-23 14:19:11', '2025-11-23 17:15:29');
+	(8, 108, 'user_pro_vip', '12', '赠送用户会员【月为单位】', '2025-11-23 14:19:11', '2025-11-23 17:15:29'),
+	(9, 100, 'user_token_blacklist', '100', '黑名单用户赠送token', '2025-11-25 14:36:17', '2025-11-25 14:36:17');
 
 -- 导出  表 aurora-marketing.strategy 结构
 CREATE TABLE IF NOT EXISTS `strategy` (
@@ -55,7 +56,7 @@ CREATE TABLE IF NOT EXISTS `strategy` (
 
 -- 正在导出表  aurora-marketing.strategy 的数据：~1 rows (大约)
 INSERT INTO `strategy` (`id`, `strategy_id`, `strategy_desc`, `rule_models`, `create_time`, `update_time`) VALUES
-	(1, 10001, '抽奖策略1', 'rule_weight', '2025-11-22 20:53:07', '2025-11-24 16:29:08');
+	(1, 10001, '抽奖策略1', 'rule_weight,rule_blacklist', '2025-11-22 20:53:07', '2025-11-25 20:49:28');
 
 -- 导出  表 aurora-marketing.strategy_award 结构
 CREATE TABLE IF NOT EXISTS `strategy_award` (
@@ -109,7 +110,7 @@ INSERT INTO `strategy_rule` (`id`, `strategy_id`, `award_id`, `rule_type`, `rule
 	(6, 10001, 108, 2, 'rule_lock', '30', '抽奖30次后解锁', '2025-11-22 21:12:01', '2025-11-23 17:19:00'),
 	(7, 10001, 107, 2, 'rule_luck_award', '200,10000', '随机token兜底', '2025-11-22 21:13:56', '2025-11-23 17:19:02'),
 	(8, 10001, NULL, 1, 'rule_weight', '30:103,104,105,106', '抽奖次数满30自动出', '2025-11-22 21:18:16', '2025-11-24 15:15:40'),
-	(9, 10001, NULL, 1, 'rule_blacklist', '100', '黑名单用户100 token', '2025-11-22 21:23:46', '2025-11-23 17:17:59');
+	(9, 10001, NULL, 1, 'rule_blacklist', '100:user001,user002', '黑名单用户100 token', '2025-11-22 21:23:46', '2025-11-25 14:37:58');
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;

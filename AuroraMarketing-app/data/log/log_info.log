@@ -1,76 +1,44 @@
-25-11-24.00:00:26.190 [SpringApplicationShutdownHook] INFO  HikariDataSource       - HikariPool-1 - Shutdown initiated...
-25-11-24.00:00:26.208 [SpringApplicationShutdownHook] INFO  HikariDataSource       - HikariPool-1 - Shutdown completed.
-25-11-24.00:12:42.592 [main            ] INFO  StrategyTest           - Starting StrategyTest using Java 1.8.0_391 on LAPTOP-7PVP3HH3 with PID 32696 (started by ASUS in F:\AuroraMarketing\AuroraMarketing-app)
-25-11-24.00:12:42.593 [main            ] INFO  StrategyTest           - The following 1 profile is active: "dev"
-25-11-24.00:12:43.198 [main            ] INFO  RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
-25-11-24.00:12:43.202 [main            ] INFO  RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
-25-11-24.00:12:43.225 [main            ] INFO  RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 11 ms. Found 0 Redis repository interfaces.
-25-11-24.00:12:44.117 [main            ] INFO  Version                - Redisson 3.23.4
-25-11-24.00:12:44.817 [redisson-netty-2-4] INFO  MasterPubSubConnectionPool - 1 connections initialized for 127.0.0.1/127.0.0.1:16379
-25-11-24.00:12:44.827 [redisson-netty-2-13] INFO  MasterConnectionPool   - 5 connections initialized for 127.0.0.1/127.0.0.1:16379
-25-11-24.00:12:46.101 [main            ] INFO  EndpointLinksResolver  - Exposing 1 endpoint(s) beneath base path '/actuator'
-25-11-24.00:12:46.156 [main            ] INFO  StrategyTest           - Started StrategyTest in 3.905 seconds (JVM running for 4.601)
-25-11-24.00:21:29.124 [main            ] INFO  StrategyTest           - Starting StrategyTest using Java 1.8.0_391 on LAPTOP-7PVP3HH3 with PID 14776 (started by ASUS in F:\AuroraMarketing\AuroraMarketing-app)
-25-11-24.00:21:29.124 [main            ] INFO  StrategyTest           - The following 1 profile is active: "dev"
-25-11-24.00:21:29.738 [main            ] INFO  RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
-25-11-24.00:21:29.741 [main            ] INFO  RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
-25-11-24.00:21:29.767 [main            ] INFO  RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 15 ms. Found 0 Redis repository interfaces.
-25-11-24.00:21:30.623 [main            ] INFO  Version                - Redisson 3.23.4
-25-11-24.00:21:31.321 [redisson-netty-2-4] INFO  MasterPubSubConnectionPool - 1 connections initialized for 127.0.0.1/127.0.0.1:16379
-25-11-24.00:21:31.334 [redisson-netty-2-13] INFO  MasterConnectionPool   - 5 connections initialized for 127.0.0.1/127.0.0.1:16379
-25-11-24.00:21:32.796 [main            ] INFO  EndpointLinksResolver  - Exposing 1 endpoint(s) beneath base path '/actuator'
-25-11-24.00:21:32.850 [main            ] INFO  StrategyTest           - Started StrategyTest in 4.102 seconds (JVM running for 5.146)
-25-11-24.00:21:33.036 [main            ] INFO  HikariDataSource       - HikariPool-1 - Starting...
-25-11-24.00:21:33.673 [main            ] INFO  HikariDataSource       - HikariPool-1 - Start completed.
-25-11-24.00:21:59.125 [main            ] INFO  StrategyTest           - success = true
-25-11-24.00:21:59.146 [SpringApplicationShutdownHook] INFO  HikariDataSource       - HikariPool-1 - Shutdown initiated...
-25-11-24.00:21:59.155 [SpringApplicationShutdownHook] INFO  HikariDataSource       - HikariPool-1 - Shutdown completed.
-25-11-24.00:22:41.803 [main            ] INFO  StrategyTest           - Starting StrategyTest using Java 1.8.0_391 on LAPTOP-7PVP3HH3 with PID 10676 (started by ASUS in F:\AuroraMarketing\AuroraMarketing-app)
-25-11-24.00:22:41.805 [main            ] INFO  StrategyTest           - The following 1 profile is active: "dev"
-25-11-24.00:22:42.596 [main            ] INFO  RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
-25-11-24.00:22:42.599 [main            ] INFO  RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
-25-11-24.00:22:42.628 [main            ] INFO  RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 17 ms. Found 0 Redis repository interfaces.
-25-11-24.00:22:43.649 [main            ] INFO  Version                - Redisson 3.23.4
-25-11-24.00:22:44.331 [redisson-netty-2-5] INFO  MasterPubSubConnectionPool - 1 connections initialized for 127.0.0.1/127.0.0.1:16379
-25-11-24.00:22:44.344 [redisson-netty-2-13] INFO  MasterConnectionPool   - 5 connections initialized for 127.0.0.1/127.0.0.1:16379
-25-11-24.00:22:45.773 [main            ] INFO  EndpointLinksResolver  - Exposing 1 endpoint(s) beneath base path '/actuator'
-25-11-24.00:22:45.822 [main            ] INFO  StrategyTest           - Started StrategyTest in 4.491 seconds (JVM running for 5.421)
-25-11-24.00:22:46.023 [main            ] INFO  StrategyTest           - 测试结果：103 - 奖品ID值
-25-11-24.00:26:21.290 [main            ] INFO  StrategyTest           - Starting StrategyTest using Java 1.8.0_391 on LAPTOP-7PVP3HH3 with PID 10608 (started by ASUS in F:\AuroraMarketing\AuroraMarketing-app)
-25-11-24.00:26:21.290 [main            ] INFO  StrategyTest           - The following 1 profile is active: "dev"
-25-11-24.00:26:21.903 [main            ] INFO  RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
-25-11-24.00:26:21.907 [main            ] INFO  RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
-25-11-24.00:26:21.935 [main            ] INFO  RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 16 ms. Found 0 Redis repository interfaces.
-25-11-24.00:26:22.784 [main            ] INFO  Version                - Redisson 3.23.4
-25-11-24.00:26:23.391 [redisson-netty-2-4] INFO  MasterPubSubConnectionPool - 1 connections initialized for 127.0.0.1/127.0.0.1:16379
-25-11-24.00:26:23.400 [redisson-netty-2-13] INFO  MasterConnectionPool   - 5 connections initialized for 127.0.0.1/127.0.0.1:16379
-25-11-24.00:26:24.753 [main            ] INFO  EndpointLinksResolver  - Exposing 1 endpoint(s) beneath base path '/actuator'
-25-11-24.00:26:24.801 [main            ] INFO  StrategyTest           - Started StrategyTest in 3.858 seconds (JVM running for 4.516)
-25-11-24.00:26:45.700 [main            ] INFO  StrategyTest           - Starting StrategyTest using Java 1.8.0_391 on LAPTOP-7PVP3HH3 with PID 9912 (started by ASUS in F:\AuroraMarketing\AuroraMarketing-app)
-25-11-24.00:26:45.701 [main            ] INFO  StrategyTest           - The following 1 profile is active: "dev"
-25-11-24.00:26:46.300 [main            ] INFO  RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
-25-11-24.00:26:46.303 [main            ] INFO  RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
-25-11-24.00:26:46.330 [main            ] INFO  RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 16 ms. Found 0 Redis repository interfaces.
-25-11-24.00:26:47.173 [main            ] INFO  Version                - Redisson 3.23.4
-25-11-24.00:26:47.756 [redisson-netty-2-4] INFO  MasterPubSubConnectionPool - 1 connections initialized for 127.0.0.1/127.0.0.1:16379
-25-11-24.00:26:47.766 [redisson-netty-2-13] INFO  MasterConnectionPool   - 5 connections initialized for 127.0.0.1/127.0.0.1:16379
-25-11-24.00:26:49.360 [main            ] INFO  EndpointLinksResolver  - Exposing 1 endpoint(s) beneath base path '/actuator'
-25-11-24.00:26:49.410 [main            ] INFO  StrategyTest           - Started StrategyTest in 4.045 seconds (JVM running for 4.709)
-25-11-24.00:26:49.612 [main            ] INFO  StrategyTest           - 测试结果：101
-25-11-24.17:40:24.287 [main            ] INFO  StrategyTest           - Starting StrategyTest using Java 1.8.0_391 on LAPTOP-7PVP3HH3 with PID 28356 (started by ASUS in F:\AuroraMarketing\AuroraMarketing-app)
-25-11-24.17:40:24.288 [main            ] INFO  StrategyTest           - The following 1 profile is active: "dev"
-25-11-24.17:40:25.065 [main            ] INFO  RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
-25-11-24.17:40:25.069 [main            ] INFO  RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
-25-11-24.17:40:25.107 [main            ] INFO  RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 21 ms. Found 0 Redis repository interfaces.
-25-11-24.17:40:26.324 [main            ] INFO  Version                - Redisson 3.23.4
-25-11-24.17:40:27.334 [redisson-netty-2-4] INFO  MasterPubSubConnectionPool - 1 connections initialized for 127.0.0.1/127.0.0.1:16379
-25-11-24.17:40:27.348 [redisson-netty-2-13] INFO  MasterConnectionPool   - 5 connections initialized for 127.0.0.1/127.0.0.1:16379
-25-11-24.17:40:28.826 [main            ] INFO  EndpointLinksResolver  - Exposing 1 endpoint(s) beneath base path '/actuator'
-25-11-24.17:40:28.873 [main            ] INFO  StrategyTest           - Started StrategyTest in 4.976 seconds (JVM running for 5.832)
-25-11-24.17:40:59.715 [main            ] INFO  HikariDataSource       - HikariPool-1 - Starting...
-25-11-24.17:41:00.409 [main            ] INFO  HikariDataSource       - HikariPool-1 - Start completed.
-25-11-24.17:41:00.465 [main            ] INFO  StrategyTest           - success = true
-25-11-24.17:41:00.474 [main            ] INFO  StrategyTest           - 测试结果：101 - 奖品ID值
-25-11-24.17:41:00.475 [main            ] INFO  StrategyTest           - 测试结果：106 - 30次抽奖策略配置
-25-11-24.17:41:00.494 [SpringApplicationShutdownHook] INFO  HikariDataSource       - HikariPool-1 - Shutdown initiated...
-25-11-24.17:41:00.498 [SpringApplicationShutdownHook] INFO  HikariDataSource       - HikariPool-1 - Shutdown completed.
+25-11-25.20:46:05.957 [main            ] INFO  RaffleStrategyTest     - Starting RaffleStrategyTest using Java 1.8.0_391 on LAPTOP-7PVP3HH3 with PID 3720 (started by ASUS in F:\AuroraMarketing\AuroraMarketing-app)
+25-11-25.20:46:05.958 [main            ] INFO  RaffleStrategyTest     - The following 1 profile is active: "dev"
+25-11-25.20:46:06.701 [main            ] INFO  RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+25-11-25.20:46:06.704 [main            ] INFO  RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+25-11-25.20:46:06.742 [main            ] INFO  RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 22 ms. Found 0 Redis repository interfaces.
+25-11-25.20:46:07.870 [main            ] INFO  Version                - Redisson 3.23.4
+25-11-25.20:46:08.545 [redisson-netty-2-4] INFO  MasterPubSubConnectionPool - 1 connections initialized for 127.0.0.1/127.0.0.1:16379
+25-11-25.20:46:08.555 [redisson-netty-2-13] INFO  MasterConnectionPool   - 5 connections initialized for 127.0.0.1/127.0.0.1:16379
+25-11-25.20:46:09.973 [main            ] INFO  EndpointLinksResolver  - Exposing 1 endpoint(s) beneath base path '/actuator'
+25-11-25.20:46:10.022 [main            ] INFO  RaffleStrategyTest     - Started RaffleStrategyTest in 4.571 seconds (JVM running for 5.565)
+25-11-25.20:46:10.297 [main            ] INFO  RuleWeightLogicFilter  - 规则过滤 - 权重范围 userId:user001 strategyId:10001 ruleModel:rule_weight
+25-11-25.20:46:10.330 [main            ] INFO  HikariDataSource       - HikariPool-1 - Starting...
+25-11-25.20:46:11.053 [main            ] INFO  HikariDataSource       - HikariPool-1 - Start completed.
+25-11-25.20:46:11.089 [main            ] INFO  DefaultRaffleStrategy  - 抽奖前置规则过滤 userId:user001, ruleModel:rule_weight, code:0001, info:接管；后续的流程，受规则引擎执行结果影响
+25-11-25.20:46:11.261 [main            ] INFO  RaffleStrategyTest     - 请求参数：{"strategyId":10001,"userId":"user001"}
+25-11-25.20:46:11.264 [main            ] INFO  RaffleStrategyTest     - 响应结果：{"awardId":102}
+25-11-25.20:46:11.273 [main            ] INFO  RuleWeightLogicFilter  - 规则过滤 - 权重范围 userId:Tinuvile strategyId:10001 ruleModel:rule_weight
+25-11-25.20:46:11.275 [main            ] INFO  DefaultRaffleStrategy  - 抽奖前置规则过滤 userId:Tinuvile, ruleModel:rule_weight, code:0001, info:接管；后续的流程，受规则引擎执行结果影响
+25-11-25.20:46:11.277 [main            ] INFO  RaffleStrategyTest     - 请求参数：{"strategyId":10001,"userId":"Tinuvile"}
+25-11-25.20:46:11.277 [main            ] INFO  RaffleStrategyTest     - 响应结果：{"awardId":101}
+25-11-25.20:46:11.301 [SpringApplicationShutdownHook] INFO  HikariDataSource       - HikariPool-1 - Shutdown initiated...
+25-11-25.20:46:11.311 [SpringApplicationShutdownHook] INFO  HikariDataSource       - HikariPool-1 - Shutdown completed.
+25-11-25.20:49:52.687 [main            ] INFO  RaffleStrategyTest     - Starting RaffleStrategyTest using Java 1.8.0_391 on LAPTOP-7PVP3HH3 with PID 3080 (started by ASUS in F:\AuroraMarketing\AuroraMarketing-app)
+25-11-25.20:49:52.688 [main            ] INFO  RaffleStrategyTest     - The following 1 profile is active: "dev"
+25-11-25.20:49:53.418 [main            ] INFO  RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+25-11-25.20:49:53.421 [main            ] INFO  RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+25-11-25.20:49:53.453 [main            ] INFO  RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 21 ms. Found 0 Redis repository interfaces.
+25-11-25.20:49:54.456 [main            ] INFO  Version                - Redisson 3.23.4
+25-11-25.20:49:55.337 [redisson-netty-2-5] INFO  MasterPubSubConnectionPool - 1 connections initialized for 127.0.0.1/127.0.0.1:16379
+25-11-25.20:49:55.393 [redisson-netty-2-13] INFO  MasterConnectionPool   - 5 connections initialized for 127.0.0.1/127.0.0.1:16379
+25-11-25.20:49:56.958 [main            ] INFO  EndpointLinksResolver  - Exposing 1 endpoint(s) beneath base path '/actuator'
+25-11-25.20:49:57.010 [main            ] INFO  RaffleStrategyTest     - Started RaffleStrategyTest in 4.78 seconds (JVM running for 5.566)
+25-11-25.20:49:57.243 [main            ] INFO  RuleWeightLogicFilter  - 规则过滤 - 权重范围 userId:user001 strategyId:10001 ruleModel:rule_weight
+25-11-25.20:49:57.276 [main            ] INFO  HikariDataSource       - HikariPool-1 - Starting...
+25-11-25.20:49:57.955 [main            ] INFO  HikariDataSource       - HikariPool-1 - Start completed.
+25-11-25.20:49:57.993 [main            ] INFO  DefaultRaffleStrategy  - 抽奖前置规则过滤 userId:user001, ruleModel:rule_weight, code:0001, info:接管；后续的流程，受规则引擎执行结果影响
+25-11-25.20:49:58.154 [main            ] INFO  RaffleStrategyTest     - 请求参数：{"strategyId":10001,"userId":"user001"}
+25-11-25.20:49:58.155 [main            ] INFO  RaffleStrategyTest     - 响应结果：{"awardId":101}
+25-11-25.20:49:58.167 [main            ] INFO  RuleWeightLogicFilter  - 规则过滤 - 权重范围 userId:Tinuvile strategyId:10001 ruleModel:rule_weight
+25-11-25.20:49:58.169 [main            ] INFO  DefaultRaffleStrategy  - 抽奖前置规则过滤 userId:Tinuvile, ruleModel:rule_weight, code:0001, info:接管；后续的流程，受规则引擎执行结果影响
+25-11-25.20:49:58.173 [main            ] INFO  RaffleStrategyTest     - 请求参数：{"strategyId":10001,"userId":"Tinuvile"}
+25-11-25.20:49:58.174 [main            ] INFO  RaffleStrategyTest     - 响应结果：{"awardId":101}
+25-11-25.20:49:58.200 [SpringApplicationShutdownHook] INFO  HikariDataSource       - HikariPool-1 - Shutdown initiated...
+25-11-25.20:49:58.213 [SpringApplicationShutdownHook] INFO  HikariDataSource       - HikariPool-1 - Shutdown completed.
