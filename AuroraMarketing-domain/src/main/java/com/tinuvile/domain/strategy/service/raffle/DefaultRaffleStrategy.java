@@ -79,7 +79,7 @@ public class DefaultRaffleStrategy extends AbstractRaffleStrategy {
             if (!RuleLogicCheckTypeVO.ALLOW.getCode().equals(ruleActionEntity.getCode())) return ruleActionEntity;
         }
 
-        return null;
+        return ruleActionEntity;
     }
 
 }
