@@ -7,6 +7,7 @@ import com.tinuvile.domain.strategy.model.entity.RaffleFactorEntity;
 import com.tinuvile.domain.strategy.service.IRaffleStrategy;
 import com.tinuvile.domain.strategy.service.rule.impl.RuleWeightLogicFilter;
 import lombok.extern.slf4j.Slf4j;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -38,28 +39,46 @@ public class RaffleStrategyTest {
 
     @Test
     public void test_performRaffle() {
-        RaffleFactorEntity raffleFactorEntity = RaffleFactorEntity.builder()
-                .userId("Tinuvile")
-                .strategyId(10001L)
-                .build();
+        try {
+            RaffleFactorEntity raffleFactorEntity = RaffleFactorEntity.builder()
+                    .userId("Tinuvile")
+                    .strategyId(10001L)
+                    .build();
 
-        RaffleAwardEntity raffleAwardEntity = raffleStrategy.performRaffle(raffleFactorEntity);
+            RaffleAwardEntity raffleAwardEntity = raffleStrategy.performRaffle(raffleFactorEntity);
 
-        log.info("请求参数：{}", JSON.toJSONString(raffleFactorEntity));
-        log.info("响应结果：{}", JSON.toJSONString(raffleAwardEntity));
+            log.info("请求参数：{}", JSON.toJSONString(raffleFactorEntity));
+            log.info("响应结果：{}", JSON.toJSONString(raffleAwardEntity));
+
+            Assert.assertNotNull("抽奖结果不能为空", raffleAwardEntity);
+            Assert.assertNotNull("奖品ID不能为空", raffleAwardEntity.getAwardId());
+
+        } catch (Exception e) {
+            log.error("测试执行出现异常: {}",e.getMessage(), e);
+            throw e;
+        }
     }
 
     @Test
     public void test_performRaffle_blacklist() {
-        RaffleFactorEntity raffleFactorEntity = RaffleFactorEntity.builder()
-                .userId("user001")
-                .strategyId(10001L)
-                .build();
+        try {
+            RaffleFactorEntity raffleFactorEntity = RaffleFactorEntity.builder()
+                    .userId("user001")
+                    .strategyId(10001L)
+                    .build();
 
-        RaffleAwardEntity raffleAwardEntity = raffleStrategy.performRaffle(raffleFactorEntity);
+            RaffleAwardEntity raffleAwardEntity = raffleStrategy.performRaffle(raffleFactorEntity);
 
-        log.info("请求参数：{}", JSON.toJSONString(raffleFactorEntity));
-        log.info("响应结果：{}", JSON.toJSONString(raffleAwardEntity));
+            log.info("请求参数：{}", JSON.toJSONString(raffleFactorEntity));
+            log.info("响应结果：{}", JSON.toJSONString(raffleAwardEntity));
+
+            Assert.assertNotNull("抽奖结果不能为空", raffleAwardEntity);
+            Assert.assertEquals("黑名单用户应该获得固定奖品", Integer.valueOf(100), raffleAwardEntity.getAwardId());
+
+        } catch (Exception e) {
+            log.error("黑名单测试执行出现异常: {}",e.getMessage(), e);
+            throw e;
+        }
     }
 
 }
