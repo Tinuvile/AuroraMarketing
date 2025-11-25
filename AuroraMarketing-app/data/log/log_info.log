@@ -42,3 +42,208 @@
 25-11-25.20:49:58.174 [main            ] INFO  RaffleStrategyTest     - 响应结果：{"awardId":101}
 25-11-25.20:49:58.200 [SpringApplicationShutdownHook] INFO  HikariDataSource       - HikariPool-1 - Shutdown initiated...
 25-11-25.20:49:58.213 [SpringApplicationShutdownHook] INFO  HikariDataSource       - HikariPool-1 - Shutdown completed.
+25-11-25.21:01:29.414 [main            ] INFO  RaffleStrategyTest     - Starting RaffleStrategyTest using Java 1.8.0_391 on LAPTOP-7PVP3HH3 with PID 31472 (started by ASUS in F:\AuroraMarketing\AuroraMarketing-app)
+25-11-25.21:01:29.415 [main            ] INFO  RaffleStrategyTest     - The following 1 profile is active: "dev"
+25-11-25.21:01:30.060 [main            ] INFO  RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+25-11-25.21:01:30.063 [main            ] INFO  RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+25-11-25.21:01:30.098 [main            ] INFO  RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 22 ms. Found 0 Redis repository interfaces.
+25-11-25.21:01:31.052 [main            ] INFO  Version                - Redisson 3.23.4
+25-11-25.21:01:31.691 [redisson-netty-2-4] INFO  MasterPubSubConnectionPool - 1 connections initialized for 127.0.0.1/127.0.0.1:16379
+25-11-25.21:01:31.702 [redisson-netty-2-13] INFO  MasterConnectionPool   - 5 connections initialized for 127.0.0.1/127.0.0.1:16379
+25-11-25.21:01:32.998 [main            ] INFO  EndpointLinksResolver  - Exposing 1 endpoint(s) beneath base path '/actuator'
+25-11-25.21:01:33.044 [main            ] INFO  RaffleStrategyTest     - Started RaffleStrategyTest in 4.004 seconds (JVM running for 4.681)
+25-11-25.21:01:33.264 [main            ] INFO  RuleBlackListLogicFilter - 规则过滤 - 黑名单 userId:user001 strategyId:10001 ruleModel:rule_blacklist
+25-11-25.21:01:33.293 [main            ] INFO  HikariDataSource       - HikariPool-1 - Starting...
+25-11-25.21:01:33.960 [main            ] INFO  HikariDataSource       - HikariPool-1 - Start completed.
+25-11-25.21:01:34.162 [main            ] INFO  RaffleStrategyTest     - 请求参数：{"strategyId":10001,"userId":"user001"}
+25-11-25.21:01:34.165 [main            ] INFO  RaffleStrategyTest     - 响应结果：{"awardId":101}
+25-11-25.21:01:34.174 [main            ] INFO  RuleBlackListLogicFilter - 规则过滤 - 黑名单 userId:Tinuvile strategyId:10001 ruleModel:rule_blacklist
+25-11-25.21:01:34.177 [main            ] INFO  RuleWeightLogicFilter  - 规则过滤 - 权重范围 userId:Tinuvile strategyId:10001 ruleModel:rule_weight
+25-11-25.21:01:34.179 [main            ] INFO  DefaultRaffleStrategy  - 抽奖前置规则过滤 userId:Tinuvile, ruleModel:rule_weight, code:0001, info:接管；后续的流程，受规则引擎执行结果影响
+25-11-25.21:01:34.181 [main            ] INFO  RaffleStrategyTest     - 请求参数：{"strategyId":10001,"userId":"Tinuvile"}
+25-11-25.21:01:34.181 [main            ] INFO  RaffleStrategyTest     - 响应结果：{"awardId":101}
+25-11-25.21:01:34.206 [SpringApplicationShutdownHook] INFO  HikariDataSource       - HikariPool-1 - Shutdown initiated...
+25-11-25.21:01:34.219 [SpringApplicationShutdownHook] INFO  HikariDataSource       - HikariPool-1 - Shutdown completed.
+25-11-25.21:07:23.436 [main            ] INFO  RaffleStrategyTest     - Starting RaffleStrategyTest using Java 1.8.0_391 on LAPTOP-7PVP3HH3 with PID 19860 (started by ASUS in F:\AuroraMarketing\AuroraMarketing-app)
+25-11-25.21:07:23.437 [main            ] INFO  RaffleStrategyTest     - The following 1 profile is active: "dev"
+25-11-25.21:07:24.082 [main            ] INFO  RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+25-11-25.21:07:24.085 [main            ] INFO  RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+25-11-25.21:07:24.121 [main            ] INFO  RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 23 ms. Found 0 Redis repository interfaces.
+25-11-25.21:07:25.075 [main            ] INFO  Version                - Redisson 3.23.4
+25-11-25.21:07:25.970 [redisson-netty-2-5] INFO  MasterPubSubConnectionPool - 1 connections initialized for 127.0.0.1/127.0.0.1:16379
+25-11-25.21:07:25.989 [redisson-netty-2-13] INFO  MasterConnectionPool   - 5 connections initialized for 127.0.0.1/127.0.0.1:16379
+25-11-25.21:07:27.542 [main            ] INFO  EndpointLinksResolver  - Exposing 1 endpoint(s) beneath base path '/actuator'
+25-11-25.21:07:27.593 [main            ] INFO  RaffleStrategyTest     - Started RaffleStrategyTest in 4.509 seconds (JVM running for 5.225)
+25-11-25.21:07:27.831 [main            ] INFO  RuleBlackListLogicFilter - 规则过滤 - 黑名单 userId:user001 strategyId:10001 ruleModel:rule_blacklist
+25-11-25.21:07:27.831 [main            ] INFO  RuleBlackListLogicFilter - BLACK_LIST_DEBUG - 查询参数: strategyId=10001, awardId=null, ruleModel=rule_blacklist
+25-11-25.21:07:27.863 [main            ] INFO  HikariDataSource       - HikariPool-1 - Starting...
+25-11-25.21:07:28.537 [main            ] INFO  HikariDataSource       - HikariPool-1 - Start completed.
+25-11-25.21:07:28.570 [main            ] INFO  RuleBlackListLogicFilter - BLACK_LIST_DEBUG - 查询到的规则值: [100:user001,user002]
+25-11-25.21:07:28.719 [main            ] INFO  RaffleStrategyTest     - 请求参数：{"strategyId":10001,"userId":"user001"}
+25-11-25.21:07:28.721 [main            ] INFO  RaffleStrategyTest     - 响应结果：{"awardId":102}
+25-11-25.21:07:28.730 [main            ] INFO  RuleBlackListLogicFilter - 规则过滤 - 黑名单 userId:Tinuvile strategyId:10001 ruleModel:rule_blacklist
+25-11-25.21:07:28.730 [main            ] INFO  RuleBlackListLogicFilter - BLACK_LIST_DEBUG - 查询参数: strategyId=10001, awardId=null, ruleModel=rule_blacklist
+25-11-25.21:07:28.732 [main            ] INFO  RuleBlackListLogicFilter - BLACK_LIST_DEBUG - 查询到的规则值: [100:user001,user002]
+25-11-25.21:07:28.733 [main            ] INFO  RuleWeightLogicFilter  - 规则过滤 - 权重范围 userId:Tinuvile strategyId:10001 ruleModel:rule_weight
+25-11-25.21:07:28.736 [main            ] INFO  DefaultRaffleStrategy  - 抽奖前置规则过滤 userId:Tinuvile, ruleModel:rule_weight, code:0001, info:接管；后续的流程，受规则引擎执行结果影响
+25-11-25.21:07:28.739 [main            ] INFO  RaffleStrategyTest     - 请求参数：{"strategyId":10001,"userId":"Tinuvile"}
+25-11-25.21:07:28.739 [main            ] INFO  RaffleStrategyTest     - 响应结果：{"awardId":102}
+25-11-25.21:07:28.771 [SpringApplicationShutdownHook] INFO  HikariDataSource       - HikariPool-1 - Shutdown initiated...
+25-11-25.21:07:28.791 [SpringApplicationShutdownHook] INFO  HikariDataSource       - HikariPool-1 - Shutdown completed.
+25-11-25.21:10:07.010 [main            ] INFO  RaffleStrategyTest     - Starting RaffleStrategyTest using Java 1.8.0_391 on LAPTOP-7PVP3HH3 with PID 14228 (started by ASUS in F:\AuroraMarketing\AuroraMarketing-app)
+25-11-25.21:10:07.011 [main            ] INFO  RaffleStrategyTest     - The following 1 profile is active: "dev"
+25-11-25.21:10:07.661 [main            ] INFO  RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+25-11-25.21:10:07.665 [main            ] INFO  RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+25-11-25.21:10:07.695 [main            ] INFO  RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 19 ms. Found 0 Redis repository interfaces.
+25-11-25.21:10:08.662 [main            ] INFO  Version                - Redisson 3.23.4
+25-11-25.21:10:09.329 [redisson-netty-2-4] INFO  MasterPubSubConnectionPool - 1 connections initialized for 127.0.0.1/127.0.0.1:16379
+25-11-25.21:10:09.340 [redisson-netty-2-13] INFO  MasterConnectionPool   - 5 connections initialized for 127.0.0.1/127.0.0.1:16379
+25-11-25.21:10:10.689 [main            ] INFO  EndpointLinksResolver  - Exposing 1 endpoint(s) beneath base path '/actuator'
+25-11-25.21:10:10.736 [main            ] INFO  RaffleStrategyTest     - Started RaffleStrategyTest in 4.207 seconds (JVM running for 5.173)
+25-11-25.21:10:10.969 [main            ] INFO  RuleBlackListLogicFilter - 规则过滤 - 黑名单 userId:user001 strategyId:10001 ruleModel:rule_blacklist
+25-11-25.21:10:10.970 [main            ] INFO  RuleBlackListLogicFilter - BLACK_LIST_DEBUG - 查询参数: strategyId=10001, awardId=null, ruleModel=rule_blacklist
+25-11-25.21:10:11.003 [main            ] INFO  HikariDataSource       - HikariPool-1 - Starting...
+25-11-25.21:10:11.683 [main            ] INFO  HikariDataSource       - HikariPool-1 - Start completed.
+25-11-25.21:10:11.719 [main            ] INFO  RuleBlackListLogicFilter - BLACK_LIST_DEBUG - 查询到的规则值: [100:user001,user002]
+25-11-25.21:10:11.719 [main            ] INFO  RuleBlackListLogicFilter - BLACK_LIST_DEBUG - 分割后的规则值: [100, user001,user002]
+25-11-25.21:10:11.719 [main            ] INFO  RuleBlackListLogicFilter - BLACK_LIST_DEBUG - 黑名单奖品ID: 100
+25-11-25.21:10:11.719 [main            ] INFO  RuleBlackListLogicFilter - BLACK_LIST_DEBUG - 黑名单用户列表: [user001, user002]
+25-11-25.21:10:11.719 [main            ] INFO  RuleBlackListLogicFilter - BLACK_LIST_DEBUG - 当前用户ID: [user001]
+25-11-25.21:10:11.719 [main            ] INFO  RuleBlackListLogicFilter - BLACK_LIST_DEBUG - 比较用户: [user001] vs [user001], 结果: true
+25-11-25.21:10:11.863 [main            ] INFO  RaffleStrategyTest     - 请求参数：{"strategyId":10001,"userId":"user001"}
+25-11-25.21:10:11.866 [main            ] INFO  RaffleStrategyTest     - 响应结果：{"awardId":102}
+25-11-25.21:10:11.874 [main            ] INFO  RuleBlackListLogicFilter - 规则过滤 - 黑名单 userId:Tinuvile strategyId:10001 ruleModel:rule_blacklist
+25-11-25.21:10:11.874 [main            ] INFO  RuleBlackListLogicFilter - BLACK_LIST_DEBUG - 查询参数: strategyId=10001, awardId=null, ruleModel=rule_blacklist
+25-11-25.21:10:11.875 [main            ] INFO  RuleBlackListLogicFilter - BLACK_LIST_DEBUG - 查询到的规则值: [100:user001,user002]
+25-11-25.21:10:11.876 [main            ] INFO  RuleBlackListLogicFilter - BLACK_LIST_DEBUG - 分割后的规则值: [100, user001,user002]
+25-11-25.21:10:11.876 [main            ] INFO  RuleBlackListLogicFilter - BLACK_LIST_DEBUG - 黑名单奖品ID: 100
+25-11-25.21:10:11.876 [main            ] INFO  RuleBlackListLogicFilter - BLACK_LIST_DEBUG - 黑名单用户列表: [user001, user002]
+25-11-25.21:10:11.876 [main            ] INFO  RuleBlackListLogicFilter - BLACK_LIST_DEBUG - 当前用户ID: [Tinuvile]
+25-11-25.21:10:11.876 [main            ] INFO  RuleBlackListLogicFilter - BLACK_LIST_DEBUG - 比较用户: [Tinuvile] vs [user001], 结果: false
+25-11-25.21:10:11.876 [main            ] INFO  RuleBlackListLogicFilter - BLACK_LIST_DEBUG - 比较用户: [Tinuvile] vs [user002], 结果: false
+25-11-25.21:10:11.876 [main            ] INFO  RuleBlackListLogicFilter - BLACK_LIST_DEBUG - 未命中黑名单，返回ALLOW
+25-11-25.21:10:11.876 [main            ] INFO  RuleWeightLogicFilter  - 规则过滤 - 权重范围 userId:Tinuvile strategyId:10001 ruleModel:rule_weight
+25-11-25.21:10:11.879 [main            ] INFO  DefaultRaffleStrategy  - 抽奖前置规则过滤 userId:Tinuvile, ruleModel:rule_weight, code:0001, info:接管；后续的流程，受规则引擎执行结果影响
+25-11-25.21:10:11.882 [main            ] INFO  RaffleStrategyTest     - 请求参数：{"strategyId":10001,"userId":"Tinuvile"}
+25-11-25.21:10:11.883 [main            ] INFO  RaffleStrategyTest     - 响应结果：{"awardId":101}
+25-11-25.21:10:11.913 [SpringApplicationShutdownHook] INFO  HikariDataSource       - HikariPool-1 - Shutdown initiated...
+25-11-25.21:10:11.928 [SpringApplicationShutdownHook] INFO  HikariDataSource       - HikariPool-1 - Shutdown completed.
+25-11-25.21:11:09.420 [main            ] INFO  RaffleStrategyTest     - Starting RaffleStrategyTest using Java 1.8.0_391 on LAPTOP-7PVP3HH3 with PID 29824 (started by ASUS in F:\AuroraMarketing\AuroraMarketing-app)
+25-11-25.21:11:09.421 [main            ] INFO  RaffleStrategyTest     - The following 1 profile is active: "dev"
+25-11-25.21:11:10.081 [main            ] INFO  RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+25-11-25.21:11:10.084 [main            ] INFO  RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+25-11-25.21:11:10.118 [main            ] INFO  RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 21 ms. Found 0 Redis repository interfaces.
+25-11-25.21:11:11.082 [main            ] INFO  Version                - Redisson 3.23.4
+25-11-25.21:11:11.741 [redisson-netty-2-4] INFO  MasterPubSubConnectionPool - 1 connections initialized for 127.0.0.1/127.0.0.1:16379
+25-11-25.21:11:11.752 [redisson-netty-2-13] INFO  MasterConnectionPool   - 5 connections initialized for 127.0.0.1/127.0.0.1:16379
+25-11-25.21:11:13.078 [main            ] INFO  EndpointLinksResolver  - Exposing 1 endpoint(s) beneath base path '/actuator'
+25-11-25.21:11:13.127 [main            ] INFO  RaffleStrategyTest     - Started RaffleStrategyTest in 4.146 seconds (JVM running for 4.862)
+25-11-25.21:11:13.356 [main            ] INFO  RuleBlackListLogicFilter - 规则过滤 - 黑名单 userId:user001 strategyId:10001 ruleModel:rule_blacklist
+25-11-25.21:11:13.356 [main            ] INFO  RuleBlackListLogicFilter - BLACK_LIST_DEBUG - 查询参数: strategyId=10001, awardId=null, ruleModel=rule_blacklist
+25-11-25.21:11:13.388 [main            ] INFO  HikariDataSource       - HikariPool-1 - Starting...
+25-11-25.21:11:14.055 [main            ] INFO  HikariDataSource       - HikariPool-1 - Start completed.
+25-11-25.21:11:14.088 [main            ] INFO  RuleBlackListLogicFilter - BLACK_LIST_DEBUG - 查询到的规则值: [100:user001,user002]
+25-11-25.21:11:14.088 [main            ] INFO  RuleBlackListLogicFilter - BLACK_LIST_DEBUG - 分割后的规则值: [100, user001,user002]
+25-11-25.21:11:14.088 [main            ] INFO  RuleBlackListLogicFilter - BLACK_LIST_DEBUG - 黑名单奖品ID: 100
+25-11-25.21:11:14.088 [main            ] INFO  RuleBlackListLogicFilter - BLACK_LIST_DEBUG - 黑名单用户列表: [user001, user002]
+25-11-25.21:11:14.088 [main            ] INFO  RuleBlackListLogicFilter - BLACK_LIST_DEBUG - 当前用户ID: [user001]
+25-11-25.21:11:14.088 [main            ] INFO  RuleBlackListLogicFilter - BLACK_LIST_DEBUG - 比较用户: [user001] vs [user001], 结果: true
+25-11-25.21:11:14.088 [main            ] INFO  RuleBlackListLogicFilter - BLACK_LIST_DEBUG - 进入了 if 分支！！！
+25-11-25.21:11:14.088 [main            ] INFO  RuleBlackListLogicFilter - BLACK_LIST_DEBUG - 命中黑名单！返回TAKE_OVER，奖品ID: 100
+25-11-25.21:11:14.237 [main            ] INFO  RaffleStrategyTest     - 请求参数：{"strategyId":10001,"userId":"user001"}
+25-11-25.21:11:14.239 [main            ] INFO  RaffleStrategyTest     - 响应结果：{"awardId":102}
+25-11-25.21:11:14.247 [main            ] INFO  RuleBlackListLogicFilter - 规则过滤 - 黑名单 userId:Tinuvile strategyId:10001 ruleModel:rule_blacklist
+25-11-25.21:11:14.247 [main            ] INFO  RuleBlackListLogicFilter - BLACK_LIST_DEBUG - 查询参数: strategyId=10001, awardId=null, ruleModel=rule_blacklist
+25-11-25.21:11:14.249 [main            ] INFO  RuleBlackListLogicFilter - BLACK_LIST_DEBUG - 查询到的规则值: [100:user001,user002]
+25-11-25.21:11:14.249 [main            ] INFO  RuleBlackListLogicFilter - BLACK_LIST_DEBUG - 分割后的规则值: [100, user001,user002]
+25-11-25.21:11:14.249 [main            ] INFO  RuleBlackListLogicFilter - BLACK_LIST_DEBUG - 黑名单奖品ID: 100
+25-11-25.21:11:14.249 [main            ] INFO  RuleBlackListLogicFilter - BLACK_LIST_DEBUG - 黑名单用户列表: [user001, user002]
+25-11-25.21:11:14.249 [main            ] INFO  RuleBlackListLogicFilter - BLACK_LIST_DEBUG - 当前用户ID: [Tinuvile]
+25-11-25.21:11:14.249 [main            ] INFO  RuleBlackListLogicFilter - BLACK_LIST_DEBUG - 比较用户: [Tinuvile] vs [user001], 结果: false
+25-11-25.21:11:14.249 [main            ] INFO  RuleBlackListLogicFilter - BLACK_LIST_DEBUG - 比较用户: [Tinuvile] vs [user002], 结果: false
+25-11-25.21:11:14.249 [main            ] INFO  RuleBlackListLogicFilter - BLACK_LIST_DEBUG - 未命中黑名单，返回ALLOW
+25-11-25.21:11:14.250 [main            ] INFO  RuleWeightLogicFilter  - 规则过滤 - 权重范围 userId:Tinuvile strategyId:10001 ruleModel:rule_weight
+25-11-25.21:11:14.251 [main            ] INFO  DefaultRaffleStrategy  - 抽奖前置规则过滤 userId:Tinuvile, ruleModel:rule_weight, code:0001, info:接管；后续的流程，受规则引擎执行结果影响
+25-11-25.21:11:14.254 [main            ] INFO  RaffleStrategyTest     - 请求参数：{"strategyId":10001,"userId":"Tinuvile"}
+25-11-25.21:11:14.254 [main            ] INFO  RaffleStrategyTest     - 响应结果：{"awardId":101}
+25-11-25.21:11:14.282 [SpringApplicationShutdownHook] INFO  HikariDataSource       - HikariPool-1 - Shutdown initiated...
+25-11-25.21:11:14.296 [SpringApplicationShutdownHook] INFO  HikariDataSource       - HikariPool-1 - Shutdown completed.
+25-11-25.21:12:50.874 [main            ] INFO  RaffleStrategyTest     - Starting RaffleStrategyTest using Java 1.8.0_391 on LAPTOP-7PVP3HH3 with PID 29704 (started by ASUS in F:\AuroraMarketing\AuroraMarketing-app)
+25-11-25.21:12:50.875 [main            ] INFO  RaffleStrategyTest     - The following 1 profile is active: "dev"
+25-11-25.21:12:51.565 [main            ] INFO  RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+25-11-25.21:12:51.569 [main            ] INFO  RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+25-11-25.21:12:51.602 [main            ] INFO  RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 21 ms. Found 0 Redis repository interfaces.
+25-11-25.21:12:52.604 [main            ] INFO  Version                - Redisson 3.23.4
+25-11-25.21:12:53.230 [redisson-netty-2-4] INFO  MasterPubSubConnectionPool - 1 connections initialized for 127.0.0.1/127.0.0.1:16379
+25-11-25.21:12:53.242 [redisson-netty-2-13] INFO  MasterConnectionPool   - 5 connections initialized for 127.0.0.1/127.0.0.1:16379
+25-11-25.21:12:54.541 [main            ] INFO  EndpointLinksResolver  - Exposing 1 endpoint(s) beneath base path '/actuator'
+25-11-25.21:12:54.595 [main            ] INFO  RaffleStrategyTest     - Started RaffleStrategyTest in 4.12 seconds (JVM running for 4.93)
+25-11-25.21:12:54.835 [main            ] INFO  RuleBlackListLogicFilter - 规则过滤 - 黑名单 userId:user001 strategyId:10001 ruleModel:rule_blacklist
+25-11-25.21:12:54.871 [main            ] INFO  HikariDataSource       - HikariPool-1 - Starting...
+25-11-25.21:12:55.549 [main            ] INFO  HikariDataSource       - HikariPool-1 - Start completed.
+25-11-25.21:12:55.586 [main            ] INFO  DefaultRaffleStrategy  - STRATEGY_DEBUG - 黑名单过滤器返回结果: code=0001, info=接管；后续的流程，受规则引擎执行结果影响
+25-11-25.21:12:55.586 [main            ] INFO  DefaultRaffleStrategy  - STRATEGY_DEBUG - 黑名单过滤器返回的奖品ID: 100
+25-11-25.21:12:55.586 [main            ] INFO  DefaultRaffleStrategy  - STRATEGY_DEBUG - 判断条件: !RuleLogicCheckTypeVO.ALLOW.getCode().equals(ruleActionEntity.getCode())
+25-11-25.21:12:55.586 [main            ] INFO  DefaultRaffleStrategy  - STRATEGY_DEBUG - ALLOW.getCode() = 0000
+25-11-25.21:12:55.586 [main            ] INFO  DefaultRaffleStrategy  - STRATEGY_DEBUG - ruleActionEntity.getCode() = 0001
+25-11-25.21:12:55.586 [main            ] INFO  DefaultRaffleStrategy  - STRATEGY_DEBUG - 判断结果: true
+25-11-25.21:12:55.586 [main            ] INFO  DefaultRaffleStrategy  - STRATEGY_DEBUG - 黑名单过滤器返回非ALLOW，准备直接返回结果
+25-11-25.21:12:55.737 [main            ] INFO  RaffleStrategyTest     - 请求参数：{"strategyId":10001,"userId":"user001"}
+25-11-25.21:12:55.739 [main            ] INFO  RaffleStrategyTest     - 响应结果：{"awardId":101}
+25-11-25.21:12:55.748 [main            ] INFO  RuleBlackListLogicFilter - 规则过滤 - 黑名单 userId:Tinuvile strategyId:10001 ruleModel:rule_blacklist
+25-11-25.21:12:55.749 [main            ] INFO  DefaultRaffleStrategy  - STRATEGY_DEBUG - 黑名单过滤器返回结果: code=0000, info=放行；执行后续的流程，不受规则引擎影响
+25-11-25.21:12:55.751 [main            ] INFO  DefaultRaffleStrategy  - STRATEGY_DEBUG - 黑名单过滤器返回的 data 为 null
+25-11-25.21:12:55.751 [main            ] INFO  DefaultRaffleStrategy  - STRATEGY_DEBUG - 判断条件: !RuleLogicCheckTypeVO.ALLOW.getCode().equals(ruleActionEntity.getCode())
+25-11-25.21:12:55.751 [main            ] INFO  DefaultRaffleStrategy  - STRATEGY_DEBUG - ALLOW.getCode() = 0000
+25-11-25.21:12:55.751 [main            ] INFO  DefaultRaffleStrategy  - STRATEGY_DEBUG - ruleActionEntity.getCode() = 0000
+25-11-25.21:12:55.751 [main            ] INFO  DefaultRaffleStrategy  - STRATEGY_DEBUG - 判断结果: false
+25-11-25.21:12:55.751 [main            ] INFO  RuleWeightLogicFilter  - 规则过滤 - 权重范围 userId:Tinuvile strategyId:10001 ruleModel:rule_weight
+25-11-25.21:12:55.754 [main            ] INFO  DefaultRaffleStrategy  - 抽奖前置规则过滤 userId:Tinuvile, ruleModel:rule_weight, code:0001, info:接管；后续的流程，受规则引擎执行结果影响
+25-11-25.21:12:55.756 [main            ] INFO  RaffleStrategyTest     - 请求参数：{"strategyId":10001,"userId":"Tinuvile"}
+25-11-25.21:12:55.756 [main            ] INFO  RaffleStrategyTest     - 响应结果：{"awardId":105}
+25-11-25.21:12:55.782 [SpringApplicationShutdownHook] INFO  HikariDataSource       - HikariPool-1 - Shutdown initiated...
+25-11-25.21:12:55.795 [SpringApplicationShutdownHook] INFO  HikariDataSource       - HikariPool-1 - Shutdown completed.
+25-11-25.21:14:25.521 [main            ] INFO  RaffleStrategyTest     - Starting RaffleStrategyTest using Java 1.8.0_391 on LAPTOP-7PVP3HH3 with PID 22212 (started by ASUS in F:\AuroraMarketing\AuroraMarketing-app)
+25-11-25.21:14:25.523 [main            ] INFO  RaffleStrategyTest     - The following 1 profile is active: "dev"
+25-11-25.21:14:26.453 [main            ] INFO  RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+25-11-25.21:14:26.455 [main            ] INFO  RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+25-11-25.21:14:26.487 [main            ] INFO  RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 20 ms. Found 0 Redis repository interfaces.
+25-11-25.21:14:27.551 [main            ] INFO  Version                - Redisson 3.23.4
+25-11-25.21:14:28.178 [redisson-netty-2-4] INFO  MasterPubSubConnectionPool - 1 connections initialized for 127.0.0.1/127.0.0.1:16379
+25-11-25.21:14:28.189 [redisson-netty-2-13] INFO  MasterConnectionPool   - 5 connections initialized for 127.0.0.1/127.0.0.1:16379
+25-11-25.21:14:29.526 [main            ] INFO  EndpointLinksResolver  - Exposing 1 endpoint(s) beneath base path '/actuator'
+25-11-25.21:14:29.573 [main            ] INFO  RaffleStrategyTest     - Started RaffleStrategyTest in 4.411 seconds (JVM running for 5.105)
+25-11-25.21:14:29.814 [main            ] INFO  RuleBlackListLogicFilter - 规则过滤 - 黑名单 userId:user001 strategyId:10001 ruleModel:rule_blacklist
+25-11-25.21:14:29.842 [main            ] INFO  HikariDataSource       - HikariPool-1 - Starting...
+25-11-25.21:14:30.504 [main            ] INFO  HikariDataSource       - HikariPool-1 - Start completed.
+25-11-25.21:14:30.682 [main            ] INFO  RaffleStrategyTest     - 请求参数：{"strategyId":10001,"userId":"user001"}
+25-11-25.21:14:30.685 [main            ] INFO  RaffleStrategyTest     - 响应结果：{"awardId":100}
+25-11-25.21:14:30.693 [main            ] INFO  RuleBlackListLogicFilter - 规则过滤 - 黑名单 userId:Tinuvile strategyId:10001 ruleModel:rule_blacklist
+25-11-25.21:14:30.696 [main            ] INFO  RuleWeightLogicFilter  - 规则过滤 - 权重范围 userId:Tinuvile strategyId:10001 ruleModel:rule_weight
+25-11-25.21:14:30.697 [main            ] INFO  DefaultRaffleStrategy  - 抽奖前置规则过滤 userId:Tinuvile, ruleModel:rule_weight, code:0001, info:接管；后续的流程，受规则引擎执行结果影响
+25-11-25.21:14:30.708 [main            ] INFO  RaffleStrategyTest     - 请求参数：{"strategyId":10001,"userId":"Tinuvile"}
+25-11-25.21:14:30.708 [main            ] INFO  RaffleStrategyTest     - 响应结果：{"awardId":102}
+25-11-25.21:14:30.730 [SpringApplicationShutdownHook] INFO  HikariDataSource       - HikariPool-1 - Shutdown initiated...
+25-11-25.21:14:30.742 [SpringApplicationShutdownHook] INFO  HikariDataSource       - HikariPool-1 - Shutdown completed.
+25-11-25.21:15:29.964 [main            ] INFO  RaffleStrategyTest     - Starting RaffleStrategyTest using Java 1.8.0_391 on LAPTOP-7PVP3HH3 with PID 8828 (started by ASUS in F:\AuroraMarketing\AuroraMarketing-app)
+25-11-25.21:15:29.964 [main            ] INFO  RaffleStrategyTest     - The following 1 profile is active: "dev"
+25-11-25.21:15:30.599 [main            ] INFO  RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+25-11-25.21:15:30.602 [main            ] INFO  RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+25-11-25.21:15:30.637 [main            ] INFO  RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 21 ms. Found 0 Redis repository interfaces.
+25-11-25.21:15:31.624 [main            ] INFO  Version                - Redisson 3.23.4
+25-11-25.21:15:32.258 [redisson-netty-2-4] INFO  MasterPubSubConnectionPool - 1 connections initialized for 127.0.0.1/127.0.0.1:16379
+25-11-25.21:15:32.270 [redisson-netty-2-13] INFO  MasterConnectionPool   - 5 connections initialized for 127.0.0.1/127.0.0.1:16379
+25-11-25.21:15:33.587 [main            ] INFO  EndpointLinksResolver  - Exposing 1 endpoint(s) beneath base path '/actuator'
+25-11-25.21:15:33.638 [main            ] INFO  RaffleStrategyTest     - Started RaffleStrategyTest in 4.016 seconds (JVM running for 4.731)
+25-11-25.21:15:33.854 [main            ] INFO  RuleBlackListLogicFilter - 规则过滤 - 黑名单 userId:user001 strategyId:10001 ruleModel:rule_blacklist
+25-11-25.21:15:33.884 [main            ] INFO  HikariDataSource       - HikariPool-1 - Starting...
+25-11-25.21:15:34.547 [main            ] INFO  HikariDataSource       - HikariPool-1 - Start completed.
+25-11-25.21:15:34.723 [main            ] INFO  RaffleStrategyTest     - 请求参数：{"strategyId":10001,"userId":"user001"}
+25-11-25.21:15:34.726 [main            ] INFO  RaffleStrategyTest     - 响应结果：{"awardId":100}
+25-11-25.21:15:34.734 [main            ] INFO  RuleBlackListLogicFilter - 规则过滤 - 黑名单 userId:Tinuvile strategyId:10001 ruleModel:rule_blacklist
+25-11-25.21:15:34.736 [main            ] INFO  RuleWeightLogicFilter  - 规则过滤 - 权重范围 userId:Tinuvile strategyId:10001 ruleModel:rule_weight
+25-11-25.21:15:34.738 [main            ] INFO  DefaultRaffleStrategy  - 抽奖前置规则过滤 userId:Tinuvile, ruleModel:rule_weight, code:0001, info:接管；后续的流程，受规则引擎执行结果影响
+25-11-25.21:15:34.748 [main            ] INFO  RaffleStrategyTest     - 请求参数：{"strategyId":10001,"userId":"Tinuvile"}
+25-11-25.21:15:34.748 [main            ] INFO  RaffleStrategyTest     - 响应结果：{"awardId":103}
+25-11-25.21:15:34.772 [SpringApplicationShutdownHook] INFO  HikariDataSource       - HikariPool-1 - Shutdown initiated...
+25-11-25.21:15:34.783 [SpringApplicationShutdownHook] INFO  HikariDataSource       - HikariPool-1 - Shutdown completed.

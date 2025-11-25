@@ -51,12 +51,12 @@ public abstract class AbstractRaffleStrategy implements IRaffleStrategy {
         );
 
         if (RuleLogicCheckTypeVO.TAKE_OVER.getCode().equals(ruleActionEntity.getCode())) {
-            if (DefaultLogicFactory.LogicModel.RULE_BLACKLIST.getCode().equals(ruleActionEntity.getCode())) {
+            if (DefaultLogicFactory.LogicModel.RULE_BLACKLIST.getCode().equals(ruleActionEntity.getRuleModel())) {
                 // 黑名单返回固定奖品ID
                 return RaffleAwardEntity.builder()
                         .awardId(ruleActionEntity.getData().getAwardId())
                         .build();
-            } else if (DefaultLogicFactory.LogicModel.RULE_WEIGHT.getCode().equals(ruleActionEntity.getCode())) {
+            } else if (DefaultLogicFactory.LogicModel.RULE_WEIGHT.getCode().equals(ruleActionEntity.getRuleModel())) {
                 // 权重根据返回信息抽奖
                 RuleActionEntity.RaffleBeforeEntity raffleBeforeEntity = ruleActionEntity.getData();
                 String ruleWeightValueKey = raffleBeforeEntity.getRuleWeightValueKey();
