@@ -5,6 +5,7 @@ import com.tinuvile.domain.strategy.model.entity.StrategyAwardEntity;
 import com.tinuvile.domain.strategy.model.entity.StrategyEntity;
 import com.tinuvile.domain.strategy.model.entity.StrategyRuleEntity;
 import com.tinuvile.domain.strategy.repository.IStrategyRepository;
+import com.tinuvile.types.common.Constants;
 import com.tinuvile.types.enums.ResponseCode;
 import com.tinuvile.types.exception.AppException;
 import lombok.extern.slf4j.Slf4j;
@@ -53,7 +54,7 @@ public class StrategyArmoryDispatch implements IStrategyArmory, IStrategyDispatc
             List<Integer> ruleWeightValues = ruleWeightValueMap.get(key);
             ArrayList<StrategyAwardEntity> strategyAwardEntitiesClone = new ArrayList<>(strategyAwardEntities);
             strategyAwardEntitiesClone.removeIf(entity -> !ruleWeightValues.contains(entity.getAwardId()));
-            assembleLotteryStrategy(String.valueOf(strategyId).concat("_").concat(key), strategyAwardEntitiesClone);
+            assembleLotteryStrategy(String.valueOf(strategyId).concat(Constants.UNDERLINE).concat(key), strategyAwardEntitiesClone);
         }
 
         return true;
@@ -112,7 +113,7 @@ public class StrategyArmoryDispatch implements IStrategyArmory, IStrategyDispatc
 
     @Override
     public Integer getRandomAwardId(Long strategyId, String ruleWeightValue) {
-        String key = String.valueOf(strategyId).concat("_").concat(ruleWeightValue);
+        String key = String.valueOf(strategyId).concat(Constants.UNDERLINE).concat(ruleWeightValue);
         int rateRange = repository.getRateRange(key);
         return repository.getStrategyAwardAssemble(key, ThreadLocalRandom.current().nextInt(rateRange));
     }
