@@ -4,6 +4,7 @@ package com.tinuvile.infrastructure.presistent.repository;
 import com.tinuvile.domain.strategy.model.entity.StrategyAwardEntity;
 import com.tinuvile.domain.strategy.model.entity.StrategyEntity;
 import com.tinuvile.domain.strategy.model.entity.StrategyRuleEntity;
+import com.tinuvile.domain.strategy.model.valobj.StrategyAwardRuleModelVO;
 import com.tinuvile.domain.strategy.repository.IStrategyRepository;
 import com.tinuvile.infrastructure.presistent.dao.IStrategyAwardDao;
 import com.tinuvile.infrastructure.presistent.dao.IStrategyDao;
@@ -108,7 +109,7 @@ public class StrategyRepository implements IStrategyRepository {
         StrategyEntity strategyEntity = redisService.getValue(cacheKey);
         if (null != strategyEntity) return strategyEntity;
         Strategy strategy = strategyDao.queryStrategyByStrategyId(strategyId);
-        if (null == strategy) return null;
+        if (null == strategy) return StrategyEntity.builder().build();
         strategyEntity = StrategyEntity.builder()
                 .strategyId(strategy.getStrategyId())
                 .strategyDesc(strategy.getStrategyDesc())
@@ -142,6 +143,17 @@ public class StrategyRepository implements IStrategyRepository {
         strategyRuleReq.setAwardId(awardId);
         strategyRuleReq.setRuleModel(ruleModel);
         return strategyRuleDao.queryStrategyRuleValue(strategyRuleReq);
+    }
+
+    @Override
+    public StrategyAwardRuleModelVO queryStrategyAwardRuleModelVO(Long strategyId, Integer awardId) {
+        StrategyAward strategyAwardReq = new StrategyAward();
+        strategyAwardReq.setStrategyId(strategyId);
+        strategyAwardReq.setAwardId(awardId);
+        String ruleModels = strategyAwardDao.queryStrategyAwardRuleModels(strategyAwardReq);
+        return StrategyAwardRuleModelVO.builder()
+                .ruleModels(ruleModels)
+                .build();
     }
 
 }
