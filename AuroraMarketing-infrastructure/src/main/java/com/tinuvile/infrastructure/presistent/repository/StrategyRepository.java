@@ -109,7 +109,11 @@ public class StrategyRepository implements IStrategyRepository {
         StrategyEntity strategyEntity = redisService.getValue(cacheKey);
         if (null != strategyEntity) return strategyEntity;
         Strategy strategy = strategyDao.queryStrategyByStrategyId(strategyId);
-        if (null == strategy) return StrategyEntity.builder().build();
+        if (null == strategy) return StrategyEntity.builder()
+                .strategyId(strategyId)
+                .strategyDesc(" ")
+                .ruleModels(Arrays.toString(new String[0]))
+                .build();
         strategyEntity = StrategyEntity.builder()
                 .strategyId(strategy.getStrategyId())
                 .strategyDesc(strategy.getStrategyDesc())
