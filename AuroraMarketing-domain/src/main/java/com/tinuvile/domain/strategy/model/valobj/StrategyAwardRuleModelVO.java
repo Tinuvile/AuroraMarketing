@@ -1,7 +1,7 @@
 package com.tinuvile.domain.strategy.model.valobj;
 
 
-import com.tinuvile.domain.strategy.service.rule.factory.DefaultLogicFactory;
+import com.tinuvile.domain.strategy.service.rule.filter.factory.DefaultLogicFactory;
 import com.tinuvile.types.common.Constants;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
