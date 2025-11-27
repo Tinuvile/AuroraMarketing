@@ -1,4 +1,4 @@
-package com.tinuvile.domain.strategy.service.rule;
+package com.tinuvile.domain.strategy.service.rule.filter;
 
 
 import com.tinuvile.domain.strategy.model.entity.RuleActionEntity;

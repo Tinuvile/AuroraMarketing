@@ -6,8 +6,8 @@ import com.tinuvile.domain.strategy.model.entity.RaffleAwardEntity;
 import com.tinuvile.domain.strategy.model.entity.RaffleFactorEntity;
 import com.tinuvile.domain.strategy.service.IRaffleStrategy;
 import com.tinuvile.domain.strategy.service.armory.IStrategyArmory;
-import com.tinuvile.domain.strategy.service.rule.impl.RuleLockLogicFilter;
-import com.tinuvile.domain.strategy.service.rule.impl.RuleWeightLogicFilter;
+import com.tinuvile.domain.strategy.service.rule.filter.impl.RuleLockLogicFilter;
+import com.tinuvile.domain.strategy.service.rule.chain.impl.WeightLogicChain;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Assert;
 import org.junit.Before;
@@ -32,7 +32,7 @@ public class RaffleStrategyTest {
     @Resource
     private IRaffleStrategy raffleStrategy;
     @Resource
-    private RuleWeightLogicFilter ruleWeightLogicFilter;
+    private WeightLogicChain weightLogicChain;
     @Resource
     private IStrategyArmory strategyArmory;
     @Resource
@@ -46,7 +46,7 @@ public class RaffleStrategyTest {
         boolean success2 = strategyArmory.assembleLotteryStrategy(10002L);
         log.info("10002策略装配初始化结果:{}", success2);
 
-        ReflectionTestUtils.setField(ruleWeightLogicFilter, "userScore", 40500L);
+        ReflectionTestUtils.setField(weightLogicChain, "userScore", 40500L);
         ReflectionTestUtils.setField(ruleLockLogicFilter, "userRaffleCount", 10L);
     }
 
@@ -98,7 +98,7 @@ public class RaffleStrategyTest {
     public void test_raffle_center_rule_lock() {
         try {
             // 用户抽奖次数低于锁定次数
-            ReflectionTestUtils.setField(ruleWeightLogicFilter, "userScore", 10L);
+            ReflectionTestUtils.setField(weightLogicChain, "userScore", 10L);
             ReflectionTestUtils.setField(ruleLockLogicFilter, "userRaffleCount", 0L);
 
             RaffleFactorEntity raffleFactorEntity = RaffleFactorEntity.builder()

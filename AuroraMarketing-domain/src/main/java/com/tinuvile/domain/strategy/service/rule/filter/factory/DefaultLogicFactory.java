@@ -1,9 +1,9 @@
-package com.tinuvile.domain.strategy.service.rule.factory;
+package com.tinuvile.domain.strategy.service.rule.filter.factory;
 
 
 import com.tinuvile.domain.strategy.model.entity.RuleActionEntity;
 import com.tinuvile.domain.strategy.service.annotation.LogicStrategy;
-import com.tinuvile.domain.strategy.service.rule.ILogicFilter;
+import com.tinuvile.domain.strategy.service.rule.filter.ILogicFilter;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import org.springframework.core.annotation.AnnotationUtils;
@@ -41,8 +41,6 @@ public class DefaultLogicFactory {
     @AllArgsConstructor
     public enum LogicModel {
 
-        RULE_WEIGHT("rule_weight", "【抽奖前置规则】根据抽奖权重返回可抽奖范围KEY", "before"),
-        RULE_BLACKLIST("rule_blacklist", "【抽奖前置规则】黑名单规则过滤，命中黑名单直接返回", "before"),
         RULE_LOCK("rule_lock", "【抽奖中置规则】累计抽奖n次后，可解锁对应奖品", "center"),
         RULE_LUCK_AWARD("rule_luck_award", "【抽奖后置规则】根据抽奖结果，判断是否有幸运奖", "after"),
         ;
