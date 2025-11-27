@@ -21,7 +21,7 @@ import java.util.*;
 @Slf4j
 @Component("rule_weight")
 @Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
-public class RuleWeightLogicFilter extends AbstractLogicChain {
+public class WeightLogicChain extends AbstractLogicChain {
 
     @Resource
     private IStrategyRepository repository;
@@ -49,6 +49,7 @@ public class RuleWeightLogicFilter extends AbstractLogicChain {
                 userId, strategyId, ruleModel());
 
         String ruleValue = repository.queryStrategyRuleValue(strategyId, ruleModel());
+        if (ruleValue == null || ruleValue.isEmpty()) return next().logic(userId, strategyId);
 
         Map<Long, String> analyticalValueGroup = getAnalyticalValue(ruleValue);
         if (null == analyticalValueGroup || analyticalValueGroup.isEmpty()) return null;
@@ -57,7 +58,7 @@ public class RuleWeightLogicFilter extends AbstractLogicChain {
         Collections.sort(analyticalSortedKeys);
 
         Long nextValue = analyticalSortedKeys.stream()
-                .filter(key -> key >= userScore)
+                .filter(key -> userScore >= key)
                 .max(Comparator.naturalOrder())
                 .orElse(null);
 
@@ -79,7 +80,7 @@ public class RuleWeightLogicFilter extends AbstractLogicChain {
      * 解析规则值，格式为：30:103,104,105,106 100:105,106,107,108
      *
      * @param ruleValue 规则值
-     * @return 解析后的Map，key为权重值，value为奖品ID
+     * @return 解析后的Map，key为权重值，value为完整的规则键值对
      */
     private Map<Long, String> getAnalyticalValue(String ruleValue) {
         String[] ruleValueGroups = ruleValue.split(Constants.SPACE);

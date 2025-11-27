@@ -16,7 +16,7 @@ import javax.annotation.Resource;
  * @since 2025/11/27
  */
 @Slf4j
-@Component("default")
+@Component("rule_default")
 @Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
 public class DefaultLogicChain extends AbstractLogicChain {
 
@@ -25,7 +25,7 @@ public class DefaultLogicChain extends AbstractLogicChain {
 
     @Override
     protected String ruleModel() {
-        return "default";
+        return "rule_default";
     }
 
     @Override

@@ -45,6 +45,8 @@ public class BlackListLogicChain extends AbstractLogicChain {
                 userId, strategyId, ruleModel());
 
         String ruleValue = repository.queryStrategyRuleValue(strategyId, ruleModel());
+        if (ruleValue == null || ruleValue.isEmpty()) return next().logic(userId, strategyId);
+
         String[] splitRuleValue = ruleValue.split(Constants.COLON);
         Integer awardId = Integer.parseInt(splitRuleValue[0]);
 
