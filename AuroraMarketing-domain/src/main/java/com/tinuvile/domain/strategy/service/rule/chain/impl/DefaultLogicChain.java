@@ -5,7 +5,7 @@ import com.tinuvile.domain.strategy.service.armory.IStrategyDispatch;
 import com.tinuvile.domain.strategy.service.rule.chain.AbstractLogicChain;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
-import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
@@ -17,7 +17,7 @@ import javax.annotation.Resource;
  */
 @Slf4j
 @Component("default")
-@Bean(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
+@Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
 public class DefaultLogicChain extends AbstractLogicChain {
 
     @Resource

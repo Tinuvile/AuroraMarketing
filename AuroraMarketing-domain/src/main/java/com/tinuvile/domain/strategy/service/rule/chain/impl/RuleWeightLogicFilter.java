@@ -7,7 +7,7 @@ import com.tinuvile.domain.strategy.service.rule.chain.AbstractLogicChain;
 import com.tinuvile.types.common.Constants;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
-import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
@@ -20,7 +20,7 @@ import java.util.*;
  */
 @Slf4j
 @Component("rule_weight")
-@Bean(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
+@Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
 public class RuleWeightLogicFilter extends AbstractLogicChain {
 
     @Resource
