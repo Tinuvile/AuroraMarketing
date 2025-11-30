@@ -44,6 +44,10 @@ public class DecisionTreeEngine implements IDecisionTreeEngine {
             // 获取决策节点
             ILogicTreeNode logicTreeNode = logicTreeNodeGroup.get(ruleTreeNode.getRuleKey());
 
+            if (null == logicTreeNode) {
+                throw new RuntimeException("决策树引擎异常：未找到决策节点 ruleKey:" + ruleTreeNode.getRuleKey());
+            }
+
             // 决策节点计算
             DefaultTreeFactory.TreeActionEntity logicEntity = logicTreeNode.logic(userId, strategyId, awardId);
             RuleLogicCheckTypeVO ruleLogicCheckTypeVO = logicEntity.getRuleLogicCheckTypeVO();
