@@ -13,7 +13,6 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.math.BigDecimal;
-import java.math.RoundingMode;
 import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -61,6 +60,12 @@ public class StrategyArmoryDispatch implements IStrategyArmory, IStrategyDispatc
 
     }
 
+    /**
+     * 装配抽奖策略
+     *
+     * @param key 策略ID
+     * @param strategyAwardEntities 策略奖品实体列表
+     */
     private void assembleLotteryStrategy(String key, List<StrategyAwardEntity> strategyAwardEntities) {
 
         // 获取最小概率值
@@ -69,24 +74,15 @@ public class StrategyArmoryDispatch implements IStrategyArmory, IStrategyDispatc
                 .min(BigDecimal::compareTo)
                 .orElse(BigDecimal.ZERO);
 
-        if (BigDecimal.ZERO.compareTo(minAwardRate) == 0) {
-            log.error("策略装配器-装配策略奖品配置失败，strategyId: {}的奖品配置中存在概率值为0的奖品", key);
-        }
-
-        // 计算概率值总和
-        BigDecimal totalAwardRate = strategyAwardEntities.stream()
-                .map(StrategyAwardEntity::getAwardRate)
-                .reduce(BigDecimal.ZERO, BigDecimal::add);
-
         // 获取概率范围
-        BigDecimal rateRange = totalAwardRate.divide(minAwardRate, 0, RoundingMode.CEILING);
+        BigDecimal rateRange = BigDecimal.valueOf(convert(minAwardRate.doubleValue()));
 
         // 生成策略奖品概率查找表
         List<Integer> strategyAwardSearchRateTables = new ArrayList<>(rateRange.intValue());
         for (StrategyAwardEntity strategyAwardEntity : strategyAwardEntities) {
             Integer awardId = strategyAwardEntity.getAwardId();
             BigDecimal awardRate = strategyAwardEntity.getAwardRate();
-            for (int i = 0; i < rateRange.multiply(awardRate).setScale(0, RoundingMode.CEILING).intValue(); i++) {
+            for (int i = 0; i < rateRange.multiply(awardRate).intValue(); i++) {
                 strategyAwardSearchRateTables.add(awardId);
             }
         }
@@ -103,6 +99,22 @@ public class StrategyArmoryDispatch implements IStrategyArmory, IStrategyDispatc
         // 存放到 Redis 中
         repository.storeStrategyAwardSearchRateTable(key, shuffleStrategyAwardSearchRateTable.size(), shuffleStrategyAwardSearchRateTable);
 
+    }
+
+    /**
+     * 转换概率值
+     *
+     * @param min 最小概率值
+     * @return 转换概率值的基值
+     */
+    private double convert(double min) {
+        double current = min;
+        double max = 1;
+        while (current < 1) {
+            current *= 10;
+            max *= 10;
+        }
+        return max;
     }
 
     @Override
