@@ -9,6 +9,7 @@ import com.tinuvile.domain.strategy.service.annotation.LogicStrategy;
 import com.tinuvile.domain.strategy.service.rule.filter.ILogicFilter;
 import com.tinuvile.domain.strategy.service.rule.filter.factory.DefaultLogicFactory;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
@@ -36,7 +37,16 @@ public class RuleLockLogicFilter implements ILogicFilter<RuleActionEntity.Raffle
 
         // 查询规则配置
         String ruleValue = repository.queryStrategyRuleValue(ruleMatterEntity.getStrategyId(), ruleMatterEntity.getAwardId(), ruleMatterEntity.getRuleModel());
-        long raffleCount = Long.parseLong(ruleValue);
+        if (StringUtils.isBlank(ruleValue)) RuleActionEntity.<RuleActionEntity.RaffleCenterEntity>builder()
+                .code(RuleLogicCheckTypeVO.ALLOW.getCode())
+                .info(RuleLogicCheckTypeVO.ALLOW.getInfo())
+                .build();
+        long raffleCount = 0L;
+        try {
+            raffleCount = Long.parseLong(ruleValue);
+        } catch (Exception e) {
+            throw new RuntimeException("规则过滤 - 次数锁异常 ruleValue: " +  ruleValue + " 配置不正确");
+        }
 
         // 规则放行
         if (userRaffleCount >= raffleCount) {

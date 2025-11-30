@@ -21,7 +21,7 @@ import java.util.*;
 @Slf4j
 @Component("rule_weight")
 @Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
-public class WeightLogicChain extends AbstractLogicChain {
+public class RuleWeightLogicChain extends AbstractLogicChain {
 
     @Resource
     private IStrategyRepository repository;
@@ -52,7 +52,11 @@ public class WeightLogicChain extends AbstractLogicChain {
         if (ruleValue == null || ruleValue.isEmpty()) return next().logic(userId, strategyId);
 
         Map<Long, String> analyticalValueGroup = getAnalyticalValue(ruleValue);
-        if (null == analyticalValueGroup || analyticalValueGroup.isEmpty()) return null;
+        if (null == analyticalValueGroup || analyticalValueGroup.isEmpty()) {
+            log.warn("抽奖责任链 - 权重告警【策略配置权重，但 ruleValue 未配置对应值】 userId:{} strategyId:{} ruleModel:{}",
+                    userId, strategyId, ruleModel());
+            return next().logic(userId, strategyId);
+        }
 
         List<Long> analyticalSortedKeys = new ArrayList<>(analyticalValueGroup.keySet());
         Collections.sort(analyticalSortedKeys);

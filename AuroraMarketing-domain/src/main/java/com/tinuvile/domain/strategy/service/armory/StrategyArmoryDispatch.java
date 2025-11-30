@@ -43,6 +43,7 @@ public class StrategyArmoryDispatch implements IStrategyArmory, IStrategyDispatc
         String ruleWeight = strategyEntity.getRuleWeight();
         if (null == ruleWeight) return true;
 
+        // TODO： queryStrategyRule 方法名称限定，只查询一个对象，目前可能造成别人调用查询 list 返回
         StrategyRuleEntity strategyRuleEntity = repository.queryStrategyRule(strategyId, ruleWeight);
         if (null == strategyRuleEntity) {
             throw new AppException(ResponseCode.STRATEGY_RULE_WEIGHT_IS_NULL.getCode(), ResponseCode.STRATEGY_RULE_WEIGHT_IS_NULL.getInfo());
