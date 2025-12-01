@@ -4,8 +4,7 @@ package com.tinuvile.domain.strategy.service.rule.chain.factory;
 import com.tinuvile.domain.strategy.model.entity.StrategyEntity;
 import com.tinuvile.domain.strategy.repository.IStrategyRepository;
 import com.tinuvile.domain.strategy.service.rule.chain.ILogicChain;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
+import lombok.*;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
 
@@ -69,6 +68,17 @@ public class DefaultChainFactory {
 
         return logicChain;
 
+    }
+
+    @Data
+    @Builder
+    @AllArgsConstructor
+    @NoArgsConstructor
+    public static class StrategyAwardVO {
+        /** 奖励ID */
+        private Integer awardId;
+        /** 规则模型 */
+        private String logicModel;
     }
 
     @Getter

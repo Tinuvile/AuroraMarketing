@@ -4,6 +4,7 @@ package com.tinuvile.domain.strategy.service.rule.chain.impl;
 import com.tinuvile.domain.strategy.repository.IStrategyRepository;
 import com.tinuvile.domain.strategy.service.armory.IStrategyDispatch;
 import com.tinuvile.domain.strategy.service.rule.chain.AbstractLogicChain;
+import com.tinuvile.domain.strategy.service.rule.chain.factory.DefaultChainFactory;
 import com.tinuvile.types.common.Constants;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
@@ -21,7 +22,7 @@ import java.util.*;
 @Slf4j
 @Component("rule_weight")
 @Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
-public class WeightLogicChain extends AbstractLogicChain {
+public class RuleWeightLogicChain extends AbstractLogicChain {
 
     @Resource
     private IStrategyRepository repository;
@@ -33,7 +34,7 @@ public class WeightLogicChain extends AbstractLogicChain {
 
     @Override
     protected String ruleModel() {
-        return "rule_weight";
+        return DefaultChainFactory.LogicModel.RULE_WEIGHT.getCode();
     }
 
     /**
@@ -44,7 +45,7 @@ public class WeightLogicChain extends AbstractLogicChain {
      * @return 抽奖结果
      */
     @Override
-    public Integer logic(String userId, Long strategyId) {
+    public DefaultChainFactory.StrategyAwardVO logic(String userId, Long strategyId) {
         log.info("规则过滤 - 权重范围 userId:{} strategyId:{} ruleModel:{}",
                 userId, strategyId, ruleModel());
 
@@ -52,7 +53,11 @@ public class WeightLogicChain extends AbstractLogicChain {
         if (ruleValue == null || ruleValue.isEmpty()) return next().logic(userId, strategyId);
 
         Map<Long, String> analyticalValueGroup = getAnalyticalValue(ruleValue);
-        if (null == analyticalValueGroup || analyticalValueGroup.isEmpty()) return null;
+        if (null == analyticalValueGroup || analyticalValueGroup.isEmpty()) {
+            log.warn("抽奖责任链 - 权重告警【策略配置权重，但 ruleValue 未配置对应值】 userId:{} strategyId:{} ruleModel:{}",
+                    userId, strategyId, ruleModel());
+            return next().logic(userId, strategyId);
+        }
 
         List<Long> analyticalSortedKeys = new ArrayList<>(analyticalValueGroup.keySet());
         Collections.sort(analyticalSortedKeys);
@@ -66,7 +71,10 @@ public class WeightLogicChain extends AbstractLogicChain {
             Integer awardId = strategyDispatch.getRandomAwardId(strategyId, analyticalValueGroup.get(nextValue));
             log.info("抽奖责任链 - 权重接管 userId: {} strategyId: {} ruleModel: {} awardId: {}",
                     userId, strategyId, ruleModel(), awardId);
-            return awardId;
+            return DefaultChainFactory.StrategyAwardVO.builder()
+                    .awardId(awardId)
+                    .logicModel(ruleModel())
+                    .build();
         }
 
         log.info("抽奖责任链 - 权重放行 userId: {} strategyId: {} ruleModel: {}",

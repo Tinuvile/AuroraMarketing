@@ -43,6 +43,59 @@ INSERT INTO `award` (`id`, `award_id`, `award_key`, `award_config`, `award_desc`
 	(8, 108, 'user_pro_vip', '12', '赠送用户会员【月为单位】', '2025-11-23 14:19:11', '2025-11-23 17:15:29'),
 	(9, 100, 'user_token_blacklist', '100', '黑名单用户赠送token', '2025-11-25 14:36:17', '2025-11-25 14:36:17');
 
+-- 导出  表 aurora-marketing.rule_tree 结构
+CREATE TABLE IF NOT EXISTS `rule_tree` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT COMMENT '自增ID',
+  `tree_id` varchar(32) NOT NULL COMMENT '规则树ID',
+  `tree_name` varchar(64) NOT NULL COMMENT '规则树名称',
+  `tree_desc` varchar(128) DEFAULT NULL COMMENT '规则树描述',
+  `tree_root_rule_key` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '规则树根入口规则',
+  `create_time` datetime NOT NULL DEFAULT (now()) COMMENT '创建时间',
+  `update_time` datetime NOT NULL DEFAULT (now()) ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='规则树';
+
+-- 正在导出表  aurora-marketing.rule_tree 的数据：~1 rows (大约)
+INSERT INTO `rule_tree` (`id`, `tree_id`, `tree_name`, `tree_desc`, `tree_root_rule_key`, `create_time`, `update_time`) VALUES
+	(1, 'tree_lock', '规则树', '规则树', 'rule_lock', '2025-12-01 15:07:33', '2025-12-01 15:07:33');
+
+-- 导出  表 aurora-marketing.rule_tree_node 结构
+CREATE TABLE IF NOT EXISTS `rule_tree_node` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT COMMENT '自增ID',
+  `tree_id` varchar(32) NOT NULL COMMENT '规则树ID',
+  `rule_key` varchar(32) NOT NULL COMMENT '规则Key',
+  `rule_desc` varchar(64) NOT NULL COMMENT '规则描述',
+  `rule_value` varchar(128) DEFAULT NULL COMMENT '规则比值',
+  `create_time` datetime NOT NULL DEFAULT (now()) COMMENT '创建时间',
+  `update_time` datetime NOT NULL DEFAULT (now()) ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='规则树节点';
+
+-- 正在导出表  aurora-marketing.rule_tree_node 的数据：~3 rows (大约)
+INSERT INTO `rule_tree_node` (`id`, `tree_id`, `rule_key`, `rule_desc`, `rule_value`, `create_time`, `update_time`) VALUES
+	(1, 'tree_lock', 'rule_lock', '限定用户已完成N次抽奖后解锁', '1', '2025-12-01 15:08:08', '2025-12-01 15:08:08'),
+	(2, 'tree_lock', 'rule_luck_award', '兜底奖品随机token', '200,10000', '2025-12-01 15:09:24', '2025-12-01 15:10:51'),
+	(3, 'tree_lock', 'rule_stock', '库存扣减规则', 'NULL', '2025-12-01 15:11:21', '2025-12-01 15:11:21');
+
+-- 导出  表 aurora-marketing.rule_tree_node_line 结构
+CREATE TABLE IF NOT EXISTS `rule_tree_node_line` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT COMMENT '自增ID',
+  `tree_id` varchar(32) NOT NULL COMMENT '规则树ID',
+  `rule_node_from` varchar(32) NOT NULL COMMENT '规则树Key节点From',
+  `rule_node_to` varchar(32) NOT NULL COMMENT '规则树Key节点To',
+  `rule_limit_type` varchar(8) NOT NULL COMMENT '限定类型；1:=、2:>、3:<、4:>=、5:<=、6:enum[枚举范围]；',
+  `rule_limit_value` varchar(32) NOT NULL COMMENT '限定值（到下个节点）',
+  `create_time` datetime NOT NULL DEFAULT (now()) COMMENT '创建时间',
+  `update_time` datetime NOT NULL DEFAULT (now()) ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='规则树节点连线';
+
+-- 正在导出表  aurora-marketing.rule_tree_node_line 的数据：~3 rows (大约)
+INSERT INTO `rule_tree_node_line` (`id`, `tree_id`, `rule_node_from`, `rule_node_to`, `rule_limit_type`, `rule_limit_value`, `create_time`, `update_time`) VALUES
+	(1, 'tree_lock', 'rule_lock', 'rule_stock', 'EQUAL', 'ALLOW', '2025-12-01 15:12:03', '2025-12-01 15:12:03'),
+	(2, 'tree_lock', 'rule_lock', 'rule_luck_award', 'EQUAL', 'TAKE_OVER', '2025-12-01 15:12:45', '2025-12-01 15:12:45'),
+	(3, 'tree_lock', 'rule_luck_award', 'rule_stock', 'EQUAL', 'TAKE_OVER', '2025-12-01 15:13:06', '2025-12-01 15:13:06');
+
 -- 导出  表 aurora-marketing.strategy 结构
 CREATE TABLE IF NOT EXISTS `strategy` (
   `id` int unsigned NOT NULL AUTO_INCREMENT COMMENT '自增ID',
@@ -57,7 +110,7 @@ CREATE TABLE IF NOT EXISTS `strategy` (
 -- 正在导出表  aurora-marketing.strategy 的数据：~2 rows (大约)
 INSERT INTO `strategy` (`id`, `strategy_id`, `strategy_desc`, `rule_models`, `create_time`, `update_time`) VALUES
 	(1, 10001, '抽奖策略1', 'rule_blacklist,rule_weight', '2025-11-22 20:53:07', '2025-11-27 21:27:34'),
-	(2, 10002, '抽奖策略2 - 测试rule_lock', NULL, '2025-11-26 20:13:02', '2025-11-26 20:13:02');
+	(2, 10002, '抽奖策略2 - 验证lock', NULL, '2025-11-26 20:13:02', '2025-12-01 20:38:10');
 
 -- 导出  表 aurora-marketing.strategy_award 结构
 CREATE TABLE IF NOT EXISTS `strategy_award` (
@@ -86,7 +139,7 @@ INSERT INTO `strategy_award` (`id`, `strategy_id`, `award_id`, `award_title`, `a
 	(6, 10001, 106, '5次使用AI绘图模型', '抽奖3次后解锁', 60, 60, 1.0000, 'rule_lock', 5, '2025-11-22 21:00:02', '2025-11-23 17:14:42'),
 	(7, 10001, 107, '解锁一个月pro会员', '抽奖10次后解锁', 30, 30, 0.9990, 'rule_lock,rule_luck_award', 6, '2025-11-22 21:02:44', '2025-11-23 17:14:44'),
 	(8, 10001, 108, '全年pro会员', '抽奖30次后解锁', 5, 5, 0.0010, 'rule_lock', 7, '2025-11-22 21:03:10', '2025-11-23 17:14:47'),
-	(9, 10002, 105, '10次高级模型对话【Claude4.5sonnet/Gemini3】', '抽奖3次后解锁', 400, 400, 40.0000, 'rule_lock', 2, '2025-11-26 20:15:11', '2025-11-26 20:19:30');
+	(9, 10002, 105, '10次高级模型对话【Claude4.5sonnet/Gemini3】', '抽奖3次后解锁', 400, 400, 40.0000, 'tree_lock', 2, '2025-11-26 20:15:11', '2025-12-01 20:52:06');
 
 -- 导出  表 aurora-marketing.strategy_rule 结构
 CREATE TABLE IF NOT EXISTS `strategy_rule` (

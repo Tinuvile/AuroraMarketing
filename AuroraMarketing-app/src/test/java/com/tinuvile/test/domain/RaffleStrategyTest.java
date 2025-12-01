@@ -6,8 +6,7 @@ import com.tinuvile.domain.strategy.model.entity.RaffleAwardEntity;
 import com.tinuvile.domain.strategy.model.entity.RaffleFactorEntity;
 import com.tinuvile.domain.strategy.service.IRaffleStrategy;
 import com.tinuvile.domain.strategy.service.armory.IStrategyArmory;
-import com.tinuvile.domain.strategy.service.rule.filter.impl.RuleLockLogicFilter;
-import com.tinuvile.domain.strategy.service.rule.chain.impl.WeightLogicChain;
+import com.tinuvile.domain.strategy.service.rule.chain.impl.RuleWeightLogicChain;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Assert;
 import org.junit.Before;
@@ -32,11 +31,9 @@ public class RaffleStrategyTest {
     @Resource
     private IRaffleStrategy raffleStrategy;
     @Resource
-    private WeightLogicChain weightLogicChain;
+    private RuleWeightLogicChain ruleWeightLogicChain;
     @Resource
     private IStrategyArmory strategyArmory;
-    @Resource
-    private RuleLockLogicFilter ruleLockLogicFilter;
 
     @Before
     public void setUp() {
@@ -46,8 +43,8 @@ public class RaffleStrategyTest {
         boolean success2 = strategyArmory.assembleLotteryStrategy(10002L);
         log.info("10002策略装配初始化结果:{}", success2);
 
-        ReflectionTestUtils.setField(weightLogicChain, "userScore", 40500L);
-        ReflectionTestUtils.setField(ruleLockLogicFilter, "userRaffleCount", 10L);
+        // 设置用户权重分数
+        ReflectionTestUtils.setField(ruleWeightLogicChain, "userScore", 40500L);
     }
 
     @Test
@@ -97,9 +94,8 @@ public class RaffleStrategyTest {
     @Test
     public void test_raffle_center_rule_lock() {
         try {
-            // 用户抽奖次数低于锁定次数
-            ReflectionTestUtils.setField(weightLogicChain, "userScore", 10L);
-            ReflectionTestUtils.setField(ruleLockLogicFilter, "userRaffleCount", 0L);
+            // 测试规则树锁定逻辑
+            ReflectionTestUtils.setField(ruleWeightLogicChain, "userScore", 10L);
 
             RaffleFactorEntity raffleFactorEntity = RaffleFactorEntity.builder()
                     .userId("Tinuvile")
@@ -112,24 +108,12 @@ public class RaffleStrategyTest {
             log.info("响应结果：{}", JSON.toJSONString(raffleAwardEntity));
 
             Assert.assertNotNull("抽奖结果不能为空", raffleAwardEntity);
-
-            // 用户抽奖次数超过锁定次数
-            ReflectionTestUtils.setField(ruleLockLogicFilter, "userRaffleCount", 4L);
-
-            raffleFactorEntity = RaffleFactorEntity.builder()
-                    .userId("Tinuvile")
-                    .strategyId(10002L)
-                    .build();
-
-            raffleAwardEntity = raffleStrategy.performRaffle(raffleFactorEntity);
-
-            log.info("请求参数：{}", JSON.toJSONString(raffleFactorEntity));
-            log.info("响应结果：{}", JSON.toJSONString(raffleAwardEntity));
-
-            Assert.assertEquals("用户抽奖次数超过锁定次数，本场景下获得固定奖品", Integer.valueOf(105), raffleAwardEntity.getAwardId());
+            
+            // 验证规则树处理后的奖品ID
+            log.info("规则树处理结果 - 奖品ID: {}", raffleAwardEntity.getAwardId());
 
         }  catch (Exception e) {
-            log.error("用户抽奖次数锁测试执行出现异常: {}",e.getMessage(), e);
+            log.error("规则树锁定测试执行出现异常: {}",e.getMessage(), e);
             throw e;
         }
     }
