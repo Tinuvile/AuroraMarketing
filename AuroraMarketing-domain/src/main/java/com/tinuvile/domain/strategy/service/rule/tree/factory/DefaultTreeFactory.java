@@ -40,14 +40,14 @@ public class DefaultTreeFactory {
         /** 规则逻辑检查类型 */
         private RuleLogicCheckTypeVO ruleLogicCheckTypeVO;
         /** 策略奖品数据 */
-        private StrategyAwardData strategyAwardData;
+        private StrategyAwardVO strategyAwardVO;
     }
 
     @Data
     @Builder
     @AllArgsConstructor
     @NoArgsConstructor
-    public static class StrategyAwardData {
+    public static class StrategyAwardVO {
         /** 奖品ID */
         private Integer awardId;
         /** 奖品规则值 */

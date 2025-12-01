@@ -3,6 +3,7 @@ package com.tinuvile.domain.strategy.service.rule.chain.impl;
 
 import com.tinuvile.domain.strategy.repository.IStrategyRepository;
 import com.tinuvile.domain.strategy.service.rule.chain.AbstractLogicChain;
+import com.tinuvile.domain.strategy.service.rule.chain.factory.DefaultChainFactory;
 import com.tinuvile.types.common.Constants;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
@@ -26,7 +27,7 @@ public class BlackListLogicChain extends AbstractLogicChain {
 
     @Override
     protected String ruleModel() {
-        return "rule_blacklist";
+        return DefaultChainFactory.LogicModel.RULE_BLACKLIST.getCode();
     }
 
     /**
@@ -39,7 +40,7 @@ public class BlackListLogicChain extends AbstractLogicChain {
      * @return 黑名单专用奖品ID，若用户在黑名单中则返回该ID，否则返回下一个责任链的处理结果
      */
     @Override
-    public Integer logic(String userId, Long strategyId) {
+    public DefaultChainFactory.StrategyAwardVO logic(String userId, Long strategyId) {
 
         log.info("规则过滤 - 黑名单 userId:{} strategyId:{} ruleModel:{}",
                 userId, strategyId, ruleModel());
@@ -55,7 +56,10 @@ public class BlackListLogicChain extends AbstractLogicChain {
             if (userId.equals(userBlackId)) {
                 log.info("抽奖责任链 - 黑名单接管 userId:{} strategyId:{} ruleModel:{} awardId:{}",
                         userId, strategyId, ruleModel(), awardId);
-                return awardId;
+                return DefaultChainFactory.StrategyAwardVO.builder()
+                        .awardId(awardId)
+                        .logicModel(ruleModel())
+                        .build();
             }
         }
 
@@ -64,5 +68,7 @@ public class BlackListLogicChain extends AbstractLogicChain {
 
         return next().logic(userId, strategyId);
     }
+
+
 
 }

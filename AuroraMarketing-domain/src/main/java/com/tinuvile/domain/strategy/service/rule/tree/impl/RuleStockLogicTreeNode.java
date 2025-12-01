@@ -20,6 +20,10 @@ public class RuleStockLogicTreeNode implements ILogicTreeNode {
     public DefaultTreeFactory.TreeActionEntity logic(String userId, Long strategyId, Integer awardId) {
         return DefaultTreeFactory.TreeActionEntity.builder()
                 .ruleLogicCheckTypeVO(RuleLogicCheckTypeVO.TAKE_OVER)
+                .strategyAwardVO(DefaultTreeFactory.StrategyAwardVO.builder()
+                        .awardId(awardId)
+                        .awardRuleValue("")
+                        .build())
                 .build();
     }
 

@@ -20,6 +20,10 @@ public class RuleLockLogicTreeNode implements ILogicTreeNode {
     public DefaultTreeFactory.TreeActionEntity logic(String userId, Long strategyId, Integer awardId) {
         return DefaultTreeFactory.TreeActionEntity.builder()
                 .ruleLogicCheckTypeVO(RuleLogicCheckTypeVO.ALLOW)
+                .strategyAwardVO(DefaultTreeFactory.StrategyAwardVO.builder()
+                        .awardId(awardId)
+                        .awardRuleValue("")
+                        .build())
                 .build();
     }
 
