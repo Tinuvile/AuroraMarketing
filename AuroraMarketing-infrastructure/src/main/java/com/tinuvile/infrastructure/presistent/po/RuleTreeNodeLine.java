@@ -3,6 +3,8 @@ package com.tinuvile.infrastructure.presistent.po;
 
 import lombok.Data;
 
+import java.util.Date;
+
 /**
  * @author Tinuvile
  * @description 规则树节点线
@@ -12,7 +14,7 @@ import lombok.Data;
 public class RuleTreeNodeLine {
 
     /** 自增ID */
-    private String id;
+    private Long id;
 
     /** 规则树ID */
     private String treeId;
@@ -30,9 +32,9 @@ public class RuleTreeNodeLine {
     private String ruleLimitValue;
 
     /** 创建时间 */
-    private String createTime;
+    private Date createTime;
 
     /** 更新时间 */
-    private String updateTime;
+    private Date updateTime;
 
 }

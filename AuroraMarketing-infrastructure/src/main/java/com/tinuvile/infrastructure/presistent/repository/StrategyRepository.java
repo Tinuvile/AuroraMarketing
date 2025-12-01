@@ -10,6 +10,7 @@ import com.tinuvile.infrastructure.presistent.dao.*;
 import com.tinuvile.infrastructure.presistent.po.*;
 import com.tinuvile.infrastructure.redis.IRedisService;
 import com.tinuvile.types.common.Constants;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Repository;
 
 import javax.annotation.Resource;
@@ -20,6 +21,7 @@ import java.util.*;
  * @description 策略服务仓储实现
  * @since 2025/11/23
  */
+@Slf4j
 @Repository
 public class StrategyRepository implements IStrategyRepository {
 
@@ -180,16 +182,29 @@ public class StrategyRepository implements IStrategyRepository {
         List<RuleTreeNode> ruleTreeNodes = ruleTreeNodeDao.queryRuleTreeNodeListByTreeId(treeId);
         List<RuleTreeNodeLine> ruleTreeNodeLines = ruleTreeNodeLineDao.queryRuleTreeNodeLineListByTreeId(treeId);
 
+        if (null == ruleTree || null == ruleTreeNodes || null == ruleTreeNodeLines) {
+            log.warn("注意：规则树相关数据库配置不完全");
+            return null;
+        }
+
         // tree node line 转换 Map 结构
         Map<String, List<RuleTreeNodeLineVO>> ruleTreeNodeLineMap = new HashMap<>();
         for (RuleTreeNodeLine ruleTreeNodeLine : ruleTreeNodeLines) {
-            RuleTreeNodeLineVO ruleTreeNodeLineVO = RuleTreeNodeLineVO.builder()
-                    .treeId(ruleTreeNodeLine.getTreeId())
-                    .ruleNodeFrom(ruleTreeNodeLine.getRuleNodeFrom())
-                    .ruleNodeTo(ruleTreeNodeLine.getRuleNodeTo())
-                    .ruleLimitType(RuleLimitTypeVO.valueOf(ruleTreeNodeLine.getRuleLimitType()))
-                    .ruleLimitValue(RuleLogicCheckTypeVO.valueOf(ruleTreeNodeLine.getRuleLimitValue()))
-                    .build();
+            RuleTreeNodeLineVO ruleTreeNodeLineVO;
+            try {
+                ruleTreeNodeLineVO = RuleTreeNodeLineVO.builder()
+                        .treeId(ruleTreeNodeLine.getTreeId())
+                        .ruleNodeFrom(ruleTreeNodeLine.getRuleNodeFrom())
+                        .ruleNodeTo(ruleTreeNodeLine.getRuleNodeTo())
+                        .ruleLimitType(RuleLimitTypeVO.valueOf(ruleTreeNodeLine.getRuleLimitType()))
+                        .ruleLimitValue(RuleLogicCheckTypeVO.valueOf(ruleTreeNodeLine.getRuleLimitValue()))
+                        .build();
+            } catch (IllegalArgumentException e) {
+                log.error("规则树节点线配置错误，treeId：{}，ruleNodeFrom：{}，ruleNodeTo：{}，ruleLimitType：{}，ruleLimitValue：{}",
+                        ruleTreeNodeLine.getTreeId(), ruleTreeNodeLine.getRuleNodeFrom(), ruleTreeNodeLine.getRuleNodeTo(),
+                        ruleTreeNodeLine.getRuleLimitType(), ruleTreeNodeLine.getRuleLimitValue());
+                continue;
+            }
 
             List<RuleTreeNodeLineVO> ruleTreeNodeLineVOList = ruleTreeNodeLineMap.computeIfAbsent(
                     ruleTreeNodeLine.getRuleNodeFrom(), k -> new ArrayList<>());
