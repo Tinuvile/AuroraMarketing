@@ -13,8 +13,8 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.math.BigDecimal;
+import java.security.SecureRandom;
 import java.util.*;
-import java.util.concurrent.ThreadLocalRandom;
 
 /**
  * @author Tinuvile
@@ -28,6 +28,8 @@ public class StrategyArmoryDispatch implements IStrategyArmory, IStrategyDispatc
     @Resource
     private IStrategyRepository repository;
 
+    private final SecureRandom secureRandom = new SecureRandom();
+
     @Override
     public boolean assembleLotteryStrategy(Long strategyId) {
         // 查询策略配置
@@ -36,6 +38,15 @@ public class StrategyArmoryDispatch implements IStrategyArmory, IStrategyDispatc
             log.error("策略装配器-装配策略奖品配置失败，strategyId: {}的奖品配置为空", strategyId);
             return false;
         }
+
+        // 缓存奖品库存
+        for (StrategyAwardEntity strategyAwardEntity : strategyAwardEntities) {
+            Integer awardId = strategyAwardEntity.getAwardId();
+            Integer awardCount = strategyAwardEntity.getAwardCount();
+            cacheStrategyAwardCount(strategyId, awardId, awardCount);
+        }
+
+        // 默认装配配置
         assembleLotteryStrategy(String.valueOf(strategyId), strategyAwardEntities);
 
         // 权重策略配置 - rule_weight 规则
@@ -43,14 +54,14 @@ public class StrategyArmoryDispatch implements IStrategyArmory, IStrategyDispatc
         String ruleWeight = strategyEntity.getRuleWeight();
         if (null == ruleWeight) return true;
 
-        // TODO： queryStrategyRule 方法名称限定，只查询一个对象，目前可能造成别人调用查询 list 返回
         StrategyRuleEntity strategyRuleEntity = repository.queryStrategyRule(strategyId, ruleWeight);
+        // 业务异常，策略规则中 rule_weight 权重规则已适用但未适配
         if (null == strategyRuleEntity) {
             throw new AppException(ResponseCode.STRATEGY_RULE_WEIGHT_IS_NULL.getCode(), ResponseCode.STRATEGY_RULE_WEIGHT_IS_NULL.getInfo());
         }
+
         Map<String, List<Integer>> ruleWeightValueMap = strategyRuleEntity.getRuleWeightValues();
-        Set<String> keys = ruleWeightValueMap.keySet();
-        for (String key : keys) {
+        for (String key : ruleWeightValueMap.keySet()) {
             List<Integer> ruleWeightValues = ruleWeightValueMap.get(key);
             ArrayList<StrategyAwardEntity> strategyAwardEntitiesClone = new ArrayList<>(strategyAwardEntities);
             strategyAwardEntitiesClone.removeIf(entity -> !ruleWeightValues.contains(entity.getAwardId()));
@@ -118,10 +129,22 @@ public class StrategyArmoryDispatch implements IStrategyArmory, IStrategyDispatc
         return max;
     }
 
+    /**
+     * 缓存奖品库存到 Redis
+     *
+     * @param strategyId 策略ID
+     * @param awardId 奖品ID
+     * @param awardCount 奖品库存
+     */
+    private void cacheStrategyAwardCount(Long strategyId, Integer awardId, Integer awardCount) {
+        String cacheKey = Constants.RedisKey.STRATEGY_AWARD_COUNT_KEY + strategyId + Constants.UNDERLINE + awardId;
+        repository.cacheStrategyAwardCount(cacheKey, awardCount);
+    }
+
     @Override
     public Integer getRandomAwardId(Long strategyId) {
         int rateRange = repository.getRateRange(strategyId);
-        return repository.getStrategyAwardAssemble(String.valueOf(strategyId), ThreadLocalRandom.current().nextInt(rateRange));
+        return repository.getStrategyAwardAssemble(String.valueOf(strategyId), secureRandom.nextInt(rateRange));
     }
 
     @Override
@@ -133,7 +156,13 @@ public class StrategyArmoryDispatch implements IStrategyArmory, IStrategyDispatc
     @Override
     public Integer getRandomAwardId(String key) {
         int rateRange = repository.getRateRange(key);
-        return repository.getStrategyAwardAssemble(key, ThreadLocalRandom.current().nextInt(rateRange));
+        return repository.getStrategyAwardAssemble(key, secureRandom.nextInt(rateRange));
+    }
+
+    @Override
+    public Boolean subtractionAwardStock(Long strategyId, Integer awardId) {
+        String cacheKey = Constants.RedisKey.STRATEGY_AWARD_COUNT_KEY + strategyId + Constants.UNDERLINE + awardId;
+        return repository.subtractionAwardStock(cacheKey);
     }
 
 }
