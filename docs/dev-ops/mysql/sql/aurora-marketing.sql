@@ -94,7 +94,7 @@ CREATE TABLE IF NOT EXISTS `rule_tree_node_line` (
 INSERT INTO `rule_tree_node_line` (`id`, `tree_id`, `rule_node_from`, `rule_node_to`, `rule_limit_type`, `rule_limit_value`, `create_time`, `update_time`) VALUES
 	(1, 'tree_lock', 'rule_lock', 'rule_stock', 'EQUAL', 'ALLOW', '2025-12-01 15:12:03', '2025-12-01 15:12:03'),
 	(2, 'tree_lock', 'rule_lock', 'rule_luck_award', 'EQUAL', 'TAKE_OVER', '2025-12-01 15:12:45', '2025-12-01 15:12:45'),
-	(3, 'tree_lock', 'rule_luck_award', 'rule_stock', 'EQUAL', 'TAKE_OVER', '2025-12-01 15:13:06', '2025-12-01 15:13:06');
+	(3, 'tree_lock', 'rule_stock', 'rule_luck_award', 'EQUAL', 'ALLOW', '2025-12-01 15:13:06', '2025-12-02 20:07:39');
 
 -- 导出  表 aurora-marketing.strategy 结构
 CREATE TABLE IF NOT EXISTS `strategy` (
@@ -140,9 +140,9 @@ INSERT INTO `strategy_award` (`id`, `strategy_id`, `award_id`, `award_title`, `a
 	(6, 10001, 106, '5次使用AI绘图模型', '抽奖3次后解锁', 60, 60, 1.0000, 'rule_lock', 5, '2025-11-22 21:00:02', '2025-11-23 17:14:42'),
 	(7, 10001, 107, '解锁一个月pro会员', '抽奖10次后解锁', 30, 30, 0.9990, 'rule_lock,rule_luck_award', 6, '2025-11-22 21:02:44', '2025-11-23 17:14:44'),
 	(8, 10001, 108, '全年pro会员', '抽奖30次后解锁', 5, 5, 0.0010, 'rule_lock', 7, '2025-11-22 21:03:10', '2025-11-23 17:14:47'),
-	(9, 10002, 105, '10次高级模型对话【Claude4.5sonnet/Gemini3】', '抽奖3次后解锁', 400, 400, 40.0000, 'tree_lock', 2, '2025-11-26 20:15:11', '2025-12-01 20:52:06'),
-	(11, 10003, 102, '随机积分数', NULL, 15, 15, 0.4500, 'tree_lock', 1, '2025-12-02 18:58:19', '2025-12-02 18:59:46'),
-	(12, 10003, 103, '5次上传图像对话', NULL, 45, 45, 0.5500, 'tree_lock', 0, '2025-12-02 18:59:22', '2025-12-02 19:35:21');
+	(9, 10002, 105, '10次高级模型对话【Claude4.5sonnet/Gemini3】', '抽奖3次后解锁', 400, 400, 40.0000, 'tree_lock', 2, '2025-11-26 20:15:11', '2025-12-02 20:26:00'),
+	(11, 10003, 102, '随机积分数', NULL, 15, 15, 0.4500, 'tree_lock', 1, '2025-12-02 18:58:19', '2025-12-02 20:08:30'),
+	(12, 10003, 103, '5次上传图像对话', NULL, 45, 45, 0.5500, 'tree_lock', 0, '2025-12-02 18:59:22', '2025-12-02 20:08:32');
 
 -- 导出  表 aurora-marketing.strategy_rule 结构
 CREATE TABLE IF NOT EXISTS `strategy_rule` (
