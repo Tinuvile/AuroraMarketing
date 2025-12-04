@@ -1,11 +1,14 @@
 package com.tinuvile.domain.strategy.service.raffle;
 
 
+import com.tinuvile.domain.strategy.model.entity.StrategyAwardEntity;
 import com.tinuvile.domain.strategy.model.valobj.RuleTreeVO;
 import com.tinuvile.domain.strategy.model.valobj.StrategyAwardRuleModelVO;
 import com.tinuvile.domain.strategy.model.valobj.StrategyAwardStockKeyVO;
 import com.tinuvile.domain.strategy.repository.IStrategyRepository;
 import com.tinuvile.domain.strategy.service.AbstractRaffleStrategy;
+import com.tinuvile.domain.strategy.service.IRaffleAward;
+import com.tinuvile.domain.strategy.service.IRaffleStock;
 import com.tinuvile.domain.strategy.service.armory.IStrategyDispatch;
 import com.tinuvile.domain.strategy.service.rule.chain.ILogicChain;
 import com.tinuvile.domain.strategy.service.rule.chain.factory.DefaultChainFactory;
@@ -14,6 +17,8 @@ import com.tinuvile.domain.strategy.service.rule.tree.factory.engine.IDecisionTr
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * @author Tinuvile
  * @description 默认抽奖策略实现
@@ -21,7 +26,7 @@ import org.springframework.stereotype.Service;
  */
 @Slf4j
 @Service
-public class DefaultRaffleStrategy extends AbstractRaffleStrategy {
+public class DefaultRaffleStrategy extends AbstractRaffleStrategy implements IRaffleStock, IRaffleAward {
 
     public DefaultRaffleStrategy(IStrategyRepository repository, IStrategyDispatch strategyDispatch, DefaultChainFactory defaultChainFactory, DefaultTreeFactory defaultTreeFactory) {
         super(repository, strategyDispatch, defaultChainFactory, defaultTreeFactory);
@@ -55,5 +60,10 @@ public class DefaultRaffleStrategy extends AbstractRaffleStrategy {
     @Override
     public void updateStrategyAwardStock(Long strategyId, Integer awardId) {
         repository.updateStrategyAwardStock(strategyId, awardId);
+    }
+
+    @Override
+    public List<StrategyAwardEntity> queryRaffleStrategyAwardList(Long strategyId) {
+        return repository.queryStrategyAwardList(strategyId);
     }
 }

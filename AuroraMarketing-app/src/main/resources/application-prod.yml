@@ -1,6 +1,14 @@
 server:
   port: 8091
 
+# 应用配置
+app:
+  config:
+    # 版本，方便通过接口版本升级
+    api-version: v1
+    # 跨域，生产环境应该限制具体域名
+    cross-origin: 'https://yourdomain.com'
+
 # 线程池配置
 thread:
   pool:
