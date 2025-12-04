@@ -13,7 +13,6 @@ import com.tinuvile.domain.strategy.service.rule.tree.impl.RuleLockLogicTreeNode
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Assert;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -133,7 +132,6 @@ public class RaffleStrategyTest {
     }
 
     @Test
-    @Ignore
     public void test_raffle_stock() throws InterruptedException {
 
         log.info("开始完整库存扣减流程测试");
