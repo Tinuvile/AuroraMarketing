@@ -10,6 +10,7 @@ import com.tinuvile.infrastructure.presistent.dao.*;
 import com.tinuvile.infrastructure.presistent.po.*;
 import com.tinuvile.infrastructure.redis.IRedisService;
 import com.tinuvile.types.common.Constants;
+import com.tinuvile.types.enums.ResponseCode;
 import com.tinuvile.types.exception.AppException;
 import lombok.extern.slf4j.Slf4j;
 import org.redisson.api.RBlockingQueue;
@@ -309,6 +310,12 @@ public class StrategyRepository implements IStrategyRepository {
         strategyAwardReq.setStrategyId(strategyId);
         strategyAwardReq.setAwardId(awardId);
         StrategyAward strategyAwardRes = strategyAwardDao.queryStrategyAward(strategyAwardReq);
+
+        // 校验数据
+        if (null == strategyAwardRes) {
+            log.error("抽奖策略计算 - 未配置抽奖奖品信息 strategyId:{} awardId:{}", strategyId, awardId);
+            throw new AppException(ResponseCode.UN_ERROR.getCode(), ResponseCode.UN_ERROR.getInfo());
+        }
 
         // 转换数据
         strategyAwardEntity = StrategyAwardEntity.builder()
