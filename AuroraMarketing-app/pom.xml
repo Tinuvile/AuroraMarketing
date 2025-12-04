@@ -86,6 +86,10 @@
         <!-- 工程模块；启动依赖 trigger->domain, infrastructure-->
         <dependency>
             <groupId>com.tinuvile</groupId>
+            <artifactId>AuroraMarketing-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.tinuvile</groupId>
             <artifactId>AuroraMarketing-trigger</artifactId>
         </dependency>
         <dependency>

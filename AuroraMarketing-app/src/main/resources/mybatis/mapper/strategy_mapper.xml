@@ -13,7 +13,8 @@
 
     <select id="queryStrategyList" resultMap="dataMap">
         select strategy_id
-        from strategy limit 10
+        from strategy
+        limit 10
     </select>
 
     <select id="queryStrategyByStrategyId" parameterType="java.lang.Long" resultMap="dataMap">
