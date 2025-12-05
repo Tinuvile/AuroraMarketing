@@ -120,6 +120,11 @@ public class StrategyArmoryDispatch implements IStrategyArmory, IStrategyDispatc
      * @return 转换概率值的基值
      */
     private double convert(double min) {
+        if (min <= 0) {
+            log.warn("策略装配器 - 发现零或负概率值：{}，使用默认值0.0001", min);
+            min = 0.001;
+        }
+
         double current = min;
         double max = 1;
         while (current < 1) {
