@@ -121,7 +121,7 @@ public class StrategyArmoryDispatch implements IStrategyArmory, IStrategyDispatc
      */
     private double convert(double min) {
         if (min <= 0) {
-            log.warn("策略装配器 - 发现零或负概率值：{}，使用默认值0.0001", min);
+            log.warn("策略装配器 - 发现零或负概率值：{}，使用默认值0.001", min);
             min = 0.001;
         }
 
