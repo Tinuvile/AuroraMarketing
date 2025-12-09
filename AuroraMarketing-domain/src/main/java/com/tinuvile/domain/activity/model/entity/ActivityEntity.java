@@ -1,20 +1,24 @@
-package com.tinuvile.infrastructure.presistent.po;
+package com.tinuvile.domain.activity.model.entity;
 
 
+import com.tinuvile.domain.activity.model.valobj.ActivityStateVO;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.Date;
 
 /**
  * @author Tinuvile
- * @description 抽奖活动表 持久化对象
- * @since 2025/12/8
+ * @description 活动实体对象
+ * @since 2025/12/9
  */
 @Data
-public class RaffleActivity {
-
-    /** 自增ID */
-    private Long id;
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
+public class ActivityEntity {
 
     /** 活动ID */
     private Long activityId;
@@ -35,12 +39,6 @@ public class RaffleActivity {
     private Long strategyId;
 
     /** 活动状态 */
-    private String state;
-
-    /** 创建时间 */
-    private Date createTime;
-
-    /** 更新时间 */
-    private Date updateTime;
+    private ActivityStateVO state;
 
 }

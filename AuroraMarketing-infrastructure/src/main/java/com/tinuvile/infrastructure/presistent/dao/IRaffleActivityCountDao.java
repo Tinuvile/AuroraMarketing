@@ -1,6 +1,7 @@
 package com.tinuvile.infrastructure.presistent.dao;
 
 
+import com.tinuvile.infrastructure.presistent.po.RaffleActivityCount;
 import org.apache.ibatis.annotations.Mapper;
 
 /**
@@ -10,4 +11,7 @@ import org.apache.ibatis.annotations.Mapper;
  */
 @Mapper
 public interface IRaffleActivityCountDao {
+
+    RaffleActivityCount queryRaffleActivityCountByActivityId(Long activityCountId);
+
 }

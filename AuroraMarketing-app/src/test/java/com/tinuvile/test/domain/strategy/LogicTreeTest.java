@@ -1,4 +1,4 @@
-package com.tinuvile.test.domain;
+package com.tinuvile.test.domain.strategy;
 
 
 import com.alibaba.fastjson.JSON;

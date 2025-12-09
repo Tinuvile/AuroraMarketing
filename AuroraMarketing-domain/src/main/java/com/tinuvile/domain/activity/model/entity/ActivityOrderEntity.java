@@ -1,20 +1,24 @@
-package com.tinuvile.infrastructure.presistent.po;
+package com.tinuvile.domain.activity.model.entity;
 
 
+import com.tinuvile.domain.activity.model.valobj.OrderStateVO;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.Date;
 
 /**
  * @author Tinuvile
- * @description 抽奖活动单 持久化对象
- * @since 2025/12/8
+ * @description 活动参与实体对象
+ * @since 2025/12/9
  */
 @Data
-public class RaffleActivityOrder {
-
-    /** 自增ID */
-    private Long id;
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
+public class ActivityOrderEntity {
 
     /** 用户ID */
     private String userId;
@@ -47,12 +51,6 @@ public class RaffleActivityOrder {
     private Integer dayCount;
 
     /** 订单状态（complete） */
-    private String state;
-
-    /** 创建时间 */
-    private Date createTime;
-
-    /** 更新时间 */
-    private Date updateTime;
+    private OrderStateVO state;
 
 }
