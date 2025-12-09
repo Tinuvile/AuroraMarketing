@@ -35,7 +35,7 @@ public class RaffleActivityOrder {
     private Date orderTime;
 
     /** 订单状态（not_used、used、expire） */
-    private String status;
+    private String state;
 
     /** 创建时间 */
     private Date createTime;
