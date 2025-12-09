@@ -37,11 +37,15 @@ public class RaffleActivityOrderDaoTest {
             RaffleActivityOrder raffleActivityOrder = new RaffleActivityOrder();
             // EasyRandom 可以通过指定对象类的方式，随机生成对象值。如；easyRandom.nextObject(String.class)、easyRandom.nextObject(RaffleActivityOrder.class)
             raffleActivityOrder.setUserId(easyRandom.nextObject(String.class));
+            raffleActivityOrder.setSku(easyRandom.nextObject(Long.class));
             raffleActivityOrder.setActivityId(100301L);
             raffleActivityOrder.setActivityName("测试活动");
             raffleActivityOrder.setStrategyId(100006L);
             raffleActivityOrder.setOrderId(RandomStringUtils.randomNumeric(12));
             raffleActivityOrder.setOrderTime(new Date());
+            raffleActivityOrder.setTotalCount(1);
+            raffleActivityOrder.setMonthCount(1);
+            raffleActivityOrder.setDayCount(1);
             raffleActivityOrder.setState("not_used");
             // 插入数据
             raffleActivityOrderDao.insert(raffleActivityOrder);
@@ -52,11 +56,15 @@ public class RaffleActivityOrderDaoTest {
     public void test_insert() {
         RaffleActivityOrder raffleActivityOrder = new RaffleActivityOrder();
         raffleActivityOrder.setUserId("Tinuvile");
+        raffleActivityOrder.setSku(100000L);
         raffleActivityOrder.setActivityId(100301L);
         raffleActivityOrder.setActivityName("测试活动");
         raffleActivityOrder.setStrategyId(100006L);
         raffleActivityOrder.setOrderId(RandomStringUtils.randomNumeric(12));
         raffleActivityOrder.setOrderTime(new Date());
+        raffleActivityOrder.setTotalCount(1);
+        raffleActivityOrder.setMonthCount(1);
+        raffleActivityOrder.setDayCount(1);
         raffleActivityOrder.setState("not_used");
         // 插入数据
         raffleActivityOrderDao.insert(raffleActivityOrder);
