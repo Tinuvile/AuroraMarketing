@@ -6,7 +6,7 @@ import lombok.Getter;
 
 /**
  * @author Tinuvile
- * @description
+ * @description 活动状态枚举值对象
  * @since 2025/12/9
  */
 @Getter

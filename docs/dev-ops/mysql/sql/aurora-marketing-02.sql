@@ -80,9 +80,7 @@ CREATE TABLE IF NOT EXISTS `raffle_activity_order_001` (
   UNIQUE KEY `uq_order_id` (`order_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='抽奖活动单';
 
--- 正在导出表  aurora-marketing-02.raffle_activity_order_001 的数据：~1 rows (大约)
-INSERT INTO `raffle_activity_order_001` (`id`, `user_id`, `sku`, `activity_id`, `activity_name`, `strategy_id`, `order_id`, `order_time`, `total_count`, `month_count`, `day_count`, `state`, `create_time`, `update_time`) VALUES
-	(1, 'eOMtThyhVNLWUZNRcBaQKxI', 100001, 100301, '测试活动', 100006, '131957265018', '2025-12-09 03:51:38', 1, 1, 1, 'not_used', '2025-12-09 11:51:38', '2025-12-09 11:51:38');
+-- 正在导出表  aurora-marketing-02.raffle_activity_order_001 的数据：~0 rows (大约)
 
 -- 导出  表 aurora-marketing-02.raffle_activity_order_002 结构
 CREATE TABLE IF NOT EXISTS `raffle_activity_order_002` (
@@ -106,7 +104,7 @@ CREATE TABLE IF NOT EXISTS `raffle_activity_order_002` (
 
 -- 正在导出表  aurora-marketing-02.raffle_activity_order_002 的数据：~1 rows (大约)
 INSERT INTO `raffle_activity_order_002` (`id`, `user_id`, `sku`, `activity_id`, `activity_name`, `strategy_id`, `order_id`, `order_time`, `total_count`, `month_count`, `day_count`, `state`, `create_time`, `update_time`) VALUES
-	(1, 'yedUsFwdkelQbxeTeQOvaScfqIOOmaa', 100301, 100301, '测试活动', 100006, '798341103224', '2025-12-09 03:51:38', 1, 1, 1, 'not_used', '2025-12-09 11:51:38', '2025-12-09 11:51:38');
+	(1, 'Tinuvile', 100000, 100301, '测试活动', 100006, '477579130487', '2025-12-09 12:52:57', 1, 1, 1, 'not_used', '2025-12-09 20:52:56', '2025-12-09 22:02:58');
 
 -- 导出  表 aurora-marketing-02.raffle_activity_order_003 结构
 CREATE TABLE IF NOT EXISTS `raffle_activity_order_003` (
