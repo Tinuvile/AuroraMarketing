@@ -52,6 +52,7 @@ public class RuleWeightLogicChain extends AbstractLogicChain {
         String ruleValue = repository.queryStrategyRuleValue(strategyId, ruleModel());
         if (ruleValue == null || ruleValue.isEmpty()) return next().logic(userId, strategyId);
 
+        // 查询规则配置并解析
         Map<Long, String> analyticalValueGroup = getAnalyticalValue(ruleValue);
         if (null == analyticalValueGroup || analyticalValueGroup.isEmpty()) {
             log.warn("抽奖责任链 - 权重告警【策略配置权重，但 ruleValue 未配置对应值】 userId:{} strategyId:{} ruleModel:{}",
@@ -59,14 +60,17 @@ public class RuleWeightLogicChain extends AbstractLogicChain {
             return next().logic(userId, strategyId);
         }
 
+        // 权重值排序
         List<Long> analyticalSortedKeys = new ArrayList<>(analyticalValueGroup.keySet());
         Collections.sort(analyticalSortedKeys);
 
+        // 权重值筛选，筛选出小于等于用户分数的最大权重值
         Long nextValue = analyticalSortedKeys.stream()
                 .filter(key -> userScore >= key)
                 .max(Comparator.naturalOrder())
                 .orElse(null);
 
+        // 抽奖
         if (null != nextValue) {
             Integer awardId = strategyDispatch.getRandomAwardId(strategyId, analyticalValueGroup.get(nextValue));
             log.info("抽奖责任链 - 权重接管 userId: {} strategyId: {} ruleModel: {} awardId: {}",

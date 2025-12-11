@@ -102,7 +102,7 @@ public class StrategyArmoryDispatch implements IStrategyArmory, IStrategyDispatc
         // 乱序操作
         Collections.shuffle(strategyAwardSearchRateTables);
 
-        // 生成 Map 集合，Key值对应概率值
+        // 生成 Map 集合，Key值对应概率值，Value值对应奖品ID
         Map<Integer, Integer> shuffleStrategyAwardSearchRateTable = new LinkedHashMap<>();
         for (int i = 0; i < strategyAwardSearchRateTables.size(); i++) {
             shuffleStrategyAwardSearchRateTable.put(i, strategyAwardSearchRateTables.get(i));
