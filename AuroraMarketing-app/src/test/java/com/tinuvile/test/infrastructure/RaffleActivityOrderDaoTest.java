@@ -47,6 +47,7 @@ public class RaffleActivityOrderDaoTest {
             raffleActivityOrder.setMonthCount(1);
             raffleActivityOrder.setDayCount(1);
             raffleActivityOrder.setState("not_used");
+            raffleActivityOrder.setOutBusinessNo(RandomStringUtils.randomAlphanumeric(12));
             // 插入数据
             raffleActivityOrderDao.insert(raffleActivityOrder);
         }
@@ -66,6 +67,7 @@ public class RaffleActivityOrderDaoTest {
         raffleActivityOrder.setMonthCount(1);
         raffleActivityOrder.setDayCount(1);
         raffleActivityOrder.setState("not_used");
+        raffleActivityOrder.setOutBusinessNo(RandomStringUtils.randomAlphanumeric(12));
         // 插入数据
         raffleActivityOrderDao.insert(raffleActivityOrder);
     }
