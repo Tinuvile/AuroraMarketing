@@ -146,7 +146,7 @@ public class ActivityRepository implements IActivityRepository {
                     return 1;
                 } catch (DuplicateKeyException e) {
                     log.error("写入订单记录，唯一索引冲突 userId:{} activityId:{} sku:{}",
-                            activityOrderEntity.getUserId(), activityOrderEntity.getSku(), activityOrderEntity.getActivityId());
+                            activityOrderEntity.getUserId(), activityOrderEntity.getActivityId(), activityOrderEntity.getSku(), e);
                     throw new AppException(ResponseCode.INDEX_DUPLICATE.getCode());
                 }
             });
