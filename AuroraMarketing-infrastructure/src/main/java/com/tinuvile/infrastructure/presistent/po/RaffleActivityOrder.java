@@ -49,6 +49,9 @@ public class RaffleActivityOrder {
     /** 订单状态（complete） */
     private String state;
 
+    /** 业务防重ID - 外部透传，确保幂等 */
+    private String outBusinessNo;
+
     /** 创建时间 */
     private Date createTime;
 

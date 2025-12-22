@@ -53,4 +53,7 @@ public class ActivityOrderEntity {
     /** 订单状态（complete） */
     private OrderStateVO state;
 
+    /** 业务防重ID - 外部透传，确保幂等 */
+    private String outBusinessNo;
+
 }
