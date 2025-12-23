@@ -34,9 +34,11 @@ CREATE TABLE IF NOT EXISTS `raffle_activity_account` (
   `update_time` datetime NOT NULL DEFAULT (now()) ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
   PRIMARY KEY (`id`),
   UNIQUE KEY `uq_user_id_activity_id` (`user_id`,`activity_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='抽奖活动账户表';
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='抽奖活动账户表';
 
--- 正在导出表  aurora-marketing-01.raffle_activity_account 的数据：~0 rows (大约)
+-- 正在导出表  aurora-marketing-01.raffle_activity_account 的数据：~1 rows (大约)
+INSERT INTO `raffle_activity_account` (`id`, `user_id`, `activity_id`, `total_count`, `total_count_surplus`, `month_count`, `month_count_surplus`, `day_count`, `day_count_surplus`, `create_time`, `update_time`) VALUES
+	(1, 'tinuvile', 100301, 50, 50, 50, 50, 50, 50, '2025-12-22 17:03:09', '2025-12-23 17:51:35');
 
 -- 导出  表 aurora-marketing-01.raffle_activity_order_000 结构
 CREATE TABLE IF NOT EXISTS `raffle_activity_order_000` (
@@ -84,9 +86,11 @@ CREATE TABLE IF NOT EXISTS `raffle_activity_order_001` (
   UNIQUE KEY `uq_order_id` (`order_id`),
   UNIQUE KEY `uq_out_business_no` (`out_business_no`),
   KEY `idx_user_id_activity_id` (`user_id`,`activity_id`,`state`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='抽奖活动单';
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='抽奖活动单';
 
 -- 正在导出表  aurora-marketing-01.raffle_activity_order_001 的数据：~1 rows (大约)
+INSERT INTO `raffle_activity_order_001` (`id`, `user_id`, `sku`, `activity_id`, `activity_name`, `strategy_id`, `order_id`, `order_time`, `total_count`, `month_count`, `day_count`, `state`, `out_business_no`, `create_time`, `update_time`) VALUES
+	(4, 'eOMtThyhVNLWUZNRcBaQKxI', -5106534569952410475, 100301, '测试活动', 100006, '969591958808', '2025-12-22 09:09:26', 1, 1, 1, 'not_used', 'NVGaJCDCrvwh', '2025-12-22 17:09:27', '2025-12-22 17:09:27');
 
 -- 导出  表 aurora-marketing-01.raffle_activity_order_002 结构
 CREATE TABLE IF NOT EXISTS `raffle_activity_order_002` (
@@ -109,9 +113,11 @@ CREATE TABLE IF NOT EXISTS `raffle_activity_order_002` (
   UNIQUE KEY `uq_order_id` (`order_id`),
   UNIQUE KEY `uq_out_business_no` (`out_business_no`),
   KEY `idx_user_id_activity_id` (`user_id`,`activity_id`,`state`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='抽奖活动单';
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='抽奖活动单';
 
 -- 正在导出表  aurora-marketing-01.raffle_activity_order_002 的数据：~1 rows (大约)
+INSERT INTO `raffle_activity_order_002` (`id`, `user_id`, `sku`, `activity_id`, `activity_name`, `strategy_id`, `order_id`, `order_time`, `total_count`, `month_count`, `day_count`, `state`, `out_business_no`, `create_time`, `update_time`) VALUES
+	(4, 'yedUsFwdkelQbxeTeQOvaScfqIOOmaa', -167885730524958550, 100301, '测试活动', 100006, '802625426222', '2025-12-22 09:09:27', 1, 1, 1, 'not_used', 'QbpnRr9erzXl', '2025-12-22 17:09:27', '2025-12-22 17:09:27');
 
 -- 导出  表 aurora-marketing-01.raffle_activity_order_003 结构
 CREATE TABLE IF NOT EXISTS `raffle_activity_order_003` (
@@ -134,9 +140,11 @@ CREATE TABLE IF NOT EXISTS `raffle_activity_order_003` (
   UNIQUE KEY `uq_order_id` (`order_id`),
   UNIQUE KEY `uq_out_business_no` (`out_business_no`),
   KEY `idx_user_id_activity_id` (`user_id`,`activity_id`,`state`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='抽奖活动单';
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='抽奖活动单';
 
 -- 正在导出表  aurora-marketing-01.raffle_activity_order_003 的数据：~0 rows (大约)
+INSERT INTO `raffle_activity_order_003` (`id`, `user_id`, `sku`, `activity_id`, `activity_name`, `strategy_id`, `order_id`, `order_time`, `total_count`, `month_count`, `day_count`, `state`, `out_business_no`, `create_time`, `update_time`) VALUES
+	(1, 'tinuvile', 9011, 100301, '测试活动', 100006, '888405655602', '2025-12-22 09:03:09', 1, 1, 1, 'complete', '700091009111', '2025-12-22 17:03:09', '2025-12-22 17:03:09');
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
