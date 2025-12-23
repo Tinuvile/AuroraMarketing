@@ -56,7 +56,7 @@ public class RaffleOrderTest {
                 successCount++;
                 log.info("测试结果：{}", orderId);
             } catch (AppException e) {
-                if (e.getInfo().contains("活动库存不足")) {
+                if ("ERR_BIZ_005".equals(e.getMessage())) {
                     stockErrorCount++;
                     log.info("第{}次测试 - 库存耗尽（预期行为）：{}", i + 1, e.getInfo());
                     
@@ -74,9 +74,8 @@ public class RaffleOrderTest {
         log.info("测试完成 - 成功创建订单：{}个，库存不足：{}次", successCount, stockErrorCount);
     
         // 调整断言：验证业务逻辑而不是具体数量
-        assert successCount > 0 : "成功创建订单数量：" + successCount;
+        assert successCount == 20 : "成功创建订单数量：" + successCount;
         assert stockErrorCount > 0 : "库存不足异常数量：" + stockErrorCount;
-        assert successCount >= 15 && successCount <= 25;
         
         log.info("测试通过：成功创建{}个订单，库存控制正常", successCount);
     }

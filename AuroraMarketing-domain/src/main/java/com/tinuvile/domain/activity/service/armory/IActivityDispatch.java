@@ -11,7 +11,7 @@ import java.util.Date;
 public interface IActivityDispatch {
 
     /**
-     * 根据策略ID和奖品ID，扣减奖品缓存库存
+     * 根据活动SKU和活动结束时间，扣减奖品缓存库存
      *
      * @param sku 互动SKU
      * @param endDateTime 活动结束时间
