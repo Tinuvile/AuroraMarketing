@@ -3,6 +3,8 @@ package com.tinuvile.infrastructure.redis;
 
 import org.redisson.api.*;
 
+import java.util.concurrent.TimeUnit;
+
 /**
  * @author Tinuvile
  * @description Redis 服务
@@ -275,9 +277,10 @@ public interface IRedisService {
      * 设置值，成功返回 true，失败返回 false
      *
      * @param key        键
-     * @param ttlSeconds TTL 时间，单位：秒
+     * @param expired    过期时间
+     * @param timeUnit   时间单位
      * @return true/false
      */
-    Boolean setNx(String key, long ttlSeconds);
+    Boolean setNx(String key, long expired, TimeUnit timeUnit);
 
 }
