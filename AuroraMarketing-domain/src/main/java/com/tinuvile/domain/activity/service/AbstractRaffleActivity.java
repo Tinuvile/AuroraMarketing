@@ -47,7 +47,7 @@ public abstract class AbstractRaffleActivity extends RaffleActivitySupport imple
 
         // 活动动作规则校验
         IActionChain actionChain = defaultActivityChainFactory.openActionChain();
-        boolean success = actionChain.action(activitySkuEntity, activityEntity, activityCountEntity);
+        actionChain.action(activitySkuEntity, activityEntity, activityCountEntity);
 
         // 构建订单聚合对象
         CreateOrderAggregate createOrderAggregate = buildOrderAggregate(skuRechargeEntity, activitySkuEntity, activityEntity, activityCountEntity);
