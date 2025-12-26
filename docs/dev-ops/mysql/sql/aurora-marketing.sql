@@ -21,14 +21,14 @@ USE `aurora-marketing`;
 
 -- 导出  表 aurora-marketing.award 结构
 CREATE TABLE IF NOT EXISTS `award` (
-  `id` int unsigned NOT NULL AUTO_INCREMENT COMMENT '自增ID',
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT COMMENT '自增ID',
   `award_id` int NOT NULL COMMENT '抽奖奖品ID',
   `award_key` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '奖品对接标识',
   `award_config` varchar(32) NOT NULL COMMENT '奖品配置信息',
   `award_desc` varchar(128) NOT NULL COMMENT '奖品内容描述',
   `create_time` datetime NOT NULL DEFAULT (now()) COMMENT '创建时间',
   `update_time` datetime NOT NULL DEFAULT (now()) ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='奖品详情表';
 
 -- 正在导出表  aurora-marketing.award 的数据：~9 rows (大约)
@@ -84,7 +84,7 @@ INSERT INTO `raffle_activity_count` (`id`, `activity_count_id`, `total_count`, `
 
 -- 导出  表 aurora-marketing.raffle_activity_sku 结构
 CREATE TABLE IF NOT EXISTS `raffle_activity_sku` (
-  `id` int unsigned NOT NULL AUTO_INCREMENT COMMENT '自增ID',
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT COMMENT '自增ID',
   `sku` bigint NOT NULL COMMENT '商品SKU - 每一个组合当作一个商品',
   `activity_id` bigint NOT NULL COMMENT '活动ID',
   `activity_count_id` bigint NOT NULL COMMENT '活动个人参与次数ID',
@@ -92,7 +92,7 @@ CREATE TABLE IF NOT EXISTS `raffle_activity_sku` (
   `stock_count_surplus` int NOT NULL COMMENT '剩余库存',
   `create_time` datetime NOT NULL DEFAULT (now()) COMMENT '创建时间',
   `update_time` datetime NOT NULL DEFAULT (now()) ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
-  PRIMARY KEY (`id`),
+  PRIMARY KEY (`id`) USING BTREE,
   UNIQUE KEY `uq_sku` (`sku`),
   KEY `idx_activity_id_activity_count_id` (`activity_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='活动SKU表';
@@ -156,13 +156,13 @@ INSERT INTO `rule_tree_node_line` (`id`, `tree_id`, `rule_node_from`, `rule_node
 
 -- 导出  表 aurora-marketing.strategy 结构
 CREATE TABLE IF NOT EXISTS `strategy` (
-  `id` int unsigned NOT NULL AUTO_INCREMENT COMMENT '自增ID',
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT COMMENT '自增ID',
   `strategy_id` int NOT NULL COMMENT '抽奖策略ID',
   `strategy_desc` varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '抽奖策略描述',
   `rule_models` varchar(256) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT '规则模型',
   `create_time` datetime NOT NULL DEFAULT (now()) COMMENT '创建时间',
   `update_time` datetime NOT NULL DEFAULT (now()) ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='策略总表';
 
 -- 正在导出表  aurora-marketing.strategy 的数据：~2 rows (大约)
@@ -173,7 +173,7 @@ INSERT INTO `strategy` (`id`, `strategy_id`, `strategy_desc`, `rule_models`, `cr
 
 -- 导出  表 aurora-marketing.strategy_award 结构
 CREATE TABLE IF NOT EXISTS `strategy_award` (
-  `id` int unsigned NOT NULL AUTO_INCREMENT COMMENT '自增ID',
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT COMMENT '自增ID',
   `strategy_id` int NOT NULL COMMENT '抽奖策略ID',
   `award_id` int NOT NULL COMMENT '奖品ID',
   `award_title` varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '抽奖奖品标题',
@@ -205,7 +205,7 @@ INSERT INTO `strategy_award` (`id`, `strategy_id`, `award_id`, `award_title`, `a
 
 -- 导出  表 aurora-marketing.strategy_rule 结构
 CREATE TABLE IF NOT EXISTS `strategy_rule` (
-  `id` int unsigned NOT NULL AUTO_INCREMENT COMMENT '自增ID',
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT COMMENT '自增ID',
   `strategy_id` int NOT NULL COMMENT '关联策略ID',
   `award_id` int DEFAULT NULL COMMENT '关联抽奖奖品ID',
   `rule_type` int NOT NULL DEFAULT '0' COMMENT '抽奖规则类型【1-策略规则、2-奖品规则】',
@@ -214,7 +214,7 @@ CREATE TABLE IF NOT EXISTS `strategy_rule` (
   `rule_desc` varchar(128) NOT NULL COMMENT '抽奖规则描述',
   `create_time` datetime NOT NULL DEFAULT (now()) COMMENT '创建时间',
   `update_time` datetime NOT NULL DEFAULT (now()) ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='策略规则表';
 
 -- 正在导出表  aurora-marketing.strategy_rule 的数据：~11 rows (大约)

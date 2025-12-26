@@ -14,7 +14,7 @@ import java.util.Date;
 public class Task {
 
     /** 自增ID */
-    private String id;
+    private Long id;
 
     /** 消息主题 */
     private String topic;

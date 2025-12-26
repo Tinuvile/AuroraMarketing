@@ -42,7 +42,7 @@ INSERT INTO `raffle_activity_account` (`id`, `user_id`, `activity_id`, `total_co
 
 -- 导出  表 aurora-marketing-01.raffle_activity_account_day 结构
 CREATE TABLE IF NOT EXISTS `raffle_activity_account_day` (
-  `id` int unsigned NOT NULL AUTO_INCREMENT COMMENT '自增ID',
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT COMMENT '自增ID',
   `user_id` varchar(32) NOT NULL COMMENT '用户ID',
   `activity_id` bigint NOT NULL COMMENT '活动ID',
   `day` varchar(10) NOT NULL COMMENT '日期（yyyy-mm-dd）',
@@ -50,7 +50,7 @@ CREATE TABLE IF NOT EXISTS `raffle_activity_account_day` (
   `day_count_surplus` int NOT NULL COMMENT '日次数-剩余',
   `create_time` datetime NOT NULL DEFAULT (now()) COMMENT '创建时间',
   `update_time` datetime NOT NULL DEFAULT (now()) ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
-  PRIMARY KEY (`id`),
+  PRIMARY KEY (`id`) USING BTREE,
   UNIQUE KEY `uq_user_id_activity_id_day` (`user_id`,`activity_id`,`day`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='抽奖活动账户表-日次数';
 
@@ -58,7 +58,7 @@ CREATE TABLE IF NOT EXISTS `raffle_activity_account_day` (
 
 -- 导出  表 aurora-marketing-01.raffle_activity_account_month 结构
 CREATE TABLE IF NOT EXISTS `raffle_activity_account_month` (
-  `id` int unsigned NOT NULL AUTO_INCREMENT COMMENT '自增ID',
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT COMMENT '自增ID',
   `user_id` varchar(32) NOT NULL COMMENT '用户ID',
   `activity_id` bigint NOT NULL COMMENT '活动ID',
   `month` varchar(7) NOT NULL COMMENT '月（yyyy-mm）',
@@ -66,7 +66,7 @@ CREATE TABLE IF NOT EXISTS `raffle_activity_account_month` (
   `month_count_surplus` int NOT NULL COMMENT '月次数-剩余',
   `create_time` datetime NOT NULL DEFAULT (now()) COMMENT '创建时间',
   `update_time` datetime NOT NULL DEFAULT (now()) ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
-  PRIMARY KEY (`id`),
+  PRIMARY KEY (`id`) USING BTREE,
   UNIQUE KEY `uq_user_id_activity_id_month` (`user_id`,`activity_id`,`month`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='抽奖活动账户表-月次数';
 
@@ -180,20 +180,20 @@ INSERT INTO `raffle_activity_order_003` (`id`, `user_id`, `sku`, `activity_id`, 
 
 -- 导出  表 aurora-marketing-01.task 结构
 CREATE TABLE IF NOT EXISTS `task` (
-  `id` int unsigned NOT NULL AUTO_INCREMENT COMMENT '自增ID',
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT COMMENT '自增ID',
   `topic` varchar(32) NOT NULL COMMENT '消息主题',
   `message` varchar(512) NOT NULL COMMENT '消息主体',
   `state` varchar(16) NOT NULL DEFAULT 'create' COMMENT '任务状态；create-创建、completed-完成、fail-失败',
   `create_time` datetime NOT NULL DEFAULT (now()) COMMENT '创建时间',
   `update_time` datetime NOT NULL DEFAULT (now()) ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='任务表，发送MQ';
 
 -- 正在导出表  aurora-marketing-01.task 的数据：~0 rows (大约)
 
 -- 导出  表 aurora-marketing-01.user_award_record_000 结构
 CREATE TABLE IF NOT EXISTS `user_award_record_000` (
-  `id` int unsigned NOT NULL AUTO_INCREMENT COMMENT '自增ID',
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT COMMENT '自增ID',
   `user_id` varchar(32) NOT NULL COMMENT '用户ID',
   `activity_id` bigint NOT NULL COMMENT '活动ID',
   `strategy_id` bigint NOT NULL COMMENT '抽奖策略ID',
@@ -204,18 +204,18 @@ CREATE TABLE IF NOT EXISTS `user_award_record_000` (
   `award_state` varchar(16) NOT NULL DEFAULT 'create' COMMENT '奖品状态；create-创建、completed-发奖完成',
   `create_time` datetime NOT NULL DEFAULT (now()) COMMENT '创建时间',
   `update_time` datetime NOT NULL DEFAULT (now()) ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
-  PRIMARY KEY (`id`),
+  PRIMARY KEY (`id`) USING BTREE,
   UNIQUE KEY `uq_order_id` (`order_id`),
   KEY `idx_user_id` (`user_id`),
   KEY `idx_activity_id` (`activity_id`),
-  KEY `idx_award_id` (`strategy_id`)
+  KEY `idx_strategy_id` (`strategy_id`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='用户中奖记录表';
 
 -- 正在导出表  aurora-marketing-01.user_award_record_000 的数据：~0 rows (大约)
 
 -- 导出  表 aurora-marketing-01.user_award_record_001 结构
 CREATE TABLE IF NOT EXISTS `user_award_record_001` (
-  `id` int unsigned NOT NULL AUTO_INCREMENT COMMENT '自增ID',
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT COMMENT '自增ID',
   `user_id` varchar(32) NOT NULL COMMENT '用户ID',
   `activity_id` bigint NOT NULL COMMENT '活动ID',
   `strategy_id` bigint NOT NULL COMMENT '抽奖策略ID',
@@ -226,18 +226,18 @@ CREATE TABLE IF NOT EXISTS `user_award_record_001` (
   `award_state` varchar(16) NOT NULL DEFAULT 'create' COMMENT '奖品状态；create-创建、completed-发奖完成',
   `create_time` datetime NOT NULL DEFAULT (now()) COMMENT '创建时间',
   `update_time` datetime NOT NULL DEFAULT (now()) ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
-  PRIMARY KEY (`id`),
+  PRIMARY KEY (`id`) USING BTREE,
   UNIQUE KEY `uq_order_id` (`order_id`),
   KEY `idx_user_id` (`user_id`),
   KEY `idx_activity_id` (`activity_id`),
-  KEY `idx_award_id` (`strategy_id`)
+  KEY `idx_strategy_id` (`strategy_id`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='用户中奖记录表';
 
 -- 正在导出表  aurora-marketing-01.user_award_record_001 的数据：~0 rows (大约)
 
 -- 导出  表 aurora-marketing-01.user_award_record_002 结构
 CREATE TABLE IF NOT EXISTS `user_award_record_002` (
-  `id` int unsigned NOT NULL AUTO_INCREMENT COMMENT '自增ID',
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT COMMENT '自增ID',
   `user_id` varchar(32) NOT NULL COMMENT '用户ID',
   `activity_id` bigint NOT NULL COMMENT '活动ID',
   `strategy_id` bigint NOT NULL COMMENT '抽奖策略ID',
@@ -248,18 +248,18 @@ CREATE TABLE IF NOT EXISTS `user_award_record_002` (
   `award_state` varchar(16) NOT NULL DEFAULT 'create' COMMENT '奖品状态；create-创建、completed-发奖完成',
   `create_time` datetime NOT NULL DEFAULT (now()) COMMENT '创建时间',
   `update_time` datetime NOT NULL DEFAULT (now()) ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
-  PRIMARY KEY (`id`),
+  PRIMARY KEY (`id`) USING BTREE,
   UNIQUE KEY `uq_order_id` (`order_id`),
   KEY `idx_user_id` (`user_id`),
   KEY `idx_activity_id` (`activity_id`),
-  KEY `idx_award_id` (`strategy_id`)
+  KEY `idx_strategy_id` (`strategy_id`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='用户中奖记录表';
 
 -- 正在导出表  aurora-marketing-01.user_award_record_002 的数据：~0 rows (大约)
 
 -- 导出  表 aurora-marketing-01.user_award_record_003 结构
 CREATE TABLE IF NOT EXISTS `user_award_record_003` (
-  `id` int unsigned NOT NULL AUTO_INCREMENT COMMENT '自增ID',
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT COMMENT '自增ID',
   `user_id` varchar(32) NOT NULL COMMENT '用户ID',
   `activity_id` bigint NOT NULL COMMENT '活动ID',
   `strategy_id` bigint NOT NULL COMMENT '抽奖策略ID',
@@ -270,18 +270,18 @@ CREATE TABLE IF NOT EXISTS `user_award_record_003` (
   `award_state` varchar(16) NOT NULL DEFAULT 'create' COMMENT '奖品状态；create-创建、completed-发奖完成',
   `create_time` datetime NOT NULL DEFAULT (now()) COMMENT '创建时间',
   `update_time` datetime NOT NULL DEFAULT (now()) ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
-  PRIMARY KEY (`id`),
+  PRIMARY KEY (`id`) USING BTREE,
   UNIQUE KEY `uq_order_id` (`order_id`),
   KEY `idx_user_id` (`user_id`),
   KEY `idx_activity_id` (`activity_id`),
-  KEY `idx_award_id` (`strategy_id`)
+  KEY `idx_strategy_id` (`strategy_id`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='用户中奖记录表';
 
 -- 正在导出表  aurora-marketing-01.user_award_record_003 的数据：~0 rows (大约)
 
 -- 导出  表 aurora-marketing-01.user_raffle_order_000 结构
 CREATE TABLE IF NOT EXISTS `user_raffle_order_000` (
-  `id` int unsigned NOT NULL AUTO_INCREMENT COMMENT '自增ID',
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT COMMENT '自增ID',
   `user_id` varchar(32) NOT NULL COMMENT '用户ID',
   `activity_id` bigint NOT NULL COMMENT '活动ID',
   `activity_name` varchar(64) NOT NULL COMMENT '活动名称',
@@ -291,7 +291,7 @@ CREATE TABLE IF NOT EXISTS `user_raffle_order_000` (
   `order_state` varchar(16) NOT NULL DEFAULT 'create' COMMENT '订单状态；create-创建、used-已使用、cancel-已作废',
   `create_time` datetime NOT NULL DEFAULT (now()) COMMENT '创建时间',
   `update_time` datetime NOT NULL DEFAULT (now()) ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
-  PRIMARY KEY (`id`),
+  PRIMARY KEY (`id`) USING BTREE,
   UNIQUE KEY `uq_order_id` (`order_id`),
   KEY `idx_user_id_activity_id` (`user_id`,`activity_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='用户抽奖订单表';
@@ -300,7 +300,7 @@ CREATE TABLE IF NOT EXISTS `user_raffle_order_000` (
 
 -- 导出  表 aurora-marketing-01.user_raffle_order_001 结构
 CREATE TABLE IF NOT EXISTS `user_raffle_order_001` (
-  `id` int unsigned NOT NULL AUTO_INCREMENT COMMENT '自增ID',
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT COMMENT '自增ID',
   `user_id` varchar(32) NOT NULL COMMENT '用户ID',
   `activity_id` bigint NOT NULL COMMENT '活动ID',
   `activity_name` varchar(64) NOT NULL COMMENT '活动名称',
@@ -310,7 +310,7 @@ CREATE TABLE IF NOT EXISTS `user_raffle_order_001` (
   `order_state` varchar(16) NOT NULL DEFAULT 'create' COMMENT '订单状态；create-创建、used-已使用、cancel-已作废',
   `create_time` datetime NOT NULL DEFAULT (now()) COMMENT '创建时间',
   `update_time` datetime NOT NULL DEFAULT (now()) ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
-  PRIMARY KEY (`id`),
+  PRIMARY KEY (`id`) USING BTREE,
   UNIQUE KEY `uq_order_id` (`order_id`),
   KEY `idx_user_id_activity_id` (`user_id`,`activity_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='用户抽奖订单表';
@@ -319,7 +319,7 @@ CREATE TABLE IF NOT EXISTS `user_raffle_order_001` (
 
 -- 导出  表 aurora-marketing-01.user_raffle_order_002 结构
 CREATE TABLE IF NOT EXISTS `user_raffle_order_002` (
-  `id` int unsigned NOT NULL AUTO_INCREMENT COMMENT '自增ID',
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT COMMENT '自增ID',
   `user_id` varchar(32) NOT NULL COMMENT '用户ID',
   `activity_id` bigint NOT NULL COMMENT '活动ID',
   `activity_name` varchar(64) NOT NULL COMMENT '活动名称',
@@ -329,7 +329,7 @@ CREATE TABLE IF NOT EXISTS `user_raffle_order_002` (
   `order_state` varchar(16) NOT NULL DEFAULT 'create' COMMENT '订单状态；create-创建、used-已使用、cancel-已作废',
   `create_time` datetime NOT NULL DEFAULT (now()) COMMENT '创建时间',
   `update_time` datetime NOT NULL DEFAULT (now()) ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
-  PRIMARY KEY (`id`),
+  PRIMARY KEY (`id`) USING BTREE,
   UNIQUE KEY `uq_order_id` (`order_id`),
   KEY `idx_user_id_activity_id` (`user_id`,`activity_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='用户抽奖订单表';
@@ -338,7 +338,7 @@ CREATE TABLE IF NOT EXISTS `user_raffle_order_002` (
 
 -- 导出  表 aurora-marketing-01.user_raffle_order_003 结构
 CREATE TABLE IF NOT EXISTS `user_raffle_order_003` (
-  `id` int unsigned NOT NULL AUTO_INCREMENT COMMENT '自增ID',
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT COMMENT '自增ID',
   `user_id` varchar(32) NOT NULL COMMENT '用户ID',
   `activity_id` bigint NOT NULL COMMENT '活动ID',
   `activity_name` varchar(64) NOT NULL COMMENT '活动名称',
@@ -348,7 +348,7 @@ CREATE TABLE IF NOT EXISTS `user_raffle_order_003` (
   `order_state` varchar(16) NOT NULL DEFAULT 'create' COMMENT '订单状态；create-创建、used-已使用、cancel-已作废',
   `create_time` datetime NOT NULL DEFAULT (now()) COMMENT '创建时间',
   `update_time` datetime NOT NULL DEFAULT (now()) ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
-  PRIMARY KEY (`id`),
+  PRIMARY KEY (`id`) USING BTREE,
   UNIQUE KEY `uq_order_id` (`order_id`),
   KEY `idx_user_id_activity_id` (`user_id`,`activity_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='用户抽奖订单表';
