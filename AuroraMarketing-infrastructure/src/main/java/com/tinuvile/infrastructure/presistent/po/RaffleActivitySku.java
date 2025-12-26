@@ -14,7 +14,7 @@ import java.util.Date;
 public class RaffleActivitySku {
 
     /** 自增ID */
-    private Integer id;
+    private Long id;
 
     /** 商品SKU - 每一个组合当作一个商品 */
     private Long sku;
