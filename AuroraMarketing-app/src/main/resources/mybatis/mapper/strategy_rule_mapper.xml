@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.tinuvile.infrastructure.presistent.dao.IStrategyRuleDao">
+<mapper namespace="com.tinuvile.infrastructure.persistent.dao.IStrategyRuleDao">
 
-    <resultMap id="dataMap" type="com.tinuvile.infrastructure.presistent.po.StrategyRule">
+    <resultMap id="dataMap" type="com.tinuvile.infrastructure.persistent.po.StrategyRule">
         <id column="id" property="id"/>
         <result column="strategy_id" property="strategyId"/>
         <result column="award_id" property="awardId"/>
@@ -20,7 +20,7 @@
         limit 10
     </select>
 
-    <select id="queryStrategyRule" parameterType="com.tinuvile.infrastructure.presistent.po.StrategyRule"
+    <select id="queryStrategyRule" parameterType="com.tinuvile.infrastructure.persistent.po.StrategyRule"
             resultMap="dataMap">
         select id, strategy_id, award_id, rule_type, rule_model, rule_value, rule_desc
         from strategy_rule
@@ -28,7 +28,7 @@
           and rule_model = #{ruleModel}
     </select>
 
-    <select id="queryStrategyRuleValue" parameterType="com.tinuvile.infrastructure.presistent.po.StrategyRule"
+    <select id="queryStrategyRuleValue" parameterType="com.tinuvile.infrastructure.persistent.po.StrategyRule"
             resultType="java.lang.String">
         select rule_value
         from strategy_rule
