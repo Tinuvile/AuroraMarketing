@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 
 /**
  * @author Tinuvile
- * @description 活动账户实体类
+ * @description 活动账户（总）实体类
  * @since 2025/12/9
  */
 @Data

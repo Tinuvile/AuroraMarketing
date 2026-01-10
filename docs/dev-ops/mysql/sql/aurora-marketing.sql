@@ -63,7 +63,7 @@ CREATE TABLE IF NOT EXISTS `raffle_activity` (
 
 -- 正在导出表  aurora-marketing.raffle_activity 的数据：~1 rows (大约)
 INSERT INTO `raffle_activity` (`id`, `activity_id`, `activity_name`, `activity_desc`, `begin_date_time`, `end_date_time`, `strategy_id`, `state`, `create_time`, `update_time`) VALUES
-	(1, 100301, '测试活动', '测试活动', '2025-12-12 11:54:18', '2025-12-30 14:28:24', 100006, 'open', '2025-12-09 11:55:06', '2025-12-23 17:54:12');
+	(1, 100301, '测试活动', '测试活动', '2025-12-12 11:54:18', '2026-12-30 14:28:24', 100006, 'open', '2025-12-09 11:55:06', '2025-12-23 17:54:12');
 
 -- 导出  表 aurora-marketing.raffle_activity_count 结构
 CREATE TABLE IF NOT EXISTS `raffle_activity_count` (
@@ -99,7 +99,7 @@ CREATE TABLE IF NOT EXISTS `raffle_activity_sku` (
 
 -- 正在导出表  aurora-marketing.raffle_activity_sku 的数据：~0 rows (大约)
 INSERT INTO `raffle_activity_sku` (`id`, `sku`, `activity_id`, `activity_count_id`, `stock_count`, `stock_count_surplus`, `create_time`, `update_time`) VALUES
-	(1, 9011, 100301, 11101, 20, 0, '2025-12-09 21:47:45', '2025-12-23 18:18:56');
+	(1, 9011, 100301, 11101, 20, 20, '2025-12-09 21:47:45', '2025-12-23 18:18:56');
 
 -- 导出  表 aurora-marketing.rule_tree 结构
 CREATE TABLE IF NOT EXISTS `rule_tree` (

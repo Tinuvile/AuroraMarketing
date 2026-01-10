@@ -2,8 +2,8 @@ package com.tinuvile.test.infrastructure;
 
 
 import com.alibaba.fastjson.JSON;
-import com.tinuvile.infrastructure.presistent.dao.IAwardDao;
-import com.tinuvile.infrastructure.presistent.po.Award;
+import com.tinuvile.infrastructure.persistent.dao.IAwardDao;
+import com.tinuvile.infrastructure.persistent.po.Award;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.junit.runner.RunWith;

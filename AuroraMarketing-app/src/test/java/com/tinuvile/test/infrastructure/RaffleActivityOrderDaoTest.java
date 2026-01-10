@@ -2,8 +2,8 @@ package com.tinuvile.test.infrastructure;
 
 
 import com.alibaba.fastjson.JSON;
-import com.tinuvile.infrastructure.presistent.dao.IRaffleActivityOrderDao;
-import com.tinuvile.infrastructure.presistent.po.RaffleActivityOrder;
+import com.tinuvile.infrastructure.persistent.dao.IRaffleActivityOrderDao;
+import com.tinuvile.infrastructure.persistent.po.RaffleActivityOrder;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.RandomStringUtils;
 import org.jeasy.random.EasyRandom;

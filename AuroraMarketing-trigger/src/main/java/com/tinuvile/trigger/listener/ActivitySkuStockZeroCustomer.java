@@ -3,7 +3,7 @@ package com.tinuvile.trigger.listener;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.TypeReference;
-import com.tinuvile.domain.activity.service.ISkuStock;
+import com.tinuvile.domain.activity.service.IRaffleActivitySkuStockService;
 import com.tinuvile.types.event.BaseEvent;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.rabbit.annotation.Queue;
@@ -26,7 +26,7 @@ public class ActivitySkuStockZeroCustomer {
     private String topic;
 
     @Resource
-    private ISkuStock skuStock;
+    private IRaffleActivitySkuStockService skuStock;
 
     @RabbitListener(queuesToDeclare = @Queue(value = "activity_sku_stock_zero"))
     public void listener(String message) {
