@@ -17,7 +17,7 @@
         insert into raffle_activity_account_month(
             user_id, activity_id, month, month_count, month_count_surplus, create_time, update_time)
         values (
-                   #{userId}, #{activityId}, #{month}, #{monthCount}, #{monthCountSurplus}, now(), now())
+                   #{userId}, #{activityId}, #{month}, #{monthCount}, #{monthCountSurplus} - 1, now(), now())
     </insert>
 
     <select id="queryActivityAccountMonthByUserId" parameterType="com.tinuvile.infrastructure.persistent.po.RaffleActivityAccountMonth" resultMap="dataMap">

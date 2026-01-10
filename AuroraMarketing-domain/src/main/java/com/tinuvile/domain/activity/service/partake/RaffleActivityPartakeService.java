@@ -21,7 +21,7 @@ import java.util.Date;
 @Service
 public class RaffleActivityPartakeService extends AbstractRaffleActivityPartake {
 
-    private final SimpleDateFormat dateFormatMonth = new SimpleDateFormat("MMMM");
+    private final SimpleDateFormat dateFormatMonth = new SimpleDateFormat("yyyy-MM");
     private final SimpleDateFormat dateFormatDay = new SimpleDateFormat("yyyy-MM-dd");
 
     public RaffleActivityPartakeService(IActivityRepository activityRepository) {
@@ -91,7 +91,7 @@ public class RaffleActivityPartakeService extends AbstractRaffleActivityPartake 
     }
 
     @Override
-    protected UserRaffleOrderEntity buileUserRaffleOrder(String userId, Long activityId, Date currentDate) {
+    protected UserRaffleOrderEntity buildUserRaffleOrder(String userId, Long activityId, Date currentDate) {
 
         ActivityEntity activityEntity = activityRepository.queryRaffleActivityByActivityId(activityId);
 

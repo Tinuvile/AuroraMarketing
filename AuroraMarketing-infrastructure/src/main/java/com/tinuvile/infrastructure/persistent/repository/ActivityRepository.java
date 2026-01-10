@@ -77,7 +77,7 @@ public class ActivityRepository implements IActivityRepository {
                 .activityId(raffleActivitySku.getActivityId())
                 .activityCountId(raffleActivitySku.getActivityCountId())
                 .stockCount(raffleActivitySku.getStockCount())
-                .stockCountSurplus(cacheSkuStock.intValue()) // 剩余库存从Redis缓存中获取
+                .stockCountSurplus(raffleActivitySku.getStockCountSurplus())
                 .build();
     }
 
@@ -270,7 +270,7 @@ public class ActivityRepository implements IActivityRepository {
             ActivityAccountDayEntity activityAccountDayEntity = createPartakeOrderAggregate.getActivityAccountDayEntity();
             UserRaffleOrderEntity userRaffleOrderEntity = createPartakeOrderAggregate.getUserRaffleOrderEntity();
 
-            // 统一切换路由，以下事务中的所以操作，都走一个路由
+            // 统一切换路由，以下事务中的所有操作，都走一个路由
             dbRouter.doRouter(userId);
             transactionTemplate.execute(status -> {
                 try {

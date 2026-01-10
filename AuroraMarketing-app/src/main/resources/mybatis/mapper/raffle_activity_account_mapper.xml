@@ -58,7 +58,7 @@
         where user_id = #{userId} and activity_id = #{activityId}
     </update>
 
-    <update id="updateActivityAccountDaySurplusImageQuota" parameterType="com.tinuvile.infrastructure.persistent.po.RaffleActivityAccountDay">
+    <update id="updateActivityAccountDaySurplusImageQuota" parameterType="com.tinuvile.infrastructure.persistent.po.RaffleActivityAccount">
         update raffle_activity_account
         set day_count_surplus = #{dayCountSurplus} - 1, update_time = now()
         where user_id = #{userId} and activity_id = #{activityId}

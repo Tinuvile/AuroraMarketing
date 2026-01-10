@@ -60,7 +60,7 @@ public abstract class AbstractRaffleActivityPartake implements IRaffleActivityPa
         CreatePartakeOrderAggregate createPartakeOrderAggregate = this.doFilterAccount(userId, activityId, currentDate);
 
         // 构建订单
-        UserRaffleOrderEntity userRaffleOrder = this.buileUserRaffleOrder(userId, activityId, currentDate);
+        UserRaffleOrderEntity userRaffleOrder = this.buildUserRaffleOrder(userId, activityId, currentDate);
 
         // 填充抽奖订单实体对象
         createPartakeOrderAggregate.setUserRaffleOrderEntity(userRaffleOrder);
@@ -75,6 +75,6 @@ public abstract class AbstractRaffleActivityPartake implements IRaffleActivityPa
 
     protected abstract CreatePartakeOrderAggregate doFilterAccount(String userId, Long activityId, Date currentDate);
 
-    protected abstract UserRaffleOrderEntity buileUserRaffleOrder(String userId, Long activityId, Date currentDate);
+    protected abstract UserRaffleOrderEntity buildUserRaffleOrder(String userId, Long activityId, Date currentDate);
 
 }

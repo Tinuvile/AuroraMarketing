@@ -23,7 +23,7 @@ public class ActivityAccountDayEntity {
     /** 活动ID */
     private Long activityId;
 
-    /** 日期 (yyyy-mm-dd) */
+    /** 日期 (yyyy-MM-dd) */
     private String day;
 
     /** 日次数 */

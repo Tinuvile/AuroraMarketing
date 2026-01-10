@@ -23,7 +23,7 @@ public class ActivityAccountMonthEntity {
     /** 活动ID */
     private Long activityId;
 
-    /** 日期 (yyyy-mm) */
+    /** 日期 (yyyy-MM) */
     private String month;
 
     /** 月次数 */
