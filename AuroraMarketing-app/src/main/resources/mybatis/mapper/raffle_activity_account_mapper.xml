@@ -18,50 +18,87 @@
 
     <insert id="insert" parameterType="com.tinuvile.infrastructure.persistent.po.RaffleActivityAccount">
         insert into raffle_activity_account(user_id, activity_id, total_count, total_count_surplus,
-                                            month_count, month_count_surplus, day_count, day_count_surplus, create_time, update_time)
-        values(#{userId}, #{activityId}, #{totalCount}, #{totalCountSurplus}, #{monthCount}, #{monthCountSurplus}, #{dayCount},
-               #{dayCountSurplus}, now(), now())
+                                            month_count, month_count_surplus, day_count, day_count_surplus, create_time,
+                                            update_time)
+        values (#{userId}, #{activityId}, #{totalCount}, #{totalCountSurplus}, #{monthCount}, #{monthCountSurplus},
+                #{dayCount},
+                #{dayCountSurplus}, now(), now())
     </insert>
 
     <update id="updateAccountQuota" parameterType="com.tinuvile.infrastructure.persistent.po.RaffleActivityAccount">
         update raffle_activity_account
-        set
-            total_count = total_count + #{totalCount},
+        set total_count         = total_count + #{totalCount},
             total_count_surplus = total_count_surplus + #{totalCountSurplus},
-            month_count = month_count + #{monthCount},
+            month_count         = month_count + #{monthCount},
             month_count_surplus = month_count_surplus + #{monthCountSurplus},
-            day_count = day_count + #{dayCount},
-            day_count_surplus = day_count_surplus + #{dayCountSurplus},
-            update_time = now()
-        where user_id = #{userId} and activity_id = #{activityId}
+            day_count           = day_count + #{dayCount},
+            day_count_surplus   = day_count_surplus + #{dayCountSurplus},
+            update_time         = now()
+        where user_id = #{userId}
+          and activity_id = #{activityId}
     </update>
 
-    <select id="queryActivityAccountByUserId" parameterType="com.tinuvile.infrastructure.persistent.po.RaffleActivityAccount" resultMap="dataMap">
-        select user_id, activity_id, total_count, total_count_surplus, day_count,
-               day_count_surplus, month_count, month_count_surplus
+    <select id="queryActivityAccountByUserId"
+            parameterType="com.tinuvile.infrastructure.persistent.po.RaffleActivityAccount" resultMap="dataMap">
+        select user_id,
+               activity_id,
+               total_count,
+               total_count_surplus,
+               day_count,
+               day_count_surplus,
+               month_count,
+               month_count_surplus
         from raffle_activity_account
-        where user_id = #{userId} and activity_id = #{activityId}
+        where user_id = #{userId}
+          and activity_id = #{activityId}
     </select>
 
-    <update id="updateActivityAccountSubtractionQuota" parameterType="com.tinuvile.infrastructure.persistent.po.RaffleActivityAccount">
+    <update id="updateActivityAccountSubtractionQuota"
+            parameterType="com.tinuvile.infrastructure.persistent.po.RaffleActivityAccount">
         update raffle_activity_account
         set total_count_surplus = total_count_surplus - 1,
-            day_count_surplus = day_count_surplus - 1,
-            month_count_surplus = month_count_surplus - 1,
-            update_time = now()
-        where user_id = #{userId} and activity_id = #{activityId} and total_count_surplus > 0 and day_count_surplus > 0 and month_count_surplus > 0
+            update_time         = now()
+        where user_id = #{userId}
+          and activity_id = #{activityId}
+          and total_count_surplus > 0
     </update>
 
-    <update id="updateActivityAccountMonthSurplusImageQuota" parameterType="com.tinuvile.infrastructure.persistent.po.RaffleActivityAccount">
+    <update id="updateActivityAccountMonthSubtractionQuota"
+            parameterType="com.tinuvile.infrastructure.persistent.po.RaffleActivityAccount">
         update raffle_activity_account
-        set month_count_surplus = #{monthCountSurplus} - 1, update_time = now()
-        where user_id = #{userId} and activity_id = #{activityId}
+        set month_count_surplus = month_count_surplus - 1,
+            update_time         = now()
+        where user_id = #{userId}
+          and activity_id = #{activityId}
+          and month_count_surplus > 0
     </update>
 
-    <update id="updateActivityAccountDaySurplusImageQuota" parameterType="com.tinuvile.infrastructure.persistent.po.RaffleActivityAccount">
+    <update id="updateActivityAccountDaySubtractionQuota"
+            parameterType="com.tinuvile.infrastructure.persistent.po.RaffleActivityAccount">
         update raffle_activity_account
-        set day_count_surplus = #{dayCountSurplus} - 1, update_time = now()
-        where user_id = #{userId} and activity_id = #{activityId}
+        set day_count_surplus = day_count_surplus - 1,
+            update_time       = now()
+        where user_id = #{userId}
+          and activity_id = #{activityId}
+          and day_count_surplus > 0
+    </update>
+
+    <update id="updateActivityAccountMonthSurplusImageQuota"
+            parameterType="com.tinuvile.infrastructure.persistent.po.RaffleActivityAccount">
+        update raffle_activity_account
+        set month_count_surplus = #{monthCountSurplus} - 1,
+            update_time         = now()
+        where user_id = #{userId}
+          and activity_id = #{activityId}
+    </update>
+
+    <update id="updateActivityAccountDaySurplusImageQuota"
+            parameterType="com.tinuvile.infrastructure.persistent.po.RaffleActivityAccount">
+        update raffle_activity_account
+        set day_count_surplus = #{dayCountSurplus} - 1,
+            update_time       = now()
+        where user_id = #{userId}
+          and activity_id = #{activityId}
     </update>
 
 </mapper>

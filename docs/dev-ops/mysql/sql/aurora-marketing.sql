@@ -63,7 +63,7 @@ CREATE TABLE IF NOT EXISTS `raffle_activity` (
 
 -- 正在导出表  aurora-marketing.raffle_activity 的数据：~1 rows (大约)
 INSERT INTO `raffle_activity` (`id`, `activity_id`, `activity_name`, `activity_desc`, `begin_date_time`, `end_date_time`, `strategy_id`, `state`, `create_time`, `update_time`) VALUES
-	(1, 100301, '测试活动', '测试活动', '2025-12-12 11:54:18', '2026-12-30 14:28:24', 100006, 'open', '2025-12-09 11:55:06', '2025-12-23 17:54:12');
+	(1, 100301, '测试活动', '测试活动', '2025-12-12 11:54:18', '2026-12-30 14:28:24', 100006, 'open', '2025-12-09 11:55:06', '2026-01-10 16:48:17');
 
 -- 导出  表 aurora-marketing.raffle_activity_count 结构
 CREATE TABLE IF NOT EXISTS `raffle_activity_count` (
@@ -78,7 +78,7 @@ CREATE TABLE IF NOT EXISTS `raffle_activity_count` (
   UNIQUE KEY `uq_activity_count_id` (`activity_count_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='抽奖活动次数配置表';
 
--- 正在导出表  aurora-marketing.raffle_activity_count 的数据：~0 rows (大约)
+-- 正在导出表  aurora-marketing.raffle_activity_count 的数据：~1 rows (大约)
 INSERT INTO `raffle_activity_count` (`id`, `activity_count_id`, `total_count`, `month_count`, `day_count`, `create_time`, `update_time`) VALUES
 	(1, 11101, 1, 1, 1, '2025-12-09 21:49:14', '2025-12-09 21:49:14');
 
@@ -97,9 +97,9 @@ CREATE TABLE IF NOT EXISTS `raffle_activity_sku` (
   KEY `idx_activity_id_activity_count_id` (`activity_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='活动SKU表';
 
--- 正在导出表  aurora-marketing.raffle_activity_sku 的数据：~0 rows (大约)
+-- 正在导出表  aurora-marketing.raffle_activity_sku 的数据：~1 rows (大约)
 INSERT INTO `raffle_activity_sku` (`id`, `sku`, `activity_id`, `activity_count_id`, `stock_count`, `stock_count_surplus`, `create_time`, `update_time`) VALUES
-	(1, 9011, 100301, 11101, 20, 20, '2025-12-09 21:47:45', '2025-12-23 18:18:56');
+	(1, 9011, 100301, 11101, 20, 20, '2025-12-09 21:47:45', '2026-01-10 17:10:27');
 
 -- 导出  表 aurora-marketing.rule_tree 结构
 CREATE TABLE IF NOT EXISTS `rule_tree` (
@@ -165,7 +165,7 @@ CREATE TABLE IF NOT EXISTS `strategy` (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='策略总表';
 
--- 正在导出表  aurora-marketing.strategy 的数据：~2 rows (大约)
+-- 正在导出表  aurora-marketing.strategy 的数据：~3 rows (大约)
 INSERT INTO `strategy` (`id`, `strategy_id`, `strategy_desc`, `rule_models`, `create_time`, `update_time`) VALUES
 	(1, 10001, '抽奖策略1', 'rule_blacklist,rule_weight', '2025-11-22 20:53:07', '2025-11-27 21:27:34'),
 	(2, 10002, '抽奖策略2 - 验证lock', NULL, '2025-11-26 20:13:02', '2025-12-01 20:38:10'),
@@ -188,7 +188,7 @@ CREATE TABLE IF NOT EXISTS `strategy_award` (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='抽奖策略详情表';
 
--- 正在导出表  aurora-marketing.strategy_award 的数据：~9 rows (大约)
+-- 正在导出表  aurora-marketing.strategy_award 的数据：~12 rows (大约)
 INSERT INTO `strategy_award` (`id`, `strategy_id`, `award_id`, `award_title`, `award_subtitle`, `award_count`, `award_count_surplus`, `award_rate`, `rule_models`, `sort`, `create_time`, `update_time`) VALUES
 	(1, 10001, 101, '随机token数', NULL, 8000, 8000, 40.0000, 'tree_lock,rule_random', 1, '2025-11-22 20:54:25', '2025-12-05 17:53:45'),
 	(2, 10001, 102, '随机积分数', NULL, 10000, 10000, 40.0000, 'tree_lock,rule_random', 2, '2025-11-23 17:13:34', '2025-12-05 17:53:50'),
@@ -217,7 +217,7 @@ CREATE TABLE IF NOT EXISTS `strategy_rule` (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='策略规则表';
 
--- 正在导出表  aurora-marketing.strategy_rule 的数据：~11 rows (大约)
+-- 正在导出表  aurora-marketing.strategy_rule 的数据：~10 rows (大约)
 INSERT INTO `strategy_rule` (`id`, `strategy_id`, `award_id`, `rule_type`, `rule_model`, `rule_value`, `rule_desc`, `create_time`, `update_time`) VALUES
 	(1, 10001, 101, 2, 'rule_random', '200,1000', '随机token数', '2025-11-22 21:05:25', '2025-11-22 21:14:10'),
 	(2, 10001, 102, 2, 'rule_random', '1,1000', '随机积分数', '2025-11-23 17:17:56', '2025-11-23 17:18:09'),

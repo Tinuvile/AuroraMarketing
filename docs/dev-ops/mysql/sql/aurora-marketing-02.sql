@@ -143,7 +143,7 @@ CREATE TABLE IF NOT EXISTS `raffle_activity_order_002` (
   KEY `idx_user_id_activity_id` (`user_id`,`activity_id`,`state`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='抽奖活动单';
 
--- 正在导出表  aurora-marketing-02.raffle_activity_order_002 的数据：~1 rows (大约)
+-- 正在导出表  aurora-marketing-02.raffle_activity_order_002 的数据：~0 rows (大约)
 INSERT INTO `raffle_activity_order_002` (`id`, `user_id`, `sku`, `activity_id`, `activity_name`, `strategy_id`, `order_id`, `order_time`, `total_count`, `month_count`, `day_count`, `state`, `out_business_no`, `create_time`, `update_time`) VALUES
 	(1, 'Tinuvile', 100000, 100301, '测试活动', 100006, '477579130487', '2025-12-09 12:52:57', 1, 1, 1, 'not_used', '', '2025-12-09 20:52:56', '2025-12-09 22:02:58');
 
@@ -175,12 +175,17 @@ CREATE TABLE IF NOT EXISTS `raffle_activity_order_003` (
 -- 导出  表 aurora-marketing-02.task 结构
 CREATE TABLE IF NOT EXISTS `task` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT COMMENT '自增ID',
+  `user_id` varchar(32) NOT NULL COMMENT '用户ID',
   `topic` varchar(32) NOT NULL COMMENT '消息主题',
+  `message_id` varchar(11) NOT NULL COMMENT '消息编号',
   `message` varchar(512) NOT NULL COMMENT '消息主体',
   `state` varchar(16) NOT NULL DEFAULT 'create' COMMENT '任务状态；create-创建、completed-完成、fail-失败',
   `create_time` datetime NOT NULL DEFAULT (now()) COMMENT '创建时间',
   `update_time` datetime NOT NULL DEFAULT (now()) ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
-  PRIMARY KEY (`id`) USING BTREE
+  PRIMARY KEY (`id`) USING BTREE,
+  UNIQUE KEY `uq_message_id` (`message_id`),
+  KEY `idx_state` (`state`),
+  KEY `idx_update_time` (`update_time`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='任务表，发送MQ';
 
 -- 正在导出表  aurora-marketing-02.task 的数据：~0 rows (大约)
