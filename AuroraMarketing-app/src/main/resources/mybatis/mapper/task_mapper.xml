@@ -39,7 +39,7 @@
         select user_id, topic, message_id, message
         from task
         where state = 'fail'
-           or (state = 'create' and now() - update_time > 6)
+           or (state = 'create' and TIMESTAMPDIFF(SECOND, update_time, now()) > 6)
         limit 10
     </select>
 

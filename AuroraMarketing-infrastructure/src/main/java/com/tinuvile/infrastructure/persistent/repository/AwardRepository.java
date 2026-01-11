@@ -23,7 +23,7 @@ import javax.annotation.Resource;
 
 /**
  * @author Tinuvile
- * @description
+ * @description 奖品仓储实现类
  * @since 2026/1/11
  */
 @Slf4j
