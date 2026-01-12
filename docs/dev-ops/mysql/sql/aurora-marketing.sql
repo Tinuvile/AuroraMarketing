@@ -57,6 +57,7 @@ CREATE TABLE IF NOT EXISTS `raffle_activity` (
   `update_time` datetime NOT NULL DEFAULT (now()) ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
   PRIMARY KEY (`id`),
   UNIQUE KEY `uq_activity_id` (`activity_id`),
+  UNIQUE KEY `uq_strategy_id` (`strategy_id`),
   KEY `idx_begin_date_time` (`begin_date_time`),
   KEY `idx_end_date_time` (`end_date_time`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='抽奖活动表';

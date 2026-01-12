@@ -3,10 +3,10 @@ package com.tinuvile.test.trigger;
 import com.alibaba.fastjson.JSON;
 import com.tinuvile.api.dto.RaffleAwardListRequestDTO;
 import com.tinuvile.api.dto.RaffleAwardListResponseDTO;
-import com.tinuvile.api.dto.RaffleRequestDTO;
-import com.tinuvile.api.dto.RaffleResponseDTO;
-import com.tinuvile.api.response.Response;
-import com.tinuvile.trigger.http.RaffleController;
+import com.tinuvile.api.dto.RaffleStrategyRequestDTO;
+import com.tinuvile.api.dto.RaffleStrategyResponseDTO;
+import com.tinuvile.types.model.Response;
+import com.tinuvile.trigger.http.RaffleStrategyController;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Assert;
 import org.junit.Test;
@@ -28,7 +28,7 @@ import java.util.List;
 public class RaffleControllerTest {
 
     @Resource
-    private RaffleController raffleController;
+    private RaffleStrategyController raffleController;
 
     /**
      * 测试策略装配接口 - 正常场景
@@ -141,10 +141,10 @@ public class RaffleControllerTest {
         // 先装配策略
         raffleController.strategyArmory(10001L);
         
-        RaffleRequestDTO requestDTO = new RaffleRequestDTO();
+        RaffleStrategyRequestDTO requestDTO = new RaffleStrategyRequestDTO();
         requestDTO.setStrategyId(10001L);
         
-        Response<RaffleResponseDTO> response = raffleController.randomRaffle(requestDTO);
+        Response<RaffleStrategyResponseDTO> response = raffleController.randomRaffle(requestDTO);
         
         log.info("随机抽奖测试 - 请求参数: {}", JSON.toJSONString(requestDTO));
         log.info("随机抽奖测试 - 响应结果: {}", JSON.toJSONString(response));
@@ -168,10 +168,10 @@ public class RaffleControllerTest {
         // 先装配策略
         raffleController.strategyArmory(10002L);
         
-        RaffleRequestDTO requestDTO = new RaffleRequestDTO();
+        RaffleStrategyRequestDTO requestDTO = new RaffleStrategyRequestDTO();
         requestDTO.setStrategyId(10002L);
         
-        Response<RaffleResponseDTO> response = raffleController.randomRaffle(requestDTO);
+        Response<RaffleStrategyResponseDTO> response = raffleController.randomRaffle(requestDTO);
         
         log.info("随机抽奖测试(策略10002) - 请求参数: {}", JSON.toJSONString(requestDTO));
         log.info("随机抽奖测试(策略10002) - 响应结果: {}", JSON.toJSONString(response));
@@ -194,10 +194,10 @@ public class RaffleControllerTest {
         // 先装配策略
         raffleController.strategyArmory(10003L);
         
-        RaffleRequestDTO requestDTO = new RaffleRequestDTO();
+        RaffleStrategyRequestDTO requestDTO = new RaffleStrategyRequestDTO();
         requestDTO.setStrategyId(10003L);
         
-        Response<RaffleResponseDTO> response = raffleController.randomRaffle(requestDTO);
+        Response<RaffleStrategyResponseDTO> response = raffleController.randomRaffle(requestDTO);
         
         log.info("随机抽奖测试(策略10003) - 请求参数: {}", JSON.toJSONString(requestDTO));
         log.info("随机抽奖测试(策略10003) - 响应结果: {}", JSON.toJSONString(response));
@@ -224,10 +224,10 @@ public class RaffleControllerTest {
         log.info("开始进行 {} 次随机抽奖测试", raffleCount);
         
         for (int i = 0; i < raffleCount; i++) {
-            RaffleRequestDTO requestDTO = new RaffleRequestDTO();
+            RaffleStrategyRequestDTO requestDTO = new RaffleStrategyRequestDTO();
             requestDTO.setStrategyId(10001L);
             
-            Response<RaffleResponseDTO> response = raffleController.randomRaffle(requestDTO);
+            Response<RaffleStrategyResponseDTO> response = raffleController.randomRaffle(requestDTO);
             
             Assert.assertNotNull("响应结果不能为空", response);
             Assert.assertEquals("响应状态码应该为成功", "0000", response.getCode());
@@ -249,10 +249,10 @@ public class RaffleControllerTest {
      */
     @Test
     public void test_randomRaffle_invalid_strategy() {
-        RaffleRequestDTO requestDTO = new RaffleRequestDTO();
+        RaffleStrategyRequestDTO requestDTO = new RaffleStrategyRequestDTO();
         requestDTO.setStrategyId(99999L); // 不存在的策略ID
         
-        Response<RaffleResponseDTO> response = raffleController.randomRaffle(requestDTO);
+        Response<RaffleStrategyResponseDTO> response = raffleController.randomRaffle(requestDTO);
         
         log.info("异常场景测试 - 请求参数: {}", JSON.toJSONString(requestDTO));
         log.info("异常场景测试 - 响应结果: {}", JSON.toJSONString(response));
@@ -311,9 +311,9 @@ public class RaffleControllerTest {
         
         // 3. 随机抽奖
         log.info("=== 步骤3: 随机抽奖 ===");
-        RaffleRequestDTO raffleRequestDTO = new RaffleRequestDTO();
-        raffleRequestDTO.setStrategyId(strategyId);
-        Response<RaffleResponseDTO> raffleResponse = raffleController.randomRaffle(raffleRequestDTO);
+        RaffleStrategyRequestDTO raffleStrategyRequestDTO = new RaffleStrategyRequestDTO();
+        raffleStrategyRequestDTO.setStrategyId(strategyId);
+        Response<RaffleStrategyResponseDTO> raffleResponse = raffleController.randomRaffle(raffleStrategyRequestDTO);
         Assert.assertNotNull("抽奖响应不能为空", raffleResponse);
         Assert.assertEquals("抽奖应该成功", "0000", raffleResponse.getCode());
         Assert.assertNotNull("抽奖结果不能为空", raffleResponse.getData());

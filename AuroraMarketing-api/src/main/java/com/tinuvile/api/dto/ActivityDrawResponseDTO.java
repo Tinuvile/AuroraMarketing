@@ -8,17 +8,20 @@ import lombok.NoArgsConstructor;
 
 /**
  * @author Tinuvile
- * @description 抽奖响应参数
- * @since 2025/12/4
+ * @description 活动抽奖响应对象
+ * @since 2026/1/12
  */
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class RaffleResponseDTO {
+public class ActivityDrawResponseDTO {
 
     /** 奖品ID */
     private Integer awardId;
+
+    /** 奖品标题 */
+    private String awardTitle;
 
     /** 排序编号【策略奖品配置的奖品顺序编号】 */
     private Integer awardIndex;

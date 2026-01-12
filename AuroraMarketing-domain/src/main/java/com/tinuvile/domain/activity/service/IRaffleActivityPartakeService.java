@@ -19,4 +19,13 @@ public interface IRaffleActivityPartakeService {
      */
     UserRaffleOrderEntity createOrder(PartakeRaffleActivityEntity partakeRaffleActivityEntity);
 
+    /**
+     * 创建抽奖订单：用户参与抽奖活动，扣减活动账户库存，生成抽奖订单。如存在未被使用的订单，直接返回该订单。
+     *
+     * @param userId    用户ID
+     * @param activityId 活动ID
+     * @return 抽奖订单实体对象
+     */
+    UserRaffleOrderEntity createOrder(String userId, Long activityId);
+
 }
