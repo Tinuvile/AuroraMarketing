@@ -125,8 +125,6 @@ CREATE TABLE IF NOT EXISTS `raffle_activity_order_001` (
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='抽奖活动单';
 
 -- 正在导出表  aurora-marketing-01.raffle_activity_order_001 的数据：~0 rows (大约)
-INSERT INTO `raffle_activity_order_001` (`id`, `user_id`, `sku`, `activity_id`, `activity_name`, `strategy_id`, `order_id`, `order_time`, `total_count`, `month_count`, `day_count`, `state`, `out_business_no`, `create_time`, `update_time`) VALUES
-	(4, 'eOMtThyhVNLWUZNRcBaQKxI', -5106534569952410475, 100301, '测试活动', 100006, '969591958808', '2025-12-22 09:09:26', 1, 1, 1, 'not_used', 'NVGaJCDCrvwh', '2025-12-22 17:09:27', '2025-12-22 17:09:27');
 
 -- 导出  表 aurora-marketing-01.raffle_activity_order_002 结构
 CREATE TABLE IF NOT EXISTS `raffle_activity_order_002` (
@@ -152,8 +150,6 @@ CREATE TABLE IF NOT EXISTS `raffle_activity_order_002` (
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='抽奖活动单';
 
 -- 正在导出表  aurora-marketing-01.raffle_activity_order_002 的数据：~0 rows (大约)
-INSERT INTO `raffle_activity_order_002` (`id`, `user_id`, `sku`, `activity_id`, `activity_name`, `strategy_id`, `order_id`, `order_time`, `total_count`, `month_count`, `day_count`, `state`, `out_business_no`, `create_time`, `update_time`) VALUES
-	(4, 'yedUsFwdkelQbxeTeQOvaScfqIOOmaa', -167885730524958550, 100301, '测试活动', 100006, '802625426222', '2025-12-22 09:09:27', 1, 1, 1, 'not_used', 'QbpnRr9erzXl', '2025-12-22 17:09:27', '2025-12-22 17:09:27');
 
 -- 导出  表 aurora-marketing-01.raffle_activity_order_003 结构
 CREATE TABLE IF NOT EXISTS `raffle_activity_order_003` (
@@ -178,29 +174,7 @@ CREATE TABLE IF NOT EXISTS `raffle_activity_order_003` (
   KEY `idx_user_id_activity_id` (`user_id`,`activity_id`,`state`)
 ) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='抽奖活动单';
 
--- 正在导出表  aurora-marketing-01.raffle_activity_order_003 的数据：~21 rows (大约)
-INSERT INTO `raffle_activity_order_003` (`id`, `user_id`, `sku`, `activity_id`, `activity_name`, `strategy_id`, `order_id`, `order_time`, `total_count`, `month_count`, `day_count`, `state`, `out_business_no`, `create_time`, `update_time`) VALUES
-	(1, 'tinuvile', 9011, 100301, '测试活动', 100006, '888405655602', '2025-12-22 09:03:09', 1, 1, 1, 'complete', '700091009111', '2025-12-22 17:03:09', '2025-12-22 17:03:09'),
-	(2, 'tinuvile', 9011, 100301, '测试活动', 100006, '428519448658', '2026-01-10 09:10:14', 1, 1, 1, 'complete', '194830630550', '2026-01-10 17:10:14', '2026-01-10 17:10:14'),
-	(3, 'tinuvile', 9011, 100301, '测试活动', 100006, '437670659314', '2026-01-10 09:10:15', 1, 1, 1, 'complete', '731111409451', '2026-01-10 17:10:14', '2026-01-10 17:10:14'),
-	(4, 'tinuvile', 9011, 100301, '测试活动', 100006, '460150550442', '2026-01-10 09:10:15', 1, 1, 1, 'complete', '644011171894', '2026-01-10 17:10:14', '2026-01-10 17:10:14'),
-	(5, 'tinuvile', 9011, 100301, '测试活动', 100006, '866744383346', '2026-01-10 09:10:15', 1, 1, 1, 'complete', '727278181756', '2026-01-10 17:10:14', '2026-01-10 17:10:14'),
-	(6, 'tinuvile', 9011, 100301, '测试活动', 100006, '995953867375', '2026-01-10 09:10:15', 1, 1, 1, 'complete', '714953408817', '2026-01-10 17:10:14', '2026-01-10 17:10:14'),
-	(7, 'tinuvile', 9011, 100301, '测试活动', 100006, '535948308546', '2026-01-10 09:10:15', 1, 1, 1, 'complete', '352724605975', '2026-01-10 17:10:14', '2026-01-10 17:10:14'),
-	(8, 'tinuvile', 9011, 100301, '测试活动', 100006, '204080513432', '2026-01-10 09:10:15', 1, 1, 1, 'complete', '620766783764', '2026-01-10 17:10:14', '2026-01-10 17:10:14'),
-	(9, 'tinuvile', 9011, 100301, '测试活动', 100006, '070695437113', '2026-01-10 09:10:15', 1, 1, 1, 'complete', '280988888386', '2026-01-10 17:10:14', '2026-01-10 17:10:14'),
-	(10, 'tinuvile', 9011, 100301, '测试活动', 100006, '033092983101', '2026-01-10 09:10:15', 1, 1, 1, 'complete', '590543725112', '2026-01-10 17:10:14', '2026-01-10 17:10:14'),
-	(11, 'tinuvile', 9011, 100301, '测试活动', 100006, '142818806672', '2026-01-10 09:10:15', 1, 1, 1, 'complete', '143189383664', '2026-01-10 17:10:14', '2026-01-10 17:10:14'),
-	(12, 'tinuvile', 9011, 100301, '测试活动', 100006, '732311781931', '2026-01-10 09:10:15', 1, 1, 1, 'complete', '865083829206', '2026-01-10 17:10:14', '2026-01-10 17:10:14'),
-	(13, 'tinuvile', 9011, 100301, '测试活动', 100006, '695151906382', '2026-01-10 09:10:15', 1, 1, 1, 'complete', '789697277495', '2026-01-10 17:10:14', '2026-01-10 17:10:14'),
-	(14, 'tinuvile', 9011, 100301, '测试活动', 100006, '080136640133', '2026-01-10 09:10:15', 1, 1, 1, 'complete', '173936595891', '2026-01-10 17:10:14', '2026-01-10 17:10:14'),
-	(15, 'tinuvile', 9011, 100301, '测试活动', 100006, '040925928090', '2026-01-10 09:10:15', 1, 1, 1, 'complete', '167291543524', '2026-01-10 17:10:14', '2026-01-10 17:10:14'),
-	(16, 'tinuvile', 9011, 100301, '测试活动', 100006, '875008855025', '2026-01-10 09:10:15', 1, 1, 1, 'complete', '429603847558', '2026-01-10 17:10:14', '2026-01-10 17:10:14'),
-	(17, 'tinuvile', 9011, 100301, '测试活动', 100006, '237344625986', '2026-01-10 09:10:15', 1, 1, 1, 'complete', '923815316378', '2026-01-10 17:10:14', '2026-01-10 17:10:14'),
-	(18, 'tinuvile', 9011, 100301, '测试活动', 100006, '281756838956', '2026-01-10 09:10:15', 1, 1, 1, 'complete', '887041390541', '2026-01-10 17:10:14', '2026-01-10 17:10:14'),
-	(19, 'tinuvile', 9011, 100301, '测试活动', 100006, '730481329821', '2026-01-10 09:10:15', 1, 1, 1, 'complete', '504951048542', '2026-01-10 17:10:14', '2026-01-10 17:10:14'),
-	(20, 'tinuvile', 9011, 100301, '测试活动', 100006, '229509197148', '2026-01-10 09:10:15', 1, 1, 1, 'complete', '098272690966', '2026-01-10 17:10:14', '2026-01-10 17:10:14'),
-	(21, 'tinuvile', 9011, 100301, '测试活动', 100006, '812927544509', '2026-01-10 09:10:15', 1, 1, 1, 'complete', '596725650301', '2026-01-10 17:10:15', '2026-01-10 17:10:15');
+-- 正在导出表  aurora-marketing-01.raffle_activity_order_003 的数据：~0 rows (大约)
 
 -- 导出  表 aurora-marketing-01.task 结构
 CREATE TABLE IF NOT EXISTS `task` (
@@ -383,8 +357,6 @@ CREATE TABLE IF NOT EXISTS `user_raffle_order_003` (
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='用户抽奖订单表';
 
 -- 正在导出表  aurora-marketing-01.user_raffle_order_003 的数据：~0 rows (大约)
-INSERT INTO `user_raffle_order_003` (`id`, `user_id`, `activity_id`, `activity_name`, `strategy_id`, `order_id`, `order_time`, `order_state`, `create_time`, `update_time`) VALUES
-	(1, 'tinuvile', 100301, '测试活动', 100006, '103969569963', '2026-01-10 09:13:32', 'create', '2026-01-10 17:13:31', '2026-01-10 17:13:31');
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;

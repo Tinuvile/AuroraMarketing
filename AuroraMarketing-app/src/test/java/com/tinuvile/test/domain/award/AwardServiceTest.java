@@ -33,7 +33,7 @@ public class AwardServiceTest {
             UserAwardRecordEntity userAwardRecordEntity = new UserAwardRecordEntity();
             userAwardRecordEntity.setUserId("tinuvile");
             userAwardRecordEntity.setActivityId(100301L);
-            userAwardRecordEntity.setStrategyId(100006L);
+            userAwardRecordEntity.setStrategyId(10001L);
             userAwardRecordEntity.setOrderId(RandomStringUtils.randomNumeric(12));
             userAwardRecordEntity.setAwardId(101);
             userAwardRecordEntity.setAwardTitle("OpenAI 增加使用次数");

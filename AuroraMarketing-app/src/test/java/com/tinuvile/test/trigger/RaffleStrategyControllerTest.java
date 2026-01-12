@@ -25,7 +25,7 @@ import java.util.List;
 @Slf4j
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class RaffleControllerTest {
+public class RaffleStrategyControllerTest {
 
     @Resource
     private RaffleStrategyController raffleController;

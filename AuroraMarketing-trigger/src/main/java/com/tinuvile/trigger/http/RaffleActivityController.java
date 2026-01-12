@@ -19,10 +19,7 @@ import com.tinuvile.types.exception.AppException;
 import com.tinuvile.types.model.Response;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.Date;
@@ -67,7 +64,7 @@ public class RaffleActivityController implements IRaffleActivityService {
      */
     @RequestMapping(value = "armory", method = RequestMethod.GET)
     @Override
-    public Response<Boolean> armory(Long activityId) {
+    public Response<Boolean> armory(@RequestParam Long activityId) {
         try {
             log.info("活动装配：数据预热，开始 activityId:{}", activityId);
             // 活动装配
@@ -110,7 +107,7 @@ public class RaffleActivityController implements IRaffleActivityService {
      */
     @RequestMapping(value = "draw", method = RequestMethod.POST)
     @Override
-    public Response<ActivityDrawResponseDTO> draw(ActivityDrawRequestDTO request) {
+    public Response<ActivityDrawResponseDTO> draw(@RequestBody ActivityDrawRequestDTO request) {
         try {
             log.info("活动抽奖 userId:{} activityId:{}", request.getUserId(), request.getActivityId());
 
