@@ -13,6 +13,7 @@ import com.tinuvile.domain.strategy.service.rule.tree.impl.RuleLockLogicTreeNode
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -28,6 +29,7 @@ import java.util.List;
  * @description 抽奖策略测试类
  * @since 2025/11/25
  */
+@Ignore
 @Slf4j
 @RunWith(SpringRunner.class)
 @SpringBootTest

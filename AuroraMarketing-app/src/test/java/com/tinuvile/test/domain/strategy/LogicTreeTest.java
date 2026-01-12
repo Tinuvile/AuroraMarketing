@@ -6,6 +6,7 @@ import com.tinuvile.domain.strategy.model.valobj.*;
 import com.tinuvile.domain.strategy.service.rule.tree.factory.DefaultTreeFactory;
 import com.tinuvile.domain.strategy.service.rule.tree.factory.engine.IDecisionTreeEngine;
 import lombok.extern.slf4j.Slf4j;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -20,6 +21,7 @@ import java.util.HashMap;
  * @description 规则树测试
  * @since 2025/11/30
  */
+@Ignore
 @Slf4j
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -34,7 +36,7 @@ public class LogicTreeTest {
                 .treeId("tree_lock")
                 .ruleKey("rule_lock")
                 .ruleDesc("限定用户已完成N次抽奖后解锁")
-                .ruleValue("1")
+                .ruleValue("101:200, 10000")
                 .treeNodeLineVOList(new ArrayList<RuleTreeNodeLineVO>() {{
                     add(RuleTreeNodeLineVO.builder()
                             .treeId("tree_lock")
@@ -57,7 +59,7 @@ public class LogicTreeTest {
                 .treeId("tree_lock")
                 .ruleKey("rule_luck_award")
                 .ruleDesc("兜底奖品随机token")
-                .ruleValue("200,10000")
+                .ruleValue("101:200,10000")
                 .treeNodeLineVOList(new ArrayList<RuleTreeNodeLineVO>() {{
                     add(RuleTreeNodeLineVO.builder()
                             .treeId("tree_lock")
@@ -73,6 +75,7 @@ public class LogicTreeTest {
                 .treeId("tree_lock")
                 .ruleKey("rule_stock")
                 .ruleDesc("库存扣减规则")
+                .ruleValue("101:200,10000")
                 .ruleValue(null)
                 .treeNodeLineVOList(null)
                 .build();

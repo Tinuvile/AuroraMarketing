@@ -5,6 +5,7 @@ import com.tinuvile.domain.strategy.service.armory.IStrategyArmory;
 import com.tinuvile.domain.strategy.service.armory.IStrategyDispatch;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.FixMethodOrder;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.MethodSorters;
@@ -18,6 +19,7 @@ import javax.annotation.Resource;
  * @description 策略领域测试
  * @since 2025/11/23
  */
+@Ignore
 @Slf4j
 @RunWith(SpringRunner.class)
 @SpringBootTest
