@@ -39,6 +39,7 @@ public class ActivitySkuStockZeroCustomer {
             // 更新库存
             skuStock.clearActivitySkuStock(sku);
             // 清空队列
+            // todo 清空时，需要设置sku标识，不能全部清空
             skuStock.clearQueueValue();
         } catch (Exception e) {
             log.error("监听活动sku库存耗尽消息, topic:{}, message:{}", topic, message, e);

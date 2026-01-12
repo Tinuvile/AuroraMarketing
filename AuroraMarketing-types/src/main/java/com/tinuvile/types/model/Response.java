@@ -1,4 +1,4 @@
-package com.tinuvile.api.response;
+package com.tinuvile.types.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

@@ -161,4 +161,21 @@ public interface IStrategyRepository {
      */
     StrategyAwardEntity queryStrategyAwardEntity(Long strategyId, Integer awardId);
 
+    /**
+     * 查询活动下的策略ID
+     *
+     * @param activityId 活动ID
+     * @return 策略ID
+     */
+    Long queryStrategyIdByActivityId(Long activityId);
+
+    /**
+     * 查询用户今日抽奖次数
+     *
+     * @param userId 用户ID
+     * @param strategyId 策略ID
+     * @return 今日抽奖次数
+     */
+    Integer queryTodayUserRaffleCount(String userId, Long strategyId);
+
 }

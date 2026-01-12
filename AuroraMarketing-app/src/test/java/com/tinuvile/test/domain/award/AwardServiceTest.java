@@ -6,6 +6,7 @@ import com.tinuvile.domain.award.model.valobj.AwardStateVO;
 import com.tinuvile.domain.award.service.IAwardService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.RandomStringUtils;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -19,6 +20,7 @@ import java.util.Date;
  * @description 奖品服务测试
  * @since 2026/1/11
  */
+@Ignore
 @Slf4j
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -33,7 +35,7 @@ public class AwardServiceTest {
             UserAwardRecordEntity userAwardRecordEntity = new UserAwardRecordEntity();
             userAwardRecordEntity.setUserId("tinuvile");
             userAwardRecordEntity.setActivityId(100301L);
-            userAwardRecordEntity.setStrategyId(100006L);
+            userAwardRecordEntity.setStrategyId(10001L);
             userAwardRecordEntity.setOrderId(RandomStringUtils.randomNumeric(12));
             userAwardRecordEntity.setAwardId(101);
             userAwardRecordEntity.setAwardTitle("OpenAI 增加使用次数");

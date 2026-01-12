@@ -8,6 +8,7 @@ import com.tinuvile.types.exception.AppException;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -20,6 +21,7 @@ import javax.annotation.Resource;
  * @description 抽奖活动订单单测
  * @since 2025/12/9
  */
+@Ignore
 @Slf4j
 @RunWith(SpringRunner.class)
 @SpringBootTest

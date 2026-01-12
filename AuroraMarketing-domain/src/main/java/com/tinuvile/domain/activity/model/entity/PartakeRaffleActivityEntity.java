@@ -1,7 +1,10 @@
 package com.tinuvile.domain.activity.model.entity;
 
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * @author Tinuvile
@@ -9,6 +12,9 @@ import lombok.Data;
  * @since 2026/1/10
  */
 @Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class PartakeRaffleActivityEntity {
 
     /** 用户ID */

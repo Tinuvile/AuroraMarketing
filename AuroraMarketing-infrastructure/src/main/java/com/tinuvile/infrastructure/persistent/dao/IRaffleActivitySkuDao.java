@@ -4,6 +4,8 @@ package com.tinuvile.infrastructure.persistent.dao;
 import com.tinuvile.infrastructure.persistent.po.RaffleActivitySku;
 import org.apache.ibatis.annotations.Mapper;
 
+import java.util.List;
+
 /**
  * @author Tinuvile
  * @description 商品sku Dao
@@ -17,5 +19,7 @@ public interface IRaffleActivitySkuDao {
     void updateActivitySkuStock(Long sku);
 
     void clearActivitySkuStock(Long sku);
+
+    List<RaffleActivitySku> queryActivitySkuListByActivityId(Long activityId);
 
 }

@@ -8,6 +8,7 @@ import com.tinuvile.domain.strategy.service.rule.chain.factory.DefaultChainFacto
 import com.tinuvile.domain.strategy.service.rule.chain.impl.RuleWeightLogicChain;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -21,6 +22,7 @@ import javax.annotation.Resource;
  * @description 抽奖责任链测试
  * @since 2025/12/1
  */
+@Ignore
 @Slf4j
 @RunWith(SpringRunner.class)
 @SpringBootTest

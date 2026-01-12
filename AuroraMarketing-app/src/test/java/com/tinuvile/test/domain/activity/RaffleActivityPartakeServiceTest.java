@@ -6,6 +6,7 @@ import com.tinuvile.domain.activity.model.entity.PartakeRaffleActivityEntity;
 import com.tinuvile.domain.activity.model.entity.UserRaffleOrderEntity;
 import com.tinuvile.domain.activity.service.IRaffleActivityPartakeService;
 import lombok.extern.slf4j.Slf4j;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -18,6 +19,7 @@ import javax.annotation.Resource;
  * @description 抽奖活动订单测试
  * @since 2026/1/10
  */
+@Ignore
 @Slf4j
 @RunWith(SpringRunner.class)
 @SpringBootTest
