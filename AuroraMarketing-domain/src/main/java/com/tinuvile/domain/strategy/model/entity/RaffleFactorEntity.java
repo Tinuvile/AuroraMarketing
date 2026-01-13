@@ -6,6 +6,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.Date;
+
 /**
  * @author Tinuvile
  * @description 抽奖因子实体类 - 抽奖参数，封装执行抽奖所需的基础参数
@@ -22,5 +24,8 @@ public class RaffleFactorEntity {
 
     /** 策略ID */
     private Long strategyId;
+
+    /** 结束时间 */
+    private Date endDateTime;
 
 }

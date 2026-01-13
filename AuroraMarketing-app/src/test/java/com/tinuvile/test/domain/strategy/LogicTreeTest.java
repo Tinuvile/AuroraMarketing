@@ -14,6 +14,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import javax.annotation.Resource;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 
 /**
@@ -94,7 +95,7 @@ public class LogicTreeTest {
 
         IDecisionTreeEngine treeEngine = defaultTreeFactory.openLogicTree(ruleTreeVO);
 
-        DefaultTreeFactory.StrategyAwardVO strategyAwardVO = treeEngine.process("Tinuvile", 10001L, 105);
+        DefaultTreeFactory.StrategyAwardVO strategyAwardVO = treeEngine.process("Tinuvile", 10001L, 105, new Date());
         log.info("测试结果：{}", JSON.toJSONString(strategyAwardVO));
     }
 
