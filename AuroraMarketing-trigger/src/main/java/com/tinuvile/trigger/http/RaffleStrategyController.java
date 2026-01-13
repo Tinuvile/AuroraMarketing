@@ -115,7 +115,7 @@ public class RaffleStrategyController implements IRaffleStrategyService {
                                 .sort(strategyAwardEntity.getSort())
                                 .awardRuleLockCount(awardRuleLockCount)
                                 .isAwardUnlock(null == awardRuleLockCount || dayPartakeCount >= awardRuleLockCount)
-                                .waitUnLockCount(null == awardRuleLockCount || dayPartakeCount >= awardRuleLockCount ? 0 : awardRuleLockCount - dayPartakeCount)
+                                .waitUnlockCount(null == awardRuleLockCount || dayPartakeCount >= awardRuleLockCount ? 0 : awardRuleLockCount - dayPartakeCount)
                                 .build()
                 );
             }

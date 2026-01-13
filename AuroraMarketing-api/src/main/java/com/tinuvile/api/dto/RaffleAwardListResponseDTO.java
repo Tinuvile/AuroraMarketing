@@ -36,6 +36,6 @@ public class RaffleAwardListResponseDTO {
     private Boolean isAwardUnlock;
 
     /** 等待解锁数量 */
-    private Integer waitUnLockCount;
+    private Integer waitUnlockCount;
 
 }

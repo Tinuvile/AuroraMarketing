@@ -14,7 +14,7 @@ public interface IRaffleRule {
      * 根据规则树ID集合查询奖品中加锁数量的配置
      *
      * @param treeIds 奖品规则树ID值
-     * @return 奖品规则锁库存数量映射，键为奖品规则树ID，值为加锁值 rule_lock
+     * @return 解锁所需抽奖次数映射，键为奖品规则树ID，值为加锁值 rule_lock
      */
     Map<String, Integer> queryAwardRuleLockCount(String[] treeIds);
 
