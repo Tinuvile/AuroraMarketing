@@ -125,6 +125,7 @@ public class RaffleActivityController implements IRaffleActivityService {
                     RaffleFactorEntity.builder()
                     .userId(orderEntity.getUserId())
                     .strategyId(orderEntity.getStrategyId())
+                    .endDateTime(orderEntity.getEndDateTime())
                     .build()
             );
 

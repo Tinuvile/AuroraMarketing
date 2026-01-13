@@ -10,6 +10,7 @@ import com.tinuvile.domain.strategy.service.rule.tree.factory.DefaultTreeFactory
 import com.tinuvile.domain.strategy.service.rule.tree.factory.engine.IDecisionTreeEngine;
 import lombok.extern.slf4j.Slf4j;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -31,7 +32,7 @@ public class DecisionTreeEngine implements IDecisionTreeEngine {
     }
 
     @Override
-    public DefaultTreeFactory.StrategyAwardVO process(String userId, Long strategyId, Integer awardId) {
+    public DefaultTreeFactory.StrategyAwardVO process(String userId, Long strategyId, Integer awardId, Date endDateTime) {
         DefaultTreeFactory.StrategyAwardVO strategyAwardVO = null;
 
         // 获取基础信息
@@ -50,7 +51,7 @@ public class DecisionTreeEngine implements IDecisionTreeEngine {
             }
 
             // 决策节点计算
-            DefaultTreeFactory.TreeActionEntity logicEntity = logicTreeNode.logic(userId, strategyId, awardId, ruleValue);
+            DefaultTreeFactory.TreeActionEntity logicEntity = logicTreeNode.logic(userId, strategyId, awardId, ruleValue, endDateTime);
             RuleLogicCheckTypeVO ruleLogicCheckTypeVO = logicEntity.getRuleLogicCheckTypeVO();
             strategyAwardVO = logicEntity.getStrategyAwardVO();
             log.info("决策树引擎【{}】 treeId:{} node:{} code:{}",

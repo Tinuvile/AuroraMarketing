@@ -8,6 +8,7 @@ import com.tinuvile.domain.strategy.model.valobj.RuleTreeVO;
 import com.tinuvile.domain.strategy.model.valobj.StrategyAwardRuleModelVO;
 import com.tinuvile.domain.strategy.model.valobj.StrategyAwardStockKeyVO;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -130,6 +131,15 @@ public interface IStrategyRepository {
     Boolean subtractionAwardStock(String cacheKey);
 
     /**
+     * 缓存key，decr方式扣减库存
+     *
+     * @param cacheKey 缓存键
+     * @param endDateTime 活动结束时间
+     * @return 扣减结果
+     */
+    Boolean subtractionAwardStock(String cacheKey, Date endDateTime);
+
+    /**
      * 写入奖品库存消费队列，延迟消费更新数据库记录
      *
      * @param strategyAwardStockKeyVO 策略奖品库存键值对象
@@ -177,5 +187,13 @@ public interface IStrategyRepository {
      * @return 今日抽奖次数
      */
     Integer queryTodayUserRaffleCount(String userId, Long strategyId);
+
+    /**
+     * 根据规则树ID查询奖品中加锁数量的配置
+     *
+     * @param treeIds 奖品规则树ID值
+     * @return 奖品规则锁库存数量映射，键为奖品规则树ID，值为加锁值 rule_lock
+     */
+    Map<String, Integer> queryAwardRuleLockCount(String[] treeIds);
 
 }

@@ -1,6 +1,8 @@
 package com.tinuvile.domain.strategy.service.armory;
 
 
+import java.util.Date;
+
 /**
  * @author Tinuvile
  * @description 策略抽奖调度器
@@ -38,8 +40,9 @@ public interface IStrategyDispatch {
      *
      * @param strategyId 策略ID
      * @param awardId 奖品ID
+     * @param endDateTime 结束时间
      * @return 是否成功
      */
-    Boolean subtractionAwardStock(Long strategyId, Integer awardId);
+    Boolean subtractionAwardStock(Long strategyId, Integer awardId, Date endDateTime);
 
 }

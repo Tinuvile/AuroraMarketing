@@ -43,4 +43,7 @@ public class StrategyAwardEntity {
     /** 排序编号 */
     private Integer sort;
 
+    /** 规则模型，rule配置的模型同步到此表 */
+    private String ruleModels;
+
 }
