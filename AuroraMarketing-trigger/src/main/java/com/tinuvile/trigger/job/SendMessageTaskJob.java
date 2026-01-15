@@ -10,7 +10,6 @@ import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
 import java.util.List;
-import java.util.concurrent.ThreadPoolExecutor;
 
 /**
  * @author Tinuvile
@@ -23,8 +22,6 @@ public class SendMessageTaskJob {
 
     @Resource
     private ITaskService taskService;
-    @Resource
-    private ThreadPoolExecutor executor;
     @Resource
     private IDBRouterStrategy dbRouter;
 
