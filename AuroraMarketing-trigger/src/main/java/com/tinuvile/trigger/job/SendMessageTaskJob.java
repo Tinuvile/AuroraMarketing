@@ -29,42 +29,59 @@ public class SendMessageTaskJob {
     private IDBRouterStrategy dbRouter;
 
     @Scheduled(cron = "0/5 * * * * ?")
-    public void exec() {
+    public void exec_db01() {
         try {
-            // 获取分库数量
-            int dbCount = dbRouter.dbCount();
+            // 设置库表
+            dbRouter.setDBKey(1);
+            dbRouter.setTBKey(0);
+            // 查询未发送的任务
+            List<TaskEntity> taskEntities = taskService.queryNoSendMessageTaskList();
+            if (taskEntities.isEmpty()) return;
+            // 发送MQ消息
+            for (TaskEntity taskEntity : taskEntities) {
+                // 开启线程发送，提高发送效率，配置的线程池策略为 CallerRunPolicy， 在ThreadPoolConfig配置中有4个策略
+                // AbortPolicy：直接抛出 RejectedExecutionException 异常
+                // CallerRunPolicy：谁提交谁执行，提交任务的线程负责执行
+                // DiscardOldestPolicy：丢弃队列中最旧的任务，将新任务加入队列
+                // DiscardPolicy：直接丢弃新任务
+                try {
+                    taskService.sendMessage(taskEntity);
+                    taskService.updateTaskSendMessageComplete(taskEntity.getUserId(), taskEntity.getMessageId());
+                } catch (Exception e) {
+                    log.error("定时任务，发送MQ消息失败，userId:{}，topic:{}", taskEntity.getUserId(), taskEntity.getTopic(), e);
+                    taskService.updateTaskSendMessageFail(taskEntity.getUserId(), taskEntity.getMessageId());
+                }
+            }
+        } catch (Exception e) {
+            log.error("定时任务，扫描MQ任务表发送消息失败", e);
+        } finally {
+            dbRouter.clear();
+        }
+    }
 
-            // 逐个库扫描表【每个库一个任务表】
-            for (int dbIndex = 1; dbIndex <= dbCount; dbIndex++) {
-                int finalDbIndex = dbIndex;
-                // 异步处理分库，使用线程池 executor 为每个库创建一个线程
-                executor.execute(() -> {
-                    try {
-                        dbRouter.setDBKey(finalDbIndex);
-                        dbRouter.setTBKey(0);
-                        List<TaskEntity> taskEntities = taskService.queryNoSendMessageTaskList();
-                        if (taskEntities.isEmpty()) return;
-                        // 发送MQ消息
-                        for (TaskEntity taskEntity : taskEntities) {
-                            // 开启线程发送，提高发送效率，配置的线程池策略为 CallerRunPolicy， 在ThreadPoolConfig配置中有4个策略
-                            // AbortPolicy：直接抛出 RejectedExecutionException 异常
-                            // CallerRunPolicy：谁提交谁执行，提交任务的线程负责执行
-                            // DiscardOldestPolicy：丢弃队列中最旧的任务，将新任务加入队列
-                            // DiscardPolicy：直接丢弃新任务
-                            executor.execute(() -> {
-                                try {
-                                    taskService.sendMessage(taskEntity);
-                                    taskService.updateTaskSendMessageComplete(taskEntity.getUserId(), taskEntity.getMessageId());
-                                } catch (Exception e) {
-                                    log.error("定时任务，发送MQ消息失败，userId:{}，topic:{}", taskEntity.getUserId(), taskEntity.getTopic(), e);
-                                    taskService.updateTaskSendMessageFail(taskEntity.getUserId(), taskEntity.getMessageId());
-                                }
-                            });
-                        }
-                    } finally {
-                        dbRouter.clear();
-                    }
-                });
+    @Scheduled(cron = "0/5 * * * * ?")
+    public void exec_db02() {
+        try {
+            // 设置库表
+            dbRouter.setDBKey(2);
+            dbRouter.setTBKey(0);
+            // 查询未发送的任务
+            List<TaskEntity> taskEntities = taskService.queryNoSendMessageTaskList();
+            if (taskEntities.isEmpty()) return;
+            // 发送MQ消息
+            for (TaskEntity taskEntity : taskEntities) {
+                // 开启线程发送，提高发送效率，配置的线程池策略为 CallerRunPolicy， 在ThreadPoolConfig配置中有4个策略
+                // AbortPolicy：直接抛出 RejectedExecutionException 异常
+                // CallerRunPolicy：谁提交谁执行，提交任务的线程负责执行
+                // DiscardOldestPolicy：丢弃队列中最旧的任务，将新任务加入队列
+                // DiscardPolicy：直接丢弃新任务
+                try {
+                    taskService.sendMessage(taskEntity);
+                    taskService.updateTaskSendMessageComplete(taskEntity.getUserId(), taskEntity.getMessageId());
+                } catch (Exception e) {
+                    log.error("定时任务，发送MQ消息失败，userId:{}，topic:{}", taskEntity.getUserId(), taskEntity.getTopic(), e);
+                    taskService.updateTaskSendMessageFail(taskEntity.getUserId(), taskEntity.getMessageId());
+                }
             }
         } catch (Exception e) {
             log.error("定时任务，扫描MQ任务表发送消息失败", e);
