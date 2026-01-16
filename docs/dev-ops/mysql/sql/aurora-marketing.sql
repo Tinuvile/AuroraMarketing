@@ -2,7 +2,7 @@
 -- 主机:                           127.0.0.1
 -- 服务器版本:                        8.0.32 - MySQL Community Server - GPL
 -- 服务器操作系统:                      Linux
--- HeidiSQL 版本:                  12.13.0.7147
+-- HeidiSQL 版本:                  12.14.0.7165
 -- --------------------------------------------------------
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -42,6 +42,25 @@ INSERT INTO `award` (`id`, `award_id`, `award_key`, `award_config`, `award_desc`
 	(7, 107, 'user_pro_vip', '1', '赠送用户会员【月为单位】', '2025-11-23 14:18:29', '2025-11-23 17:15:31'),
 	(8, 108, 'user_pro_vip', '12', '赠送用户会员【月为单位】', '2025-11-23 14:19:11', '2025-11-23 17:15:29'),
 	(9, 100, 'user_token_blacklist', '100', '黑名单用户赠送token', '2025-11-25 14:36:17', '2025-11-25 14:36:17');
+
+-- 导出  表 aurora-marketing.daily_behavior_rebate 结构
+CREATE TABLE IF NOT EXISTS `daily_behavior_rebate` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT COMMENT '自增ID',
+  `behavior_type` varchar(16) NOT NULL COMMENT '行为类型（sign 签到、openai_pay 支付）',
+  `rebate_desc` varchar(128) NOT NULL COMMENT '返利描述',
+  `rebate_type` varchar(16) NOT NULL COMMENT '返利类型（sku 活动库存充值商品、integral 用户活动积分）',
+  `rebate_config` varchar(32) NOT NULL COMMENT '返利配置',
+  `state` varchar(12) NOT NULL COMMENT '状态（open 开启、close 关闭）',
+  `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `update_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+  PRIMARY KEY (`id`) USING BTREE,
+  KEY `idx_behavior_type` (`behavior_type`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='日常行为返利活动配置';
+
+-- 正在导出表  aurora-marketing.daily_behavior_rebate 的数据：~0 rows (大约)
+INSERT INTO `daily_behavior_rebate` (`id`, `behavior_type`, `rebate_desc`, `rebate_type`, `rebate_config`, `state`, `create_time`, `update_time`) VALUES
+	(1, 'sign', '签到返利-sku额度', 'sku', '9011', 'open', '2026-01-16 13:35:04', '2026-01-16 13:35:04'),
+	(2, 'sign', '签到返利-积分', 'integral', '10', 'open', '2026-01-16 13:35:28', '2026-01-16 13:35:28');
 
 -- 导出  表 aurora-marketing.raffle_activity 结构
 CREATE TABLE IF NOT EXISTS `raffle_activity` (

@@ -2,7 +2,7 @@
 -- 主机:                           127.0.0.1
 -- 服务器版本:                        8.0.32 - MySQL Community Server - GPL
 -- 服务器操作系统:                      Linux
--- HeidiSQL 版本:                  12.13.0.7147
+-- HeidiSQL 版本:                  12.14.0.7165
 -- --------------------------------------------------------
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -36,7 +36,7 @@ CREATE TABLE IF NOT EXISTS `raffle_activity_account` (
   UNIQUE KEY `uq_user_id_activity_id` (`user_id`,`activity_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='抽奖活动账户表';
 
--- 正在导出表  aurora-marketing-01.raffle_activity_account 的数据：~0 rows (大约)
+-- 正在导出表  aurora-marketing-01.raffle_activity_account 的数据：~1 rows (大约)
 INSERT INTO `raffle_activity_account` (`id`, `user_id`, `activity_id`, `total_count`, `total_count_surplus`, `month_count`, `month_count_surplus`, `day_count`, `day_count_surplus`, `create_time`, `update_time`) VALUES
 	(1, 'tinuvile', 100301, 70, 70, 70, 70, 70, 70, '2025-12-22 17:03:09', '2026-01-11 14:31:50');
 
@@ -54,7 +54,7 @@ CREATE TABLE IF NOT EXISTS `raffle_activity_account_day` (
   UNIQUE KEY `uq_user_id_activity_id_day` (`user_id`,`activity_id`,`day`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='抽奖活动账户表-日次数';
 
--- 正在导出表  aurora-marketing-01.raffle_activity_account_day 的数据：~0 rows (大约)
+-- 正在导出表  aurora-marketing-01.raffle_activity_account_day 的数据：~1 rows (大约)
 INSERT INTO `raffle_activity_account_day` (`id`, `user_id`, `activity_id`, `day`, `day_count`, `day_count_surplus`, `create_time`, `update_time`) VALUES
 	(1, 'tinuvile', 100301, '2026-01-10', 70, 70, '2026-01-10 17:13:31', '2026-01-10 17:13:31');
 
@@ -72,7 +72,7 @@ CREATE TABLE IF NOT EXISTS `raffle_activity_account_month` (
   UNIQUE KEY `uq_user_id_activity_id_month` (`user_id`,`activity_id`,`month`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='抽奖活动账户表-月次数';
 
--- 正在导出表  aurora-marketing-01.raffle_activity_account_month 的数据：~0 rows (大约)
+-- 正在导出表  aurora-marketing-01.raffle_activity_account_month 的数据：~1 rows (大约)
 INSERT INTO `raffle_activity_account_month` (`id`, `user_id`, `activity_id`, `month`, `month_count`, `month_count_surplus`, `create_time`, `update_time`) VALUES
 	(1, 'tinuvile', 100301, '一月', 70, 70, '2026-01-10 17:13:31', '2026-01-10 17:13:31');
 
@@ -281,6 +281,86 @@ CREATE TABLE IF NOT EXISTS `user_award_record_003` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='用户中奖记录表';
 
 -- 正在导出表  aurora-marketing-01.user_award_record_003 的数据：~0 rows (大约)
+
+-- 导出  表 aurora-marketing-01.user_behavior_rebate_order_000 结构
+CREATE TABLE IF NOT EXISTS `user_behavior_rebate_order_000` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT COMMENT '自增ID',
+  `user_id` varchar(32) NOT NULL COMMENT '用户ID',
+  `order_id` varchar(12) NOT NULL COMMENT '订单ID',
+  `behavior_type` varchar(16) NOT NULL COMMENT '行为类型（sign 签到、openai_pay 支付）',
+  `rebate_desc` varchar(128) NOT NULL COMMENT '返利描述',
+  `rebate_type` varchar(16) NOT NULL COMMENT '返利类型（sku 活动库存充值商品、integral 用户活动积分）',
+  `rebate_config` varchar(32) NOT NULL COMMENT '返利配置【sku值，积分值】',
+  `biz_id` varchar(64) NOT NULL COMMENT '业务ID - 拼接的唯一值',
+  `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `update_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+  PRIMARY KEY (`id`) USING BTREE,
+  UNIQUE KEY `uq_order_id` (`order_id`),
+  UNIQUE KEY `uq_biz_id` (`biz_id`),
+  KEY `idx_user_id` (`user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='用户行为返利流水订单表';
+
+-- 正在导出表  aurora-marketing-01.user_behavior_rebate_order_000 的数据：~0 rows (大约)
+
+-- 导出  表 aurora-marketing-01.user_behavior_rebate_order_001 结构
+CREATE TABLE IF NOT EXISTS `user_behavior_rebate_order_001` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT COMMENT '自增ID',
+  `user_id` varchar(32) NOT NULL COMMENT '用户ID',
+  `order_id` varchar(12) NOT NULL COMMENT '订单ID',
+  `behavior_type` varchar(16) NOT NULL COMMENT '行为类型（sign 签到、openai_pay 支付）',
+  `rebate_desc` varchar(128) NOT NULL COMMENT '返利描述',
+  `rebate_type` varchar(16) NOT NULL COMMENT '返利类型（sku 活动库存充值商品、integral 用户活动积分）',
+  `rebate_config` varchar(32) NOT NULL COMMENT '返利配置【sku值，积分值】',
+  `biz_id` varchar(64) NOT NULL COMMENT '业务ID - 拼接的唯一值',
+  `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `update_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+  PRIMARY KEY (`id`) USING BTREE,
+  UNIQUE KEY `uq_order_id` (`order_id`),
+  UNIQUE KEY `uq_biz_id` (`biz_id`),
+  KEY `idx_user_id` (`user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='用户行为返利流水订单表';
+
+-- 正在导出表  aurora-marketing-01.user_behavior_rebate_order_001 的数据：~0 rows (大约)
+
+-- 导出  表 aurora-marketing-01.user_behavior_rebate_order_002 结构
+CREATE TABLE IF NOT EXISTS `user_behavior_rebate_order_002` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT COMMENT '自增ID',
+  `user_id` varchar(32) NOT NULL COMMENT '用户ID',
+  `order_id` varchar(12) NOT NULL COMMENT '订单ID',
+  `behavior_type` varchar(16) NOT NULL COMMENT '行为类型（sign 签到、openai_pay 支付）',
+  `rebate_desc` varchar(128) NOT NULL COMMENT '返利描述',
+  `rebate_type` varchar(16) NOT NULL COMMENT '返利类型（sku 活动库存充值商品、integral 用户活动积分）',
+  `rebate_config` varchar(32) NOT NULL COMMENT '返利配置【sku值，积分值】',
+  `biz_id` varchar(64) NOT NULL COMMENT '业务ID - 拼接的唯一值',
+  `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `update_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+  PRIMARY KEY (`id`) USING BTREE,
+  UNIQUE KEY `uq_order_id` (`order_id`),
+  UNIQUE KEY `uq_biz_id` (`biz_id`),
+  KEY `idx_user_id` (`user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='用户行为返利流水订单表';
+
+-- 正在导出表  aurora-marketing-01.user_behavior_rebate_order_002 的数据：~0 rows (大约)
+
+-- 导出  表 aurora-marketing-01.user_behavior_rebate_order_003 结构
+CREATE TABLE IF NOT EXISTS `user_behavior_rebate_order_003` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT COMMENT '自增ID',
+  `user_id` varchar(32) NOT NULL COMMENT '用户ID',
+  `order_id` varchar(12) NOT NULL COMMENT '订单ID',
+  `behavior_type` varchar(16) NOT NULL COMMENT '行为类型（sign 签到、openai_pay 支付）',
+  `rebate_desc` varchar(128) NOT NULL COMMENT '返利描述',
+  `rebate_type` varchar(16) NOT NULL COMMENT '返利类型（sku 活动库存充值商品、integral 用户活动积分）',
+  `rebate_config` varchar(32) NOT NULL COMMENT '返利配置【sku值，积分值】',
+  `biz_id` varchar(64) NOT NULL COMMENT '业务ID - 拼接的唯一值',
+  `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `update_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+  PRIMARY KEY (`id`) USING BTREE,
+  UNIQUE KEY `uq_order_id` (`order_id`),
+  UNIQUE KEY `uq_biz_id` (`biz_id`),
+  KEY `idx_user_id` (`user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='用户行为返利流水订单表';
+
+-- 正在导出表  aurora-marketing-01.user_behavior_rebate_order_003 的数据：~0 rows (大约)
 
 -- 导出  表 aurora-marketing-01.user_raffle_order_000 结构
 CREATE TABLE IF NOT EXISTS `user_raffle_order_000` (
