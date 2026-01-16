@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 
 /**
  * @author Tinuvile
- * @description
+ * @description 行为实体对象
  * @since 2026/1/16
  */
 @Data
