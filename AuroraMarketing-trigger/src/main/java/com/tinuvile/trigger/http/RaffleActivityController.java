@@ -180,27 +180,27 @@ public class RaffleActivityController implements IRaffleActivityService {
     }
 
     /**
-     * 日志签到返利接口
+     * 日历签到返利接口
      *
      * @param userId 用户ID
      * @return 签到返利结果
      *
      * <p>
-     *     接口：<a href="http://localhost:8091/api/v1/raffle/activity/calendar_sigh_rebate">/api/v1/raffle/activity/calendar_sigh_rebate</a>
+     *     接口：<a href="http://localhost:8091/api/v1/raffle/activity/calendar_sign_rebate">/api/v1/raffle/activity/calendar_sign_rebate</a>
      *     入参：{"userId":"tinuvile"}
      * </p>
      *
      * curl --request POST \
-     *   -- url 'http://localhost:8091/api/v1/raffle/activity/calendar_sigh_rebate' \
+     *   -- url 'http://localhost:8091/api/v1/raffle/activity/calendar_sign_rebate' \
      *   --header 'Content-Type: application/json' \
      *   --data '{"userId":"tinuvile"}'
      *
      */
-    @RequestMapping(value = "calendar_sigh_rebate", method = RequestMethod.POST)
+    @RequestMapping(value = "calendar_sign_rebate", method = RequestMethod.POST)
     @Override
     public Response<Boolean> calendarSignRebate(@RequestParam String userId) {
         try {
-            log.info("日志签到返利开始 userId:{}", userId);
+            log.info("日历签到返利开始 userId:{}", userId);
             BehaviorEntity behaviorEntity = new BehaviorEntity();
             behaviorEntity.setUserId(userId);
             behaviorEntity.setBehaviorTypeVO(BehaviorTypeVO.SIGN);

@@ -25,7 +25,7 @@ import javax.annotation.Resource;
  */
 @Slf4j
 @Component
-public class RebateMessageCustomer {
+public class RebateMessageConsumer {
 
     @Value("${spring.rabbitmq.topic.send_rebate}")
     private String topic;

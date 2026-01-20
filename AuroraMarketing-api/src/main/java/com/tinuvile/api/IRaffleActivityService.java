@@ -30,7 +30,7 @@ public interface IRaffleActivityService {
     Response<ActivityDrawResponseDTO> draw(ActivityDrawRequestDTO request);
 
     /**
-     * @description 日志签到返利接口
+     * @description 日历签到返利接口
      *
      * @param userId 用户ID
      * @return 签到结果
