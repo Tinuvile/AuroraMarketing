@@ -3,6 +3,8 @@ package com.tinuvile.api;
 
 import com.tinuvile.api.dto.ActivityDrawRequestDTO;
 import com.tinuvile.api.dto.ActivityDrawResponseDTO;
+import com.tinuvile.api.dto.UserActivityAccountRequestDTO;
+import com.tinuvile.api.dto.UserActivityAccountResponseDTO;
 import com.tinuvile.types.model.Response;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -36,4 +38,21 @@ public interface IRaffleActivityService {
      * @return 签到结果
      */
     Response<Boolean> calendarSignRebate(@RequestParam String userId);
+
+    /**
+     * @description 判断是否完成日历签到返利接口
+     *
+     * @param userId 用户ID
+     * @return 是否已签到返利
+     */
+    Response<Boolean> isCalendarSignRebate(String userId);
+
+    /**
+     * @description 查询用户活动账户接口
+     *
+     * @param request 查询请求对象
+     * @return 用户活动账户信息
+     */
+    Response<UserActivityAccountResponseDTO> queryUserActivityAccount(UserActivityAccountRequestDTO request);
+
 }

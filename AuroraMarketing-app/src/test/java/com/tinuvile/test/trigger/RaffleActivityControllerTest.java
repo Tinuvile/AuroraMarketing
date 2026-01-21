@@ -5,6 +5,8 @@ import com.alibaba.fastjson.JSON;
 import com.tinuvile.api.IRaffleActivityService;
 import com.tinuvile.api.dto.ActivityDrawRequestDTO;
 import com.tinuvile.api.dto.ActivityDrawResponseDTO;
+import com.tinuvile.api.dto.UserActivityAccountRequestDTO;
+import com.tinuvile.api.dto.UserActivityAccountResponseDTO;
 import com.tinuvile.types.model.Response;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
@@ -47,6 +49,25 @@ public class RaffleActivityControllerTest {
     @Test
     public void test_calendarSignRebate() {
         Response<Boolean> response = raffleActivityService.calendarSignRebate("tinuvile");
+        log.info("测试结果：{}", JSON.toJSONString(response));
+    }
+
+    @Test
+    public void test_isCalendarSignRebate() {
+        Response<Boolean> response = raffleActivityService.isCalendarSignRebate("tinuvile");
+        log.info("测试结果：{}", JSON.toJSONString(response));
+    }
+
+    @Test
+    public void test_queryUserActivityAccount() {
+        UserActivityAccountRequestDTO request = new UserActivityAccountRequestDTO();
+        request.setActivityId(100301L);
+        request.setUserId("tinuvile");
+
+        // 查询数据
+        Response<UserActivityAccountResponseDTO> response = raffleActivityService.queryUserActivityAccount(request);
+
+        log.info("请求参数：{}", JSON.toJSONString(request));
         log.info("测试结果：{}", JSON.toJSONString(response));
     }
 

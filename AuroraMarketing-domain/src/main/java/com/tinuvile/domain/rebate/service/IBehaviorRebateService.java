@@ -2,6 +2,7 @@ package com.tinuvile.domain.rebate.service;
 
 
 import com.tinuvile.domain.rebate.model.entity.BehaviorEntity;
+import com.tinuvile.domain.rebate.model.entity.BehaviorRebateOrderEntity;
 
 import java.util.List;
 
@@ -19,5 +20,14 @@ public interface IBehaviorRebateService {
      * @return 订单ID
      */
     List<String> createOrder(BehaviorEntity behaviorEntity);
+
+    /**
+     * 根据外部单号查询订单
+     *
+     * @param userId       用户ID
+     * @param outBusinessNo 外部业务ID（签到则是日期字符串，支付则是外部的业务ID）
+     * @return 返利订单实体列表
+     */
+    List<BehaviorRebateOrderEntity> queryOrderByOutBusinessNo(String userId, String outBusinessNo);
 
 }

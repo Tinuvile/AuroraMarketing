@@ -5,13 +5,18 @@ import com.alibaba.fastjson.JSON;
 import com.tinuvile.api.IRaffleActivityService;
 import com.tinuvile.api.dto.ActivityDrawRequestDTO;
 import com.tinuvile.api.dto.ActivityDrawResponseDTO;
+import com.tinuvile.api.dto.UserActivityAccountRequestDTO;
+import com.tinuvile.api.dto.UserActivityAccountResponseDTO;
+import com.tinuvile.domain.activity.model.entity.ActivityAccountEntity;
 import com.tinuvile.domain.activity.model.entity.UserRaffleOrderEntity;
+import com.tinuvile.domain.activity.service.IRaffleActivityAccountQuotaService;
 import com.tinuvile.domain.activity.service.IRaffleActivityPartakeService;
 import com.tinuvile.domain.activity.service.armory.IActivityArmory;
 import com.tinuvile.domain.award.model.entity.UserAwardRecordEntity;
 import com.tinuvile.domain.award.model.valobj.AwardStateVO;
 import com.tinuvile.domain.award.service.IAwardService;
 import com.tinuvile.domain.rebate.model.entity.BehaviorEntity;
+import com.tinuvile.domain.rebate.model.entity.BehaviorRebateOrderEntity;
 import com.tinuvile.domain.rebate.model.valobj.BehaviorTypeVO;
 import com.tinuvile.domain.rebate.service.IBehaviorRebateService;
 import com.tinuvile.domain.strategy.model.entity.RaffleAwardEntity;
@@ -45,6 +50,8 @@ public class RaffleActivityController implements IRaffleActivityService {
 
     @Resource
     private IRaffleActivityPartakeService raffleActivityPartakeService;
+    @Resource
+    private IRaffleActivityAccountQuotaService raffleActivityAccountQuotaService;
     @Resource
     private IRaffleStrategy raffleStrategy;
     @Resource
@@ -224,6 +231,94 @@ public class RaffleActivityController implements IRaffleActivityService {
                     .code(ResponseCode.UN_ERROR.getCode())
                     .info(ResponseCode.UN_ERROR.getInfo())
                     .data(false)
+                    .build();
+        }
+    }
+
+    /**
+     * @description 判断是否签到接口
+     *
+     * @param userId 用户ID
+     * @return 签到返利结果
+     *
+     * <p>
+     *     接口：<a href="http://localhost:8091/api/v1/raffle/activity/is_calendar_sign_rebate">/api/v1/raffle/activity/is_calendar_sign_rebate</a>
+     *     入参：{"userId":"tinuvile"}
+     * </p>
+     *
+     *   curl -X POST http://localhost:8091/api/v1/raffle/activity/is_calendar_sign_rebate -d "userId=tinuvile" -H "Content-Type: application/x-www-form-urlencoded"
+     */
+    @RequestMapping(value = "is_calendar_sign_rebate", method = RequestMethod.POST)
+    @Override
+    public Response<Boolean> isCalendarSignRebate(String userId) {
+        try {
+            log.info("查询用户是否完成日志签到返利开始 userId:{}", userId);
+            String outBusinessNo = dateFormatDay.format(new Date());
+            List<BehaviorRebateOrderEntity> behaviorRebateOrderEntities = behaviorRebateService.queryOrderByOutBusinessNo(userId, outBusinessNo);
+            log.info("查询用户是否完成日历签到返利完成 userId:{} orders.size:{}", userId, behaviorRebateOrderEntities.size());
+            return Response.<Boolean>builder()
+                    .code(ResponseCode.SUCCESS.getCode())
+                    .info(ResponseCode.SUCCESS.getInfo())
+                    .data(!behaviorRebateOrderEntities.isEmpty())
+                    .build();
+        } catch (Exception e) {
+            log.error("查询用户是否完成日历签到返利失败 userId:{}", userId, e);
+            return Response.<Boolean>builder()
+                    .code(ResponseCode.UN_ERROR.getCode())
+                    .info(ResponseCode.UN_ERROR.getInfo())
+                    .data(false)
+                    .build();
+        }
+    }
+
+    /**
+     * @description 查询账户额度
+     *
+     * @param request 请求对象
+     * @return 用户活动账户结果
+     *
+     * <p>
+     *     接口：<a href="http://localhost:8091/api/v1/raffle/activity/query_user_activity_account">/api/v1/raffle/activity/query_user_activity_account</a>
+     *     入参：{"userId":"tinuvile"}
+     * </p>
+     *
+     *  curl --request POST \
+     *     * --url http://localhost:8091/api/v1/raffle/activity/query_user_activity_account \
+     *     * --header 'content-type: application/json' \
+     *     * --data '{
+     *     * "userId":"tinuvile",
+     *     * "activityId": 100301
+     *     * }'
+     */
+    @RequestMapping(value = "query_user_activity_account", method = RequestMethod.POST)
+    @Override
+    public Response<UserActivityAccountResponseDTO> queryUserActivityAccount(UserActivityAccountRequestDTO request) {
+        try {
+            log.info("查询用户活动账户开始 userId:{} activityId:{}", request.getUserId(), request.getActivityId());
+            // 参数校验
+            if (StringUtils.isBlank(request.getUserId()) || null == request.getActivityId()) {
+                throw new AppException(ResponseCode.ILLEGAL_PARAMETER.getCode(), ResponseCode.ILLEGAL_PARAMETER.getInfo());
+            }
+            ActivityAccountEntity activityAccountEntity = raffleActivityAccountQuotaService.queryActivityAccountEntity(request.getActivityId(), request.getUserId());
+            UserActivityAccountResponseDTO userActivityAccountResponseDTO = UserActivityAccountResponseDTO.builder()
+                    .totalCount(activityAccountEntity.getTotalCount())
+                    .totalCountSurplus(activityAccountEntity.getTotalCountSurplus())
+                    .dayCount(activityAccountEntity.getDayCount())
+                    .dayCountSurplus(activityAccountEntity.getDayCountSurplus())
+                    .monthCount(activityAccountEntity.getMonthCount())
+                    .monthCountSurplus(activityAccountEntity.getMonthCountSurplus())
+                    .build();
+            log.info("查询用户活动账户完成 userId:{} activityId:{} dto:{}", request.getUserId(), request.getActivityId(), JSON.toJSONString(userActivityAccountResponseDTO));
+            return Response.<UserActivityAccountResponseDTO>builder()
+                    .code(ResponseCode.SUCCESS.getCode())
+                    .info(ResponseCode.SUCCESS.getInfo())
+                    .data(userActivityAccountResponseDTO)
+                    .build();
+        } catch (Exception e) {
+            log.error("查询用户活动账户失败 userId:{} activityId:{}", request.getUserId(), request.getActivityId(), e);
+            return Response.<UserActivityAccountResponseDTO>builder()
+                    .code(ResponseCode.UN_ERROR.getCode())
+                    .info(ResponseCode.UN_ERROR.getInfo())
                     .build();
         }
     }

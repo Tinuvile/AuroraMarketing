@@ -5,6 +5,7 @@ import com.tinuvile.domain.strategy.model.entity.StrategyAwardEntity;
 import com.tinuvile.domain.strategy.model.entity.StrategyEntity;
 import com.tinuvile.domain.strategy.model.entity.StrategyRuleEntity;
 import com.tinuvile.domain.strategy.model.valobj.RuleTreeVO;
+import com.tinuvile.domain.strategy.model.valobj.RuleWeightVO;
 import com.tinuvile.domain.strategy.model.valobj.StrategyAwardRuleModelVO;
 import com.tinuvile.domain.strategy.model.valobj.StrategyAwardStockKeyVO;
 
@@ -195,5 +196,22 @@ public interface IStrategyRepository {
      * @return 奖品规则锁库存数量映射，键为奖品规则树ID，值为加锁值 rule_lock
      */
     Map<String, Integer> queryAwardRuleLockCount(String[] treeIds);
+
+    /**
+     * 根据用户ID、策略ID，查询用户活动账户总使用量
+     *
+     * @param userId     用户ID
+     * @param strategyId 策略ID
+     * @return 使用总量
+     */
+    Integer queryActivityAccountTotalUseCount(String userId, Long strategyId);
+
+    /**
+     * 查询奖品权重配置
+     *
+     * @param strategyId 策略ID
+     * @return 权重规则
+     */
+    List<RuleWeightVO> queryAwardRuleWeight(Long strategyId);
 
 }

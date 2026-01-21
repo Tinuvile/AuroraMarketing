@@ -30,8 +30,6 @@ public class RuleWeightLogicChain extends AbstractLogicChain {
     @Resource
     protected IStrategyDispatch strategyDispatch;
 
-    public Long userScore = 4500L;
-
     @Override
     protected String ruleModel() {
         return DefaultChainFactory.LogicModel.RULE_WEIGHT.getCode();
@@ -65,6 +63,7 @@ public class RuleWeightLogicChain extends AbstractLogicChain {
         Collections.sort(analyticalSortedKeys);
 
         // 权重值筛选，筛选出小于等于用户分数的最大权重值
+        Integer userScore = repository.queryActivityAccountTotalUseCount(userId, strategyId);
         Long nextValue = analyticalSortedKeys.stream()
                 .filter(key -> userScore >= key)
                 .max(Comparator.naturalOrder())
