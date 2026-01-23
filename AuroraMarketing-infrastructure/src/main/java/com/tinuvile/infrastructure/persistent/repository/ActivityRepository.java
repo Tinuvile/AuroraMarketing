@@ -157,7 +157,7 @@ public class ActivityRepository implements IActivityRepository {
             RaffleActivityAccountMonth raffleActivityAccountMonth = new RaffleActivityAccountMonth();
             raffleActivityAccountMonth.setUserId(createQuotaOrderAggregate.getUserId());
             raffleActivityAccountMonth.setActivityId(createQuotaOrderAggregate.getActivityId());
-            raffleActivityAccountMonth.setMonth(raffleActivityAccountMonth.currentMonth());
+            raffleActivityAccountMonth.setMonth(RaffleActivityAccountMonth.currentMonth());
             raffleActivityAccountMonth.setMonthCount(createQuotaOrderAggregate.getMonthCount());
             raffleActivityAccountMonth.setMonthCountSurplus(createQuotaOrderAggregate.getMonthCount());
 
@@ -165,7 +165,7 @@ public class ActivityRepository implements IActivityRepository {
             RaffleActivityAccountDay raffleActivityAccountDay = new RaffleActivityAccountDay();
             raffleActivityAccountDay.setUserId(createQuotaOrderAggregate.getUserId());
             raffleActivityAccountDay.setActivityId(createQuotaOrderAggregate.getActivityId());
-            raffleActivityAccountDay.setDay(raffleActivityAccountDay.currentDay());
+            raffleActivityAccountDay.setDay(RaffleActivityAccountDay.currentDay());
             raffleActivityAccountDay.setDayCount(createQuotaOrderAggregate.getDayCount());
             raffleActivityAccountDay.setDayCountSurplus(createQuotaOrderAggregate.getDayCount());
 
@@ -484,7 +484,7 @@ public class ActivityRepository implements IActivityRepository {
         RaffleActivityAccountDay raffleActivityAccountDay = new RaffleActivityAccountDay();
         raffleActivityAccountDay.setActivityId(activityId);
         raffleActivityAccountDay.setUserId(userId);
-        raffleActivityAccountDay.setDay(raffleActivityAccountDay.currentDay());
+        raffleActivityAccountDay.setDay(RaffleActivityAccountDay.currentDay());
         Integer dayPartakeCount = raffleActivityAccountDayDao.queryRaffleActivityAccountDayPartakeCount(raffleActivityAccountDay);
         // 当日未参与抽奖则为0次
         return null == dayPartakeCount ? 0 : dayPartakeCount;
@@ -496,6 +496,7 @@ public class ActivityRepository implements IActivityRepository {
                 .activityId(activityId)
                 .userId(userId)
                 .build());
+        if (null == raffleActivityAccount) return 0;
         return raffleActivityAccount.getTotalCount() - raffleActivityAccount.getTotalCountSurplus();
     }
 
@@ -524,12 +525,14 @@ public class ActivityRepository implements IActivityRepository {
         RaffleActivityAccountMonth raffleActivityAccountMonth = raffleActivityAccountMonthDao.queryActivityAccountMonthByUserId(RaffleActivityAccountMonth.builder()
                 .activityId(activityId)
                 .userId(userId)
+                .month(RaffleActivityAccountMonth.currentMonth())
                 .build());
 
         // 查询日账户额度
         RaffleActivityAccountDay raffleActivityAccountDay = raffleActivityAccountDayDao.queryActivityAccountDayByUserId(RaffleActivityAccountDay.builder()
                 .activityId(activityId)
                 .userId(userId)
+                .day(RaffleActivityAccountDay.currentDay())
                 .build());
 
         // 组装对象
