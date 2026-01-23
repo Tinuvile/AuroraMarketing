@@ -143,7 +143,7 @@ CREATE TABLE IF NOT EXISTS `raffle_activity_order_002` (
   KEY `idx_user_id_activity_id` (`user_id`,`activity_id`,`state`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='抽奖活动单';
 
--- 正在导出表  aurora-marketing-02.raffle_activity_order_002 的数据：~0 rows (大约)
+-- 正在导出表  aurora-marketing-02.raffle_activity_order_002 的数据：~1 rows (大约)
 INSERT INTO `raffle_activity_order_002` (`id`, `user_id`, `sku`, `activity_id`, `activity_name`, `strategy_id`, `order_id`, `order_time`, `total_count`, `month_count`, `day_count`, `state`, `out_business_no`, `create_time`, `update_time`) VALUES
 	(1, 'Tinuvile', 100000, 100301, '测试活动', 100006, '477579130487', '2025-12-09 12:52:57', 1, 1, 1, 'not_used', '', '2025-12-09 20:52:56', '2025-12-09 22:02:58');
 
@@ -361,6 +361,20 @@ CREATE TABLE IF NOT EXISTS `user_behavior_rebate_order_003` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='用户行为返利流水订单表';
 
 -- 正在导出表  aurora-marketing-02.user_behavior_rebate_order_003 的数据：~0 rows (大约)
+
+-- 导出  表 aurora-marketing-02.user_credit_account 结构
+CREATE TABLE IF NOT EXISTS `user_credit_account` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT COMMENT '自增ID',
+  `user_id` varchar(32) NOT NULL COMMENT '用户ID',
+  `total_amount` decimal(10,2) NOT NULL COMMENT '总积分，显示总账户值，记得一个人获得的总积分',
+  `available_amount` decimal(10,2) NOT NULL COMMENT '可用积分，每次扣减的值',
+  `account_status` varchar(8) NOT NULL COMMENT '账户状态【open - 可用，close - 冻结】',
+  `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `update_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='用户积分账户';
+
+-- 正在导出表  aurora-marketing-02.user_credit_account 的数据：~0 rows (大约)
 
 -- 导出  表 aurora-marketing-02.user_raffle_order_000 结构
 CREATE TABLE IF NOT EXISTS `user_raffle_order_000` (

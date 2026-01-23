@@ -36,9 +36,10 @@ CREATE TABLE IF NOT EXISTS `raffle_activity_account` (
   UNIQUE KEY `uq_user_id_activity_id` (`user_id`,`activity_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='抽奖活动账户表';
 
--- 正在导出表  aurora-marketing-01.raffle_activity_account 的数据：~0 rows (大约)
+-- 正在导出表  aurora-marketing-01.raffle_activity_account 的数据：~1 rows (大约)
 INSERT INTO `raffle_activity_account` (`id`, `user_id`, `activity_id`, `total_count`, `total_count_surplus`, `month_count`, `month_count_surplus`, `day_count`, `day_count_surplus`, `create_time`, `update_time`) VALUES
-	(1, 'tinuvile', 100301, 71, 71, 71, 71, 71, 71, '2025-12-22 17:03:09', '2026-01-20 20:28:57');
+	(1, 'tinuvile', 100301, 71, 71, 71, 71, 71, 71, '2025-12-22 17:03:09', '2026-01-20 20:28:57'),
+    (2, 'user001', 100301, 71, 71, 71, 71, 71, 71, '2025-12-22 17:03:09', '2026-01-20 20:28:57');
 
 -- 导出  表 aurora-marketing-01.raffle_activity_account_day 结构
 CREATE TABLE IF NOT EXISTS `raffle_activity_account_day` (
@@ -54,7 +55,7 @@ CREATE TABLE IF NOT EXISTS `raffle_activity_account_day` (
   UNIQUE KEY `uq_user_id_activity_id_day` (`user_id`,`activity_id`,`day`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='抽奖活动账户表-日次数';
 
--- 正在导出表  aurora-marketing-01.raffle_activity_account_day 的数据：~0 rows (大约)
+-- 正在导出表  aurora-marketing-01.raffle_activity_account_day 的数据：~1 rows (大约)
 INSERT INTO `raffle_activity_account_day` (`id`, `user_id`, `activity_id`, `day`, `day_count`, `day_count_surplus`, `create_time`, `update_time`) VALUES
 	(1, 'tinuvile', 100301, '2026-01-10', 70, 70, '2026-01-10 17:13:31', '2026-01-10 17:13:31');
 
@@ -72,7 +73,7 @@ CREATE TABLE IF NOT EXISTS `raffle_activity_account_month` (
   UNIQUE KEY `uq_user_id_activity_id_month` (`user_id`,`activity_id`,`month`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='抽奖活动账户表-月次数';
 
--- 正在导出表  aurora-marketing-01.raffle_activity_account_month 的数据：~0 rows (大约)
+-- 正在导出表  aurora-marketing-01.raffle_activity_account_month 的数据：~1 rows (大约)
 INSERT INTO `raffle_activity_account_month` (`id`, `user_id`, `activity_id`, `month`, `month_count`, `month_count_surplus`, `create_time`, `update_time`) VALUES
 	(1, 'tinuvile', 100301, '一月', 70, 70, '2026-01-10 17:13:31', '2026-01-10 17:13:31');
 
@@ -194,7 +195,7 @@ CREATE TABLE IF NOT EXISTS `task` (
   KEY `idx_update_time` (`update_time`)
 ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='任务表，发送MQ';
 
--- 正在导出表  aurora-marketing-01.task 的数据：~6 rows (大约)
+-- 正在导出表  aurora-marketing-01.task 的数据：~8 rows (大约)
 INSERT INTO `task` (`id`, `user_id`, `topic`, `message_id`, `message`, `state`, `create_time`, `update_time`) VALUES
 	(1, 'tinuvile', 'send_rebate', '95418288381', '{"data":{"bizId":"tinuvile_sku_20240429","rebateConfig":"9011","rebateType":"sku","userId":"tinuvile"},"id":"95418288381","timestamp":1768556636167}', 'completed', '2026-01-16 17:43:56', '2026-01-16 17:43:56'),
 	(2, 'tinuvile', 'send_rebate', '03109911463', '{"data":{"bizId":"tinuvile_integral_20240429","rebateConfig":"10","rebateType":"integral","userId":"tinuvile"},"id":"03109911463","timestamp":1768556636168}', 'completed', '2026-01-16 17:43:56', '2026-01-16 17:43:56'),
@@ -375,10 +376,24 @@ CREATE TABLE IF NOT EXISTS `user_behavior_rebate_order_003` (
   KEY `idx_user_id` (`user_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='用户行为返利流水订单表';
 
--- 正在导出表  aurora-marketing-01.user_behavior_rebate_order_003 的数据：~6 rows (大约)
+-- 正在导出表  aurora-marketing-01.user_behavior_rebate_order_003 的数据：~2 rows (大约)
 INSERT INTO `user_behavior_rebate_order_003` (`id`, `user_id`, `order_id`, `behavior_type`, `rebate_desc`, `rebate_type`, `rebate_config`, `out_business_no`, `biz_id`, `create_time`, `update_time`) VALUES
 	(8, 'tinuvile', '580855714495', 'sign', '签到返利-sku额度', 'sku', '9011', '', 'tinuvile_sku_20260120', '2026-01-20 20:33:36', '2026-01-20 20:33:36'),
 	(9, 'tinuvile', '949609281196', 'sign', '签到返利-积分', 'integral', '10', '', 'tinuvile_integral_20260120', '2026-01-20 20:33:37', '2026-01-20 20:33:37');
+
+-- 导出  表 aurora-marketing-01.user_credit_account 结构
+CREATE TABLE IF NOT EXISTS `user_credit_account` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT COMMENT '自增ID',
+  `user_id` varchar(32) NOT NULL COMMENT '用户ID',
+  `total_amount` decimal(10,2) NOT NULL COMMENT '总积分，显示总账户值，记得一个人获得的总积分',
+  `available_amount` decimal(10,2) NOT NULL COMMENT '可用积分，每次扣减的值',
+  `account_status` varchar(8) NOT NULL COMMENT '账户状态【open - 可用，close - 冻结】',
+  `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `update_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='用户积分账户';
+
+-- 正在导出表  aurora-marketing-01.user_credit_account 的数据：~0 rows (大约)
 
 -- 导出  表 aurora-marketing-01.user_raffle_order_000 结构
 CREATE TABLE IF NOT EXISTS `user_raffle_order_000` (

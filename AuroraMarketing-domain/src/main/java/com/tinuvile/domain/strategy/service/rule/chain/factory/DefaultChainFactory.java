@@ -77,8 +77,10 @@ public class DefaultChainFactory {
     public static class StrategyAwardVO {
         /** 奖励ID */
         private Integer awardId;
-        /** 规则模型 */
+        /** 规则模型；黑名单抽奖、权重规则、默认抽奖 */
         private String logicModel;
+        /** 抽奖奖品规则 */
+        private String awardRuleValue;
     }
 
     @Getter
