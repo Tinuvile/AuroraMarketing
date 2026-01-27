@@ -23,6 +23,8 @@ public class Constants {
         public static final String ACTIVITY_SKU_COUNT_QUERY_KEY = "activity_sku_count_query_key";
         public static final String ACTIVITY_SKU_STOCK_COUNT_KEY = "activity_sku_stock_count_key_";
         public static final String ACTIVITY_SKU_COUNT_CLEAR_KEY = "activity_sku_count_clear_key_";
+        public static final String ACTIVITY_ACCOUNT_LOCK = "activity_account_lock_";
+        public static final String USER_CREDIT_ACCOUNT_LOCK = "user_credit_account_lock_";
     }
 
 }
