@@ -34,12 +34,12 @@ CREATE TABLE IF NOT EXISTS `raffle_activity_account` (
   `update_time` datetime NOT NULL DEFAULT (now()) ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
   PRIMARY KEY (`id`),
   UNIQUE KEY `uq_user_id_activity_id` (`user_id`,`activity_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='抽奖活动账户表';
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='抽奖活动账户表';
 
--- 正在导出表  aurora-marketing-01.raffle_activity_account 的数据：~1 rows (大约)
+-- 正在导出表  aurora-marketing-01.raffle_activity_account 的数据：~2 rows (大约)
 INSERT INTO `raffle_activity_account` (`id`, `user_id`, `activity_id`, `total_count`, `total_count_surplus`, `month_count`, `month_count_surplus`, `day_count`, `day_count_surplus`, `create_time`, `update_time`) VALUES
 	(1, 'tinuvile', 100301, 71, 71, 71, 71, 71, 71, '2025-12-22 17:03:09', '2026-01-20 20:28:57'),
-    (2, 'user001', 100301, 71, 71, 71, 71, 71, 71, '2025-12-22 17:03:09', '2026-01-20 20:28:57');
+	(2, 'user001', 100301, 71, 71, 71, 71, 71, 71, '2025-12-22 17:03:09', '2026-01-20 20:28:57');
 
 -- 导出  表 aurora-marketing-01.raffle_activity_account_day 结构
 CREATE TABLE IF NOT EXISTS `raffle_activity_account_day` (
@@ -195,7 +195,7 @@ CREATE TABLE IF NOT EXISTS `task` (
   KEY `idx_update_time` (`update_time`)
 ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='任务表，发送MQ';
 
--- 正在导出表  aurora-marketing-01.task 的数据：~8 rows (大约)
+-- 正在导出表  aurora-marketing-01.task 的数据：~9 rows (大约)
 INSERT INTO `task` (`id`, `user_id`, `topic`, `message_id`, `message`, `state`, `create_time`, `update_time`) VALUES
 	(1, 'tinuvile', 'send_rebate', '95418288381', '{"data":{"bizId":"tinuvile_sku_20240429","rebateConfig":"9011","rebateType":"sku","userId":"tinuvile"},"id":"95418288381","timestamp":1768556636167}', 'completed', '2026-01-16 17:43:56', '2026-01-16 17:43:56'),
 	(2, 'tinuvile', 'send_rebate', '03109911463', '{"data":{"bizId":"tinuvile_integral_20240429","rebateConfig":"10","rebateType":"integral","userId":"tinuvile"},"id":"03109911463","timestamp":1768556636168}', 'completed', '2026-01-16 17:43:56', '2026-01-16 17:43:56'),
@@ -394,6 +394,82 @@ CREATE TABLE IF NOT EXISTS `user_credit_account` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='用户积分账户';
 
 -- 正在导出表  aurora-marketing-01.user_credit_account 的数据：~0 rows (大约)
+
+-- 导出  表 aurora-marketing-01.user_credit_order_000 结构
+CREATE TABLE IF NOT EXISTS `user_credit_order_000` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT COMMENT '自增ID',
+  `user_id` varchar(32) NOT NULL COMMENT '用户ID',
+  `order_id` varchar(12) NOT NULL COMMENT '订单ID',
+  `trade_name` varchar(32) NOT NULL COMMENT '交易名称',
+  `trade_type` varchar(8) NOT NULL DEFAULT 'forward' COMMENT '交易类型；forward-正向、reverse-逆向',
+  `trade_amount` decimal(10,2) NOT NULL COMMENT '交易金额',
+  `out_business_no` varchar(64) NOT NULL COMMENT '业务仿重ID - 外部透传。返利、行为等唯一标识',
+  `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `update_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `uq_order_id` (`order_id`),
+  UNIQUE KEY `uq_out_business_no` (`out_business_no`),
+  KEY `idx_user_id` (`user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='用户积分订单记录';
+
+-- 正在导出表  aurora-marketing-01.user_credit_order_000 的数据：~0 rows (大约)
+
+-- 导出  表 aurora-marketing-01.user_credit_order_001 结构
+CREATE TABLE IF NOT EXISTS `user_credit_order_001` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT COMMENT '自增ID',
+  `user_id` varchar(32) NOT NULL COMMENT '用户ID',
+  `order_id` varchar(12) NOT NULL COMMENT '订单ID',
+  `trade_name` varchar(32) NOT NULL COMMENT '交易名称',
+  `trade_type` varchar(8) NOT NULL DEFAULT 'forward' COMMENT '交易类型；forward-正向、reverse-逆向',
+  `trade_amount` decimal(10,2) NOT NULL COMMENT '交易金额',
+  `out_business_no` varchar(64) NOT NULL COMMENT '业务仿重ID - 外部透传。返利、行为等唯一标识',
+  `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `update_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `uq_order_id` (`order_id`),
+  UNIQUE KEY `uq_out_business_no` (`out_business_no`),
+  KEY `idx_user_id` (`user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='用户积分订单记录';
+
+-- 正在导出表  aurora-marketing-01.user_credit_order_001 的数据：~0 rows (大约)
+
+-- 导出  表 aurora-marketing-01.user_credit_order_002 结构
+CREATE TABLE IF NOT EXISTS `user_credit_order_002` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT COMMENT '自增ID',
+  `user_id` varchar(32) NOT NULL COMMENT '用户ID',
+  `order_id` varchar(12) NOT NULL COMMENT '订单ID',
+  `trade_name` varchar(32) NOT NULL COMMENT '交易名称',
+  `trade_type` varchar(8) NOT NULL DEFAULT 'forward' COMMENT '交易类型；forward-正向、reverse-逆向',
+  `trade_amount` decimal(10,2) NOT NULL COMMENT '交易金额',
+  `out_business_no` varchar(64) NOT NULL COMMENT '业务仿重ID - 外部透传。返利、行为等唯一标识',
+  `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `update_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `uq_order_id` (`order_id`),
+  UNIQUE KEY `uq_out_business_no` (`out_business_no`),
+  KEY `idx_user_id` (`user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='用户积分订单记录';
+
+-- 正在导出表  aurora-marketing-01.user_credit_order_002 的数据：~0 rows (大约)
+
+-- 导出  表 aurora-marketing-01.user_credit_order_003 结构
+CREATE TABLE IF NOT EXISTS `user_credit_order_003` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT COMMENT '自增ID',
+  `user_id` varchar(32) NOT NULL COMMENT '用户ID',
+  `order_id` varchar(12) NOT NULL COMMENT '订单ID',
+  `trade_name` varchar(32) NOT NULL COMMENT '交易名称',
+  `trade_type` varchar(8) NOT NULL DEFAULT 'forward' COMMENT '交易类型；forward-正向、reverse-逆向',
+  `trade_amount` decimal(10,2) NOT NULL COMMENT '交易金额',
+  `out_business_no` varchar(64) NOT NULL COMMENT '业务仿重ID - 外部透传。返利、行为等唯一标识',
+  `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `update_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `uq_order_id` (`order_id`),
+  UNIQUE KEY `uq_out_business_no` (`out_business_no`),
+  KEY `idx_user_id` (`user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='用户积分订单记录';
+
+-- 正在导出表  aurora-marketing-01.user_credit_order_003 的数据：~0 rows (大约)
 
 -- 导出  表 aurora-marketing-01.user_raffle_order_000 结构
 CREATE TABLE IF NOT EXISTS `user_raffle_order_000` (
