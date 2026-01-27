@@ -65,6 +65,7 @@ public class CreditRepository implements ICreditRepository {
         RLock lock = redisService.getLock(Constants.RedisKey.USER_CREDIT_ACCOUNT_LOCK + userId + Constants.UNDERLINE + creditOrderEntity.getOutBusinessNo());
         try {
             lock.lock(3, TimeUnit.SECONDS);
+            dbRouter.doRouter(userId);
             // 编程式事务
             transactionTemplate.execute(status -> {
                 try {
