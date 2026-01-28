@@ -4,6 +4,7 @@ package com.tinuvile.trigger.listener;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.TypeReference;
 import com.tinuvile.domain.activity.model.entity.SkuRechargeEntity;
+import com.tinuvile.domain.activity.model.valobj.OrderTradeTypeVO;
 import com.tinuvile.domain.activity.service.IRaffleActivityAccountQuotaService;
 import com.tinuvile.domain.credit.model.entity.TradeEntity;
 import com.tinuvile.domain.credit.model.valobj.TradeNameVO;
@@ -58,6 +59,7 @@ public class RebateMessageConsumer {
                     skuRechargeEntity.setUserId(rebateMessage.getUserId());
                     skuRechargeEntity.setSku(Long.valueOf(rebateMessage.getRebateConfig()));
                     skuRechargeEntity.setOutBusinessNo(rebateMessage.getBizId());
+                    skuRechargeEntity.setOrderTradeType(OrderTradeTypeVO.rebate_no_pay_trade);
                     raffleActivityAccountQuotaService.createOrder(skuRechargeEntity);
                     break;
                 case "credit":

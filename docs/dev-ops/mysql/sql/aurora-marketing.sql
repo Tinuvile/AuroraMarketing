@@ -81,7 +81,7 @@ CREATE TABLE IF NOT EXISTS `raffle_activity` (
   KEY `idx_end_date_time` (`end_date_time`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='抽奖活动表';
 
--- 正在导出表  aurora-marketing.raffle_activity 的数据：~1 rows (大约)
+-- 正在导出表  aurora-marketing.raffle_activity 的数据：~0 rows (大约)
 INSERT INTO `raffle_activity` (`id`, `activity_id`, `activity_name`, `activity_desc`, `begin_date_time`, `end_date_time`, `strategy_id`, `state`, `create_time`, `update_time`) VALUES
 	(1, 100301, '测试活动', '测试活动', '2025-12-12 11:54:18', '2026-12-30 14:28:24', 10001, 'open', '2025-12-09 11:55:06', '2026-01-12 15:54:55');
 
@@ -98,7 +98,7 @@ CREATE TABLE IF NOT EXISTS `raffle_activity_count` (
   UNIQUE KEY `uq_activity_count_id` (`activity_count_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='抽奖活动次数配置表';
 
--- 正在导出表  aurora-marketing.raffle_activity_count 的数据：~1 rows (大约)
+-- 正在导出表  aurora-marketing.raffle_activity_count 的数据：~0 rows (大约)
 INSERT INTO `raffle_activity_count` (`id`, `activity_count_id`, `total_count`, `month_count`, `day_count`, `create_time`, `update_time`) VALUES
 	(1, 11101, 1, 1, 1, '2025-12-09 21:49:14', '2025-12-09 21:49:14');
 
@@ -110,6 +110,7 @@ CREATE TABLE IF NOT EXISTS `raffle_activity_sku` (
   `activity_count_id` bigint NOT NULL COMMENT '活动个人参与次数ID',
   `stock_count` int NOT NULL COMMENT '商品库存',
   `stock_count_surplus` int NOT NULL COMMENT '剩余库存',
+  `product_amount` decimal(10,2) NOT NULL COMMENT '商品金额【积分】',
   `create_time` datetime NOT NULL DEFAULT (now()) COMMENT '创建时间',
   `update_time` datetime NOT NULL DEFAULT (now()) ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
   PRIMARY KEY (`id`) USING BTREE,
@@ -117,9 +118,9 @@ CREATE TABLE IF NOT EXISTS `raffle_activity_sku` (
   KEY `idx_activity_id_activity_count_id` (`activity_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='活动SKU表';
 
--- 正在导出表  aurora-marketing.raffle_activity_sku 的数据：~1 rows (大约)
-INSERT INTO `raffle_activity_sku` (`id`, `sku`, `activity_id`, `activity_count_id`, `stock_count`, `stock_count_surplus`, `create_time`, `update_time`) VALUES
-	(1, 9011, 100301, 11101, 20, 20, '2025-12-09 21:47:45', '2026-01-10 17:10:27');
+-- 正在导出表  aurora-marketing.raffle_activity_sku 的数据：~0 rows (大约)
+INSERT INTO `raffle_activity_sku` (`id`, `sku`, `activity_id`, `activity_count_id`, `stock_count`, `stock_count_surplus`, `product_amount`, `create_time`, `update_time`) VALUES
+	(1, 9011, 100301, 11101, 20, 20, 0.00, '2025-12-09 21:47:45', '2026-01-10 17:10:27');
 
 -- 导出  表 aurora-marketing.rule_tree 结构
 CREATE TABLE IF NOT EXISTS `rule_tree` (
@@ -133,7 +134,7 @@ CREATE TABLE IF NOT EXISTS `rule_tree` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='规则树';
 
--- 正在导出表  aurora-marketing.rule_tree 的数据：~1 rows (大约)
+-- 正在导出表  aurora-marketing.rule_tree 的数据：~2 rows (大约)
 INSERT INTO `rule_tree` (`id`, `tree_id`, `tree_name`, `tree_desc`, `tree_root_rule_key`, `create_time`, `update_time`) VALUES
 	(1, 'tree_lock', '规则树', '规则树', 'rule_lock', '2025-12-01 15:07:33', '2025-12-01 15:07:33');
 
@@ -152,7 +153,7 @@ CREATE TABLE IF NOT EXISTS `rule_tree_node` (
 -- 正在导出表  aurora-marketing.rule_tree_node 的数据：~3 rows (大约)
 INSERT INTO `rule_tree_node` (`id`, `tree_id`, `rule_key`, `rule_desc`, `rule_value`, `create_time`, `update_time`) VALUES
 	(1, 'tree_lock', 'rule_lock', '限定用户已完成N次抽奖后解锁', '1', '2025-12-01 15:08:08', '2025-12-01 15:08:08'),
-	(2, 'tree_lock', 'rule_luck_award', '兜底奖品随机token', '101:200,10000', '2025-12-01 15:09:24', '2025-12-02 16:32:58'),
+	(2, 'tree_lock', 'rule_luck_award', '兜底奖品随机token', '102:20,100', '2025-12-01 15:09:24', '2026-01-23 20:20:44'),
 	(3, 'tree_lock', 'rule_stock', '库存扣减规则', 'NULL', '2025-12-01 15:11:21', '2025-12-01 15:11:21');
 
 -- 导出  表 aurora-marketing.rule_tree_node_line 结构
@@ -212,7 +213,7 @@ CREATE TABLE IF NOT EXISTS `strategy_award` (
 INSERT INTO `strategy_award` (`id`, `strategy_id`, `award_id`, `award_title`, `award_subtitle`, `award_count`, `award_count_surplus`, `award_rate`, `rule_models`, `sort`, `create_time`, `update_time`) VALUES
 	(1, 10001, 101, '随机token数', NULL, 8000, 8000, 40.0000, 'tree_lock', 1, '2025-11-22 20:54:25', '2026-01-23 14:48:41'),
 	(2, 10001, 102, '随机积分数', NULL, 10000, 10000, 40.0000, 'tree_lock', 2, '2025-11-23 17:13:34', '2026-01-23 14:48:48'),
-	(3, 10001, 103, '5次上传图像对话', NULL, 1000, 1000, 10.0000, 'tree_lock', 3, '2025-11-22 20:55:09', '2025-12-05 17:53:34'),
+	(3, 10001, 103, '5次上传图像对话', NULL, 1000, 999, 10.0000, 'tree_lock', 3, '2025-11-22 20:55:09', '2026-01-23 14:51:10'),
 	(4, 10001, 104, '5次高级模型对话【Claude4.5sonnet/Gemini3】', NULL, 500, 500, 5.0000, 'tree_lock', 4, '2025-11-22 20:55:44', '2025-12-05 17:53:38'),
 	(5, 10001, 105, '10次高级模型对话【Claude4.5sonnet/Gemini3】', '抽奖3次后解锁', 400, 398, 3.0000, 'tree_lock', 5, '2025-11-22 20:56:25', '2026-01-23 14:49:50'),
 	(6, 10001, 106, '5次使用AI绘图模型', '抽奖3次后解锁', 60, 60, 1.0000, 'tree_lock', 6, '2025-11-22 21:00:02', '2026-01-23 14:49:54'),
@@ -222,7 +223,7 @@ INSERT INTO `strategy_award` (`id`, `strategy_id`, `award_id`, `award_title`, `a
 	(10, 10002, 101, '随机token数', NULL, 8000, 8000, 40.0000, 'tree_lock', 0, '2026-01-12 16:13:27', '2026-01-12 16:13:27'),
 	(11, 10003, 102, '随机积分数', NULL, 15, 4, 0.4500, 'tree_lock', 1, '2025-12-02 18:58:19', '2025-12-05 15:30:05'),
 	(12, 10003, 103, '5次上传图像对话', NULL, 45, 32, 0.5500, 'tree_lock', 0, '2025-12-02 18:59:22', '2025-12-04 20:41:00'),
-	(13, 10001, 100, '黑名单用户赠送token', NULL, 10000, 10000, 0.0000, NULL, 0, '2025-12-04 17:44:33', '2025-12-04 17:44:33'),
+	(13, 10001, 100, '黑名单用户赠送token', NULL, 10000, 10000, 0.0000, NULL, 0, '2025-12-04 17:44:33', '2026-01-23 20:18:41'),
 	(14, 10003, 101, '随机token数', NULL, 80, 80, 0.8000, 'tree_lock', 0, '2026-01-12 16:14:11', '2026-01-12 16:14:11');
 
 -- 导出  表 aurora-marketing.strategy_rule 结构
@@ -243,7 +244,7 @@ CREATE TABLE IF NOT EXISTS `strategy_rule` (
 
 -- 正在导出表  aurora-marketing.strategy_rule 的数据：~5 rows (大约)
 INSERT INTO `strategy_rule` (`id`, `strategy_id`, `award_id`, `rule_type`, `rule_model`, `rule_value`, `rule_desc`, `create_time`, `update_time`) VALUES
-	(7, 10001, 107, 2, 'rule_luck_award', '101:200,10000', '随机token兜底', '2025-11-22 21:13:56', '2025-12-02 16:33:16'),
+	(7, 10001, 107, 2, 'rule_luck_award', '102:20,100', '随机token兜底', '2025-11-22 21:13:56', '2026-01-23 20:21:29'),
 	(8, 10001, NULL, 1, 'rule_weight', '60:107 30:103,104,105,106', '抽奖次数满30自动出', '2025-11-22 21:18:16', '2026-01-21 17:20:03'),
 	(9, 10001, NULL, 1, 'rule_blacklist', '100:user001,user002', '黑名单用户100 token', '2025-11-22 21:23:46', '2025-11-25 14:37:58'),
 	(10, 10002, 105, 2, 'rule_lock', '3', '抽奖3次后解锁', '2025-11-26 20:16:13', '2025-11-26 20:19:44'),

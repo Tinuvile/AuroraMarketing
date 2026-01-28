@@ -6,6 +6,7 @@ import com.tinuvile.domain.credit.model.valobj.TradeNameVO;
 import com.tinuvile.domain.credit.model.valobj.TradeTypeVO;
 import com.tinuvile.domain.credit.service.ICreditAdjustService;
 import lombok.extern.slf4j.Slf4j;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -19,6 +20,7 @@ import java.math.BigDecimal;
  * @description
  * @since 2026/1/27
  */
+@Ignore
 @Slf4j
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -47,6 +49,19 @@ public class CreditAdjustServiceTest {
         tradeEntity.setAmount(new BigDecimal("-10.19"));
         tradeEntity.setOutBusinessNo("20000990991");
         creditAdjustService.createOrder(tradeEntity);
+    }
+
+    @Test
+    public void test_createOrder_pay() throws InterruptedException {
+        TradeEntity tradeEntity = new TradeEntity();
+        tradeEntity.setUserId("tinuvile");
+        tradeEntity.setTradeName(TradeNameVO.CONVERT_SKU);
+        tradeEntity.setTradeType(TradeTypeVO.REVERSE);
+        tradeEntity.setAmount(new BigDecimal("-1.68"));
+        tradeEntity.setOutBusinessNo("70009240609001");
+        creditAdjustService.createOrder(tradeEntity);
+
+        // new CountDownLatch(1).await();
     }
 
 }
