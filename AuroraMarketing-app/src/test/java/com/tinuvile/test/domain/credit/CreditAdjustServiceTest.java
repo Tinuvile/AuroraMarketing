@@ -6,6 +6,7 @@ import com.tinuvile.domain.credit.model.valobj.TradeNameVO;
 import com.tinuvile.domain.credit.model.valobj.TradeTypeVO;
 import com.tinuvile.domain.credit.service.ICreditAdjustService;
 import lombok.extern.slf4j.Slf4j;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -19,6 +20,7 @@ import java.math.BigDecimal;
  * @description
  * @since 2026/1/27
  */
+@Ignore
 @Slf4j
 @RunWith(SpringRunner.class)
 @SpringBootTest

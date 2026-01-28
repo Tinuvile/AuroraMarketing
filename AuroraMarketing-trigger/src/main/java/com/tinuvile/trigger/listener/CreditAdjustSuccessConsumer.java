@@ -24,9 +24,9 @@ import javax.annotation.Resource;
  */
 @Slf4j
 @Component
-public class CreditAdjustSuccessCustomer {
+public class CreditAdjustSuccessConsumer {
 
-    @Value("${spring.rabbitmq.topic.credit-adjust-success}")
+    @Value("${spring.rabbitmq.topic.credit_adjust_success}")
     private String topic;
 
     @Resource
