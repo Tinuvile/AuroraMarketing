@@ -83,6 +83,7 @@ CREATE TABLE IF NOT EXISTS `raffle_activity_order_000` (
   `total_count` int NOT NULL COMMENT '总次数',
   `month_count` int NOT NULL COMMENT '月次数',
   `day_count` int NOT NULL COMMENT '日次数',
+  `pay_amount` decimal(10,2) NOT NULL COMMENT '支付金额【积分】',
   `state` varchar(16) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT 'complete' COMMENT '订单状态（complete）',
   `out_business_no` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '业务防重ID - 外部透传，确保幂等',
   `create_time` datetime NOT NULL DEFAULT (now()) COMMENT '创建时间',
@@ -108,6 +109,7 @@ CREATE TABLE IF NOT EXISTS `raffle_activity_order_001` (
   `total_count` int NOT NULL COMMENT '总次数',
   `month_count` int NOT NULL COMMENT '月次数',
   `day_count` int NOT NULL COMMENT '日次数',
+  `pay_amount` decimal(10,2) NOT NULL COMMENT '支付金额【积分】',
   `state` varchar(16) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT 'complete' COMMENT '订单状态（complete）',
   `out_business_no` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '业务防重ID - 外部透传，确保幂等',
   `create_time` datetime NOT NULL DEFAULT (now()) COMMENT '创建时间',
@@ -133,6 +135,7 @@ CREATE TABLE IF NOT EXISTS `raffle_activity_order_002` (
   `total_count` int NOT NULL COMMENT '总次数',
   `month_count` int NOT NULL COMMENT '月次数',
   `day_count` int NOT NULL COMMENT '日次数',
+  `pay_amount` decimal(10,2) NOT NULL COMMENT '支付金额【积分】',
   `state` varchar(16) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT 'complete' COMMENT '订单状态（complete）',
   `out_business_no` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '业务防重ID - 外部透传，确保幂等',
   `create_time` datetime NOT NULL DEFAULT (now()) COMMENT '创建时间',
@@ -144,8 +147,8 @@ CREATE TABLE IF NOT EXISTS `raffle_activity_order_002` (
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='抽奖活动单';
 
 -- 正在导出表  aurora-marketing-02.raffle_activity_order_002 的数据：~1 rows (大约)
-INSERT INTO `raffle_activity_order_002` (`id`, `user_id`, `sku`, `activity_id`, `activity_name`, `strategy_id`, `order_id`, `order_time`, `total_count`, `month_count`, `day_count`, `state`, `out_business_no`, `create_time`, `update_time`) VALUES
-	(1, 'Tinuvile', 100000, 100301, '测试活动', 100006, '477579130487', '2025-12-09 12:52:57', 1, 1, 1, 'not_used', '', '2025-12-09 20:52:56', '2025-12-09 22:02:58');
+INSERT INTO `raffle_activity_order_002` (`id`, `user_id`, `sku`, `activity_id`, `activity_name`, `strategy_id`, `order_id`, `order_time`, `total_count`, `month_count`, `day_count`, `pay_amount`, `state`, `out_business_no`, `create_time`, `update_time`) VALUES
+	(1, 'Tinuvile', 100000, 100301, '测试活动', 100006, '477579130487', '2025-12-09 12:52:57', 1, 1, 1, 0.00, 'not_used', '', '2025-12-09 20:52:56', '2025-12-09 22:02:58');
 
 -- 导出  表 aurora-marketing-02.raffle_activity_order_003 结构
 CREATE TABLE IF NOT EXISTS `raffle_activity_order_003` (
@@ -160,6 +163,7 @@ CREATE TABLE IF NOT EXISTS `raffle_activity_order_003` (
   `total_count` int NOT NULL COMMENT '总次数',
   `month_count` int NOT NULL COMMENT '月次数',
   `day_count` int NOT NULL COMMENT '日次数',
+  `pay_amount` decimal(10,2) NOT NULL COMMENT '支付金额【积分】',
   `state` varchar(16) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT 'complete' COMMENT '订单状态（complete）',
   `out_business_no` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '业务防重ID - 外部透传，确保幂等',
   `create_time` datetime NOT NULL DEFAULT (now()) COMMENT '创建时间',

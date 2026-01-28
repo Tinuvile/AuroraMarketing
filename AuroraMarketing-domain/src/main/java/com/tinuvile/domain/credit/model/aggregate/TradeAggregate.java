@@ -1,10 +1,14 @@
 package com.tinuvile.domain.credit.model.aggregate;
 
 
+import com.tinuvile.domain.award.model.valobj.TaskStateVO;
+import com.tinuvile.domain.credit.event.CreditAdjustSuccessMessageEvent;
 import com.tinuvile.domain.credit.model.entity.CreditAccountEntity;
 import com.tinuvile.domain.credit.model.entity.CreditOrderEntity;
+import com.tinuvile.domain.credit.model.entity.TaskEntity;
 import com.tinuvile.domain.credit.model.valobj.TradeNameVO;
 import com.tinuvile.domain.credit.model.valobj.TradeTypeVO;
+import com.tinuvile.types.event.BaseEvent;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -33,6 +37,9 @@ public class TradeAggregate {
     /** 用户积分订单实体 */
     private CreditOrderEntity creditOrderEntity;
 
+    /** 任务实体 - 补偿MQ消息 */
+    private TaskEntity taskEntity;
+
     public static CreditAccountEntity createCreditAccountEntity(String userId, BigDecimal adjustAmount) {
         return CreditAccountEntity.builder().userId(userId).adjustAmount(adjustAmount).build();
     }
@@ -46,6 +53,16 @@ public class TradeAggregate {
                 .tradeType(tradeType)
                 .tradeAmount(tradeAmount)
                 .outBusinessNo(outBusinessNo)
+                .build();
+    }
+
+    public static TaskEntity createTaskEntity(String userId, String topic, String messageId, BaseEvent.EventMessage<CreditAdjustSuccessMessageEvent.CreditAdjustSuccessMessage> message) {
+        return TaskEntity.builder()
+                .userId(userId)
+                .topic(topic)
+                .messageId(messageId)
+                .message(message)
+                .state(TaskStateVO.create)
                 .build();
     }
 

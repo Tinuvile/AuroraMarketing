@@ -1,6 +1,7 @@
 package com.tinuvile.domain.activity.model.entity;
 
 
+import com.tinuvile.domain.activity.model.valobj.OrderTradeTypeVO;
 import lombok.Data;
 
 /**
@@ -19,5 +20,8 @@ public class SkuRechargeEntity {
 
     /** 外部业务单号，外部谁充值谁透传，保证幂等 */
     private String outBusinessNo;
+
+    /** 订单交易类型 */
+    private OrderTradeTypeVO orderTradeType = OrderTradeTypeVO.rebate_no_pay_trade;
 
 }
