@@ -2,10 +2,7 @@ package com.tinuvile.domain.activity.service.quota;
 
 
 import com.tinuvile.domain.activity.model.aggregate.CreateQuotaOrderAggregate;
-import com.tinuvile.domain.activity.model.entity.ActivityCountEntity;
-import com.tinuvile.domain.activity.model.entity.ActivityEntity;
-import com.tinuvile.domain.activity.model.entity.ActivitySkuEntity;
-import com.tinuvile.domain.activity.model.entity.SkuRechargeEntity;
+import com.tinuvile.domain.activity.model.entity.*;
 import com.tinuvile.domain.activity.repository.IActivityRepository;
 import com.tinuvile.domain.activity.service.IRaffleActivityAccountQuotaService;
 import com.tinuvile.domain.activity.service.quota.policy.ITradePolicy;
@@ -34,7 +31,7 @@ public abstract class AbstractRaffleActivityAccountQuota extends RaffleActivityA
     }
 
     @Override
-    public String createOrder(SkuRechargeEntity skuRechargeEntity) {
+    public UnpaidActivityOrderEntity createOrder(SkuRechargeEntity skuRechargeEntity) {
 
         // 参数校验
         String userId = skuRechargeEntity.getUserId();
@@ -44,12 +41,13 @@ public abstract class AbstractRaffleActivityAccountQuota extends RaffleActivityA
             throw new AppException(ResponseCode.ILLEGAL_PARAMETER.getCode(), ResponseCode.ILLEGAL_PARAMETER.getInfo());
         }
 
-        // 查询基础信息
-        // 通过sku查询活动信息
+        // 查询未支付订单【一个月以内】
+        UnpaidActivityOrderEntity unpaidCreditOrder = activityRepository.queryUnpaidActivityOrder(skuRechargeEntity);
+        if (null != unpaidCreditOrder) return unpaidCreditOrder;
+
+        // 查询基础信息【sku、活动、次数】
         ActivitySkuEntity activitySkuEntity = queryActivitySku(sku);
-        // 查询活动信息
         ActivityEntity activityEntity = queryRaffleActivityByActivityId(activitySkuEntity.getActivityId());
-        // 查询次数信息
         ActivityCountEntity activityCountEntity = queryRaffleActivityCountByActivityCountId(activitySkuEntity.getActivityCountId());
 
         // 活动动作规则校验【过滤失败则直接抛异常】 - 责任链扣减sku库存
@@ -64,7 +62,14 @@ public abstract class AbstractRaffleActivityAccountQuota extends RaffleActivityA
         tradePolicy.trade(createQuotaOrderAggregate);
 
         // 返回单号
-        return createQuotaOrderAggregate.getActivityOrderEntity().getOrderId();
+        ActivityOrderEntity activityOrderEntity = createQuotaOrderAggregate.getActivityOrderEntity();
+        return UnpaidActivityOrderEntity.builder()
+                .userId(userId)
+                .orderId(activityOrderEntity.getOrderId())
+                .outBusinessNo(activityOrderEntity.getOutBusinessNo())
+                .payAmount(activityOrderEntity.getPayAmount())
+                .build();
+
     }
 
     protected abstract CreateQuotaOrderAggregate buildOrderAggregate(SkuRechargeEntity skuRechargeEntity, ActivitySkuEntity activitySkuEntity, ActivityEntity activityEntity, ActivityCountEntity activityCountEntity);

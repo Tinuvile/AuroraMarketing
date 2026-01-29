@@ -12,6 +12,6 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface IRaffleActivityCountDao {
 
-    RaffleActivityCount queryRaffleActivityCountByActivityId(Long activityCountId);
+    RaffleActivityCount queryRaffleActivityCountByActivityCountId(Long activityCountId);
 
 }

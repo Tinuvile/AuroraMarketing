@@ -1,12 +1,12 @@
 package com.tinuvile.api;
 
 
-import com.tinuvile.api.dto.ActivityDrawRequestDTO;
-import com.tinuvile.api.dto.ActivityDrawResponseDTO;
-import com.tinuvile.api.dto.UserActivityAccountRequestDTO;
-import com.tinuvile.api.dto.UserActivityAccountResponseDTO;
+import com.tinuvile.api.dto.*;
 import com.tinuvile.types.model.Response;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import java.math.BigDecimal;
+import java.util.List;
 
 /**
  * @author Tinuvile
@@ -54,5 +54,29 @@ public interface IRaffleActivityService {
      * @return 用户活动账户信息
      */
     Response<UserActivityAccountResponseDTO> queryUserActivityAccount(UserActivityAccountRequestDTO request);
+
+    /**
+     * @description 查询sku商品集合
+     *
+     * @param activityId 活动ID
+     * @return 商品集合
+     */
+    Response<List<SkuProductResponseDTO>> querySkuProductListByActivityId(Long activityId);
+
+    /**
+     * @description 查询用户积分值
+     *
+     * @param userId 用户ID
+     * @return 用户积分值
+     */
+    Response<BigDecimal> queryUserCreditAccount(String userId);
+
+    /**
+     * @description 积分支付兑换商品
+     *
+     * @param request 请求对象【用户ID、商品ID】
+     * @return 兑换结果
+     */
+    Response<Boolean> creditPayExchangeSku(SkuProductShopCartRequestDTO request);
 
 }
