@@ -44,8 +44,7 @@ public class RuleWeightLogicChain extends AbstractLogicChain {
      */
     @Override
     public DefaultChainFactory.StrategyAwardVO logic(String userId, Long strategyId) {
-        log.info("规则过滤 - 权重范围 userId:{} strategyId:{} ruleModel:{}",
-                userId, strategyId, ruleModel());
+        log.info("抽奖责任链-权重开始 userId:{} strategyId:{} ruleModel:{}", userId, strategyId, ruleModel());
 
         String ruleValue = repository.queryStrategyRuleValue(strategyId, ruleModel());
         if (ruleValue == null || ruleValue.isEmpty()) return next().logic(userId, strategyId);
@@ -53,8 +52,7 @@ public class RuleWeightLogicChain extends AbstractLogicChain {
         // 查询规则配置并解析
         Map<Long, String> analyticalValueGroup = getAnalyticalValue(ruleValue);
         if (null == analyticalValueGroup || analyticalValueGroup.isEmpty()) {
-            log.warn("抽奖责任链 - 权重告警【策略配置权重，但 ruleValue 未配置对应值】 userId:{} strategyId:{} ruleModel:{}",
-                    userId, strategyId, ruleModel());
+            log.warn("抽奖责任链-权重告警【策略配置权重，但ruleValue未配置相应值】 userId:{} strategyId:{} ruleModel:{}", userId, strategyId, ruleModel());
             return next().logic(userId, strategyId);
         }
 
@@ -72,16 +70,14 @@ public class RuleWeightLogicChain extends AbstractLogicChain {
         // 抽奖
         if (null != nextValue) {
             Integer awardId = strategyDispatch.getRandomAwardId(strategyId, analyticalValueGroup.get(nextValue));
-            log.info("抽奖责任链 - 权重接管 userId: {} strategyId: {} ruleModel: {} awardId: {}",
-                    userId, strategyId, ruleModel(), awardId);
+            log.info("抽奖责任链-权重接管 userId:{} strategyId:{} ruleModel:{} awardId:{}", userId, strategyId, ruleModel(), awardId);
             return DefaultChainFactory.StrategyAwardVO.builder()
                     .awardId(awardId)
                     .logicModel(ruleModel())
                     .build();
         }
 
-        log.info("抽奖责任链 - 权重放行 userId: {} strategyId: {} ruleModel: {}",
-                userId, strategyId, ruleModel());
+        log.info("抽奖责任链-权重放行 userId:{} strategyId:{} ruleModel:{}", userId, strategyId, ruleModel());
 
         return next().logic(userId, strategyId);
 

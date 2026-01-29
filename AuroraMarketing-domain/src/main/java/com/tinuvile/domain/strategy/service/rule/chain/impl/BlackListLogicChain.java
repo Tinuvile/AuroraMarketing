@@ -42,8 +42,7 @@ public class BlackListLogicChain extends AbstractLogicChain {
     @Override
     public DefaultChainFactory.StrategyAwardVO logic(String userId, Long strategyId) {
 
-        log.info("规则过滤 - 黑名单 userId:{} strategyId:{} ruleModel:{}",
-                userId, strategyId, ruleModel());
+        log.info("抽奖责任链-黑名单开始 userId:{} strategyId:{} ruleModel:{}", userId, strategyId, ruleModel());
 
         String ruleValue = repository.queryStrategyRuleValue(strategyId, ruleModel());
         if (ruleValue == null || ruleValue.isEmpty()) return next().logic(userId, strategyId);
@@ -64,8 +63,7 @@ public class BlackListLogicChain extends AbstractLogicChain {
             }
         }
 
-        log.info("抽奖责任链 - 黑名单放行 userId:{} strategyId:{} ruleModel:{}",
-                userId, strategyId, ruleModel());
+        log.info("抽奖责任链-黑名单放行 userId:{} strategyId:{} ruleModel:{}", userId, strategyId, ruleModel());
 
         return next().logic(userId, strategyId);
     }

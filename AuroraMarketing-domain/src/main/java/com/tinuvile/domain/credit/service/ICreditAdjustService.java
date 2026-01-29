@@ -1,6 +1,7 @@
 package com.tinuvile.domain.credit.service;
 
 
+import com.tinuvile.domain.credit.model.entity.CreditAccountEntity;
 import com.tinuvile.domain.credit.model.entity.TradeEntity;
 
 /**
@@ -17,5 +18,13 @@ public interface ICreditAdjustService {
      * @return 订单ID
      */
     String createOrder(TradeEntity tradeEntity);
+
+    /**
+     * 查询用户积分账户
+     *
+     * @param userId 用户ID
+     * @return 用户积分账户
+     */
+    CreditAccountEntity queryUserCreditAccount(String userId);
 
 }

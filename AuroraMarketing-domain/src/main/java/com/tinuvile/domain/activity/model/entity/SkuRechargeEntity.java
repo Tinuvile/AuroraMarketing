@@ -2,7 +2,10 @@ package com.tinuvile.domain.activity.model.entity;
 
 
 import com.tinuvile.domain.activity.model.valobj.OrderTradeTypeVO;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * @author Tinuvile
@@ -10,6 +13,9 @@ import lombok.Data;
  * @since 2025/12/22
  */
 @Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class SkuRechargeEntity {
 
     /** 用户ID */

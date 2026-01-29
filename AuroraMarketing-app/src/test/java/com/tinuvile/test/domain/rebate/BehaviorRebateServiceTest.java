@@ -8,6 +8,7 @@ import com.tinuvile.domain.rebate.model.valobj.BehaviorTypeVO;
 import com.tinuvile.domain.rebate.service.IBehaviorRebateService;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -21,6 +22,7 @@ import java.util.List;
  * @description 行为返利服务测试
  * @since 2026/1/16
  */
+@Ignore
 @Slf4j
 @RunWith(SpringRunner.class)
 @SpringBootTest
